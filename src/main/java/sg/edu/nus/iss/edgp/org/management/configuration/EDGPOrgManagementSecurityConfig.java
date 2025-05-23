@@ -53,8 +53,8 @@ public class EDGPOrgManagementSecurityConfig {
 				// CSRF protection is disabled because JWT Bearer tokens are used for stateless
 				// authentication.
 				.csrf(csrf -> csrf.disable()) // NOSONAR - CSRF is not required for JWT-based stateless authentication
-				.authorizeHttpRequests(
-						auth -> auth.requestMatchers(SECURED_URLs).permitAll().anyRequest().authenticated())
+				//.authorizeHttpRequests(
+				//		auth -> auth.requestMatchers(SECURED_URLs).permitAll().anyRequest().authenticated())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();// To
 																														// add
 																														// JWTFilter
