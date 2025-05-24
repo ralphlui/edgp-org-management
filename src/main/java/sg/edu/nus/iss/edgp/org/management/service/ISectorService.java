@@ -7,10 +7,15 @@ import org.springframework.data.domain.Pageable;
 
 import sg.edu.nus.iss.edgp.org.management.dto.SectorDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorRequest;
+import sg.edu.nus.iss.edgp.org.management.entity.Sector;
 
 public interface ISectorService {
 
 	SectorDTO createSector(SectorRequest sectorReq) throws Exception;
 	
     Map<Long, List<SectorDTO>> retrieveActiveSectorList(Pageable pageable);
+    
+    SectorDTO updateSector(SectorRequest sectorReq, String userId, String sectorId);
+    
+    Sector findBySectorId(String sectorId);
 }

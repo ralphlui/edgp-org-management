@@ -16,6 +16,8 @@ public class DTOMapper {
 		sectorDTO.setCreatedBy(sector.getCreatedBy());
 		sectorDTO.setLastUpdatedBy(sector.getLastUpdatedBy());
 		sectorDTO.setRemark(sector.getRemark());
+		sectorDTO.setDescription(sector.getDescription());
+		sectorDTO.setActive(sector.isActive());
 		return sectorDTO;
 	}
 }

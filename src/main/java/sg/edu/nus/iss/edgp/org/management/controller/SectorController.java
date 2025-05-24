@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ import sg.edu.nus.iss.edgp.org.management.dto.SectorDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorRequest;
 import sg.edu.nus.iss.edgp.org.management.dto.ValidationResult;
 import sg.edu.nus.iss.edgp.org.management.exception.SectorServiceException;
+import sg.edu.nus.iss.edgp.org.management.service.impl.JwtService;
 import sg.edu.nus.iss.edgp.org.management.service.impl.SectorService;
 import sg.edu.nus.iss.edgp.org.management.strategy.impl.SectorValidationStrategy;
 
@@ -41,6 +43,7 @@ public class SectorController {
 
 	private final SectorValidationStrategy sectorvalidationStrategy;
 	private final SectorService sectorService;
+	private final JwtService jwtService;
 	private String genericErrorMessage = "An error occurred while processing your request. Please try again later.";
 	
 
@@ -106,6 +109,34 @@ public class SectorController {
 			}
 
 		} catch (Exception ex) {
+			message = ex instanceof SectorServiceException ? ex.getMessage() : genericErrorMessage;
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
+		}
+	}
+	
+	
+	@PutMapping(value = "", produces = "application/json")
+	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	public ResponseEntity<APIResponse<SectorDTO>> updateSector(@RequestHeader("Authorization") String authorizationHeader,
+			@RequestHeader("X-Sector-Id") String sectorId, @RequestBody SectorRequest sectorRequest) {
+		logger.info("Calling sector update API...");
+		String message = "";
+		
+		try {
+			String jwtToken = authorizationHeader.substring(7);
+			String userId = jwtService.extractUserID(jwtToken);
+			ValidationResult validationResult = sectorvalidationStrategy.validateUpdating(userId, sectorId);
+			if (validationResult.isValid()) {
+				SectorDTO sectorDtO = sectorService.updateSector(sectorRequest, userId, sectorId);
+				message = sectorDtO.getSectorName() + " is updated successfully.";
+				logger.info(message);
+				return ResponseEntity.status(HttpStatus.OK).body(APIResponse.success(sectorDtO, message));
+			}
+			message = validationResult.getMessage();
+			logger.error(message);
+			return ResponseEntity.status(validationResult.getStatus()).body(APIResponse.error(message));
+			
+		} catch( Exception ex) {
 			message = ex instanceof SectorServiceException ? ex.getMessage() : genericErrorMessage;
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
 		}

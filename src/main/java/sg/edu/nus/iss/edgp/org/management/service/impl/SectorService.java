@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorRequest;
 import sg.edu.nus.iss.edgp.org.management.entity.Sector;
+import sg.edu.nus.iss.edgp.org.management.exception.SectorNotFoundException;
 import sg.edu.nus.iss.edgp.org.management.exception.SectorServiceException;
 import sg.edu.nus.iss.edgp.org.management.repository.SectorRepository;
 import sg.edu.nus.iss.edgp.org.management.service.ISectorService;
@@ -76,6 +77,40 @@ public class SectorService implements ISectorService {
 			throw new SectorServiceException("Failed during retrieveSectorList operation", ex);
 
 		}
+	}
+
+	@Override
+	public SectorDTO updateSector(SectorRequest sectorReq, String userId, String sectorId) {
+		try {
+			
+			Sector dbSector = sectorRepository.findBySectorId(sectorId);
+			if (dbSector == null) {
+				throw new SectorServiceException("No matching sector found");
+			}
+			dbSector.setDescription(sectorReq.getDescription());
+			dbSector.setLastUpdatedBy(userId);
+			dbSector.setLastUpdatedDateTime(LocalDateTime.now());
+			dbSector.setRemark(sectorReq.getRemark());
+			dbSector.setActive(sectorReq.getActive());
+			logger.info("Updating Sector...");
+			Sector updatedSector = sectorRepository.save(dbSector);
+			logger.info("Sector is updated successfully.");
+			return DTOMapper.toSectorDTO(updatedSector);
+		} catch (Exception ex) {
+			logger.error("Error occurred while sector updating", ex);
+			throw new SectorServiceException("Failed during updating sector operation", ex);
+		}
+	}
+	
+	@Override
+	public Sector findBySectorId(String sectorId) {
+		try {
+			return sectorRepository.findBySectorId(sectorId);
+		} catch (Exception e) {
+			logger.error("Exception occurred while executing findBySectorId", e);
+			throw new SectorServiceException("Failed during finding sector by id", e);
+		}
+		
 	}
 
 }

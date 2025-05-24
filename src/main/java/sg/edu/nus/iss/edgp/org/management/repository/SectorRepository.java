@@ -17,5 +17,7 @@ public interface SectorRepository extends JpaRepository<Sector, String> {
 	@Query("SELECT s FROM Sector s WHERE s.isActive = ?1")
 	Page<Sector> findActiveSectorList(boolean isActive, Pageable pageable);
 	
+	Sector findBySectorId(String sectorId);
+	
 
 }

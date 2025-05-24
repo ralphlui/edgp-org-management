@@ -14,4 +14,5 @@ public class SectorDTO {
 	private String createdBy;
 	private String lastUpdatedBy;
 	private String remark;
+	private Boolean active;
 }
