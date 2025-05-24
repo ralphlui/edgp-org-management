@@ -42,4 +42,7 @@ public class Sector {
 
 	@Column(nullable = true)
 	private String remark;
+	
+	@Column(nullable = false, columnDefinition = "boolean default true")
+	private boolean isActive;
 }

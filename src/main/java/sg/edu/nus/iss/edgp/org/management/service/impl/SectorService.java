@@ -1,7 +1,12 @@
 package sg.edu.nus.iss.edgp.org.management.service.impl;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorRequest;
 import sg.edu.nus.iss.edgp.org.management.entity.Sector;
+import sg.edu.nus.iss.edgp.org.management.exception.SectorServiceException;
 import sg.edu.nus.iss.edgp.org.management.repository.SectorRepository;
 import sg.edu.nus.iss.edgp.org.management.service.ISectorService;
 import sg.edu.nus.iss.edgp.org.management.utility.DTOMapper;
@@ -43,9 +49,33 @@ public class SectorService implements ISectorService {
 			return sectorRepository.findBySectorNameOrSectorCode(sectorName, sectorCode);
 		} catch (Exception ex) {
 			logger.error("Exception occurred while executing findBySectorNameAndCode", ex);
-			throw ex;
+			throw new SectorServiceException("Failed during findBySectorNameAndCode operation", ex);
 		}
 
+	}
+
+	@Override
+	public Map<Long, List<SectorDTO>> retrieveActiveSectorList(Pageable pageable) {
+		try {
+			List<SectorDTO> sectorDTOList = new ArrayList<>();
+			Page<Sector> sectorPages = sectorRepository.findActiveSectorList(true, pageable);
+			long totalRecord = sectorPages.getTotalElements();
+			if (totalRecord > 0) {
+				logger.info("Active user list is found.");
+				for (Sector sector : sectorPages.getContent()) {
+					SectorDTO sectorDTO = DTOMapper.toSectorDTO(sector);
+					sectorDTOList.add(sectorDTO);
+				}
+			}
+			Map<Long, List<SectorDTO>> result = new HashMap<>();
+			result.put(totalRecord, sectorDTOList);
+			return result;
+
+		} catch (Exception ex) {
+			logger.error("retrieveSectorList exception...", ex);
+			throw new SectorServiceException("Failed during retrieveSectorList operation", ex);
+
+		}
 	}
 
 }
