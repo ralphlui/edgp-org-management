@@ -140,7 +140,7 @@ public class SectorController {
 	
 	
 	@PutMapping(value = "", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_manager')")
+	@PreAuthorize("hasAuthority('SCOPE_manage')")
 	public ResponseEntity<APIResponse<SectorDTO>> updateSector(@RequestHeader("Authorization") String authorizationHeader,
 			@RequestHeader("X-Sector-Id") String sectorId, @RequestBody SectorRequest sectorRequest) {
 		logger.info("Calling sector update API...");
