@@ -16,6 +16,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import sg.edu.nus.iss.edgp.org.management.dto.AuditDTO;
+import sg.edu.nus.iss.edgp.org.management.service.impl.AuditService;
 import sg.edu.nus.iss.edgp.org.management.service.impl.JwtService;
 import sg.edu.nus.iss.edgp.org.management.utility.JwtTokenErrorResponse;
 
@@ -24,16 +26,20 @@ import sg.edu.nus.iss.edgp.org.management.utility.JwtTokenErrorResponse;
 public class JwtFilter extends OncePerRequestFilter {
 
 	private final JwtService jwtService;
+	private final AuditService auditLogService;
+	private String authorizationHeader;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 
-		String authorizationHeader = request.getHeader("Authorization");
+		 authorizationHeader = request.getHeader("Authorization");
+		 AuditDTO auditDTO = auditLogService.createAuditDTO("", request.getRequestURI(), request.getMethod());
+
 
 		if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
 			handleErrorResponse(response, "Authorization header is missing or invalid.",
-					HttpServletResponse.SC_UNAUTHORIZED);
+					HttpServletResponse.SC_UNAUTHORIZED, auditDTO);
 			return;
 		}
 
@@ -46,17 +52,17 @@ public class JwtFilter extends OncePerRequestFilter {
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			} else {
-				handleErrorResponse(response, "Invalid or expired JWT token", HttpServletResponse.SC_UNAUTHORIZED);
+				handleErrorResponse(response, "Invalid or expired JWT token", HttpServletResponse.SC_UNAUTHORIZED, auditDTO);
 				return;
 			}
 		} catch (ExpiredJwtException e) {
-			handleErrorResponse(response, "JWT token is expired", HttpServletResponse.SC_UNAUTHORIZED);
+			handleErrorResponse(response, "JWT token is expired", HttpServletResponse.SC_UNAUTHORIZED, auditDTO);
 			return;
 		} catch (MalformedJwtException | SecurityException e) {
-			handleErrorResponse(response, "Invalid JWT token", HttpServletResponse.SC_UNAUTHORIZED);
+			handleErrorResponse(response, "Invalid JWT token", HttpServletResponse.SC_UNAUTHORIZED, auditDTO);
 			return;
 		} catch (Exception e) {
-			handleErrorResponse(response, e.getMessage(), HttpServletResponse.SC_UNAUTHORIZED);
+			handleErrorResponse(response, e.getMessage(), HttpServletResponse.SC_UNAUTHORIZED, auditDTO);
 			return;
 		}
 
@@ -64,7 +70,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
 	}
 
-	private void handleErrorResponse(HttpServletResponse response, String message, int status) throws IOException {
+	private void handleErrorResponse(HttpServletResponse response, String message, int status, AuditDTO auditDTO) throws IOException {
+		auditLogService.logAudit(auditDTO, status, message, authorizationHeader);
 		JwtTokenErrorResponse.sendErrorResponse(response, message, status);
 	}
 

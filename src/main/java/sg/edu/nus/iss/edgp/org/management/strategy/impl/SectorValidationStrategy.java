@@ -54,11 +54,11 @@ public class SectorValidationStrategy implements IAPIHelperValidationStrategy<Se
 	}
 
 	@Override
-	public ValidationResult validateUpdating(String userId, String sectorId) {
+	public ValidationResult validateUpdating(SectorRequest sectorReq) {
 		ValidationResult validationResult = new ValidationResult();
 
-		sectorId = GeneralUtility.makeNotNull(sectorId);
-		userId = GeneralUtility.makeNotNull(userId);
+		String sectorId = GeneralUtility.makeNotNull(sectorReq.getSectorId());
+		String userId = GeneralUtility.makeNotNull(sectorReq.getCreatedBy());
 
 		if (sectorId.isEmpty()) {
 			return buildInvalidResult("Bad Request: Sector ID could not be blank.");
@@ -66,7 +66,7 @@ public class SectorValidationStrategy implements IAPIHelperValidationStrategy<Se
 
 		Sector sector = sectorService.findBySectorId(sectorId);
 		if (sector == null || sector.getSectorId().isEmpty()) {
-			return buildInvalidResult("Invalid sector ID: " + sectorId);
+			return buildInvalidResult("Invalid sector ID.");
 		}
 
 		if (userId.isEmpty()) {

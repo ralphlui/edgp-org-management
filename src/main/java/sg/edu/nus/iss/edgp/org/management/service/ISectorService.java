@@ -11,7 +11,7 @@ import sg.edu.nus.iss.edgp.org.management.entity.Sector;
 
 public interface ISectorService {
 
-	SectorDTO createSector(SectorRequest sectorReq) throws Exception;
+	SectorDTO createSector(SectorRequest sectorReq, String userId) throws Exception;
 	
     Map<Long, List<SectorDTO>> retrieveActiveSectorList(Pageable pageable);
     

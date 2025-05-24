@@ -17,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorRequest;
 import sg.edu.nus.iss.edgp.org.management.entity.Sector;
-import sg.edu.nus.iss.edgp.org.management.exception.SectorNotFoundException;
 import sg.edu.nus.iss.edgp.org.management.exception.SectorServiceException;
 import sg.edu.nus.iss.edgp.org.management.repository.SectorRepository;
 import sg.edu.nus.iss.edgp.org.management.service.ISectorService;
@@ -31,17 +30,24 @@ public class SectorService implements ISectorService {
 	private final SectorRepository sectorRepository;
 
 	@Override
-	public SectorDTO createSector(SectorRequest sectorReq) throws Exception {
-		Sector sector = new Sector();
-		sector.setSectorName(sectorReq.getSectorName());
-		sector.setSectorCode(sectorReq.getSectorCode());
-		sector.setDescription(sector.getDescription());
-		sector.setCreatedBy(sectorReq.getCreatedBy());
-		sector.setLastUpdatedBy(sector.getCreatedBy());
-		sector.setLastUpdatedDateTime(LocalDateTime.now());
-		Sector createdSector = sectorRepository.save(sector);
-		logger.info("Creating sector ....");
-		return DTOMapper.toSectorDTO(createdSector);
+	public SectorDTO createSector(SectorRequest sectorReq, String userId) throws Exception {
+		try {
+
+			Sector sector = new Sector();
+			sector.setSectorName(sectorReq.getSectorName());
+			sector.setSectorCode(sectorReq.getSectorCode());
+			sector.setDescription(sector.getDescription());
+			sector.setCreatedBy(userId);
+			sector.setLastUpdatedBy(userId);
+			sector.setLastUpdatedDateTime(LocalDateTime.now());
+			sector.setRemark(sectorReq.getRemark());
+			Sector createdSector = sectorRepository.save(sector);
+			logger.info("Creating sector ....");
+			return DTOMapper.toSectorDTO(createdSector);
+		} catch (Exception ex) {
+			logger.error("Exception occurred while creating sector", ex);
+			throw new SectorServiceException("Failed during creating sector operation", ex);
+		}
 
 	}
 

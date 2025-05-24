@@ -13815,3 +13815,1161 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()"
 24-05-2025 18:20:46 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.service.impl.SectorService           : Updating Sector...
 24-05-2025 18:20:46 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.service.impl.SectorService           : Sector is updated successfully.
 24-05-2025 18:20:46 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.c.SectorController                   : Media is updated successfully.
+24-05-2025 18:25:26 [http-nio-8082-exec-6] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 18:25:42 [http-nio-8082-exec-7] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 18:25:42 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 18:25:43 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 18:25:43 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 18:25:43 [http-nio-8082-exec-7] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 18:25:43 [http-nio-8082-exec-7] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@2a88164d, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 18:25:43 [http-nio-8082-exec-7] DEBUG o.s.security.web.FilterChainProxy                  : Secured POST /api/orgs/sectors
+24-05-2025 18:25:43 [http-nio-8082-exec-7] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:25:43 [http-nio-8082-exec-7] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:25:43 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling create sector API ...
+24-05-2025 18:25:43 [http-nio-8082-exec-7] ERROR s.e.n.i.e.o.m.c.SectorController                   : An error occurred while creating the sector.
+24-05-2025 18:26:10 [http-nio-8082-exec-9] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 18:26:10 [http-nio-8082-exec-9] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 18:26:11 [http-nio-8082-exec-9] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 18:26:11 [http-nio-8082-exec-9] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 18:26:11 [http-nio-8082-exec-9] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 18:26:11 [http-nio-8082-exec-9] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@2a88164d, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 18:26:11 [http-nio-8082-exec-9] DEBUG o.s.security.web.FilterChainProxy                  : Secured POST /api/orgs/sectors
+24-05-2025 18:26:11 [http-nio-8082-exec-9] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:26:11 [http-nio-8082-exec-9] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:26:11 [http-nio-8082-exec-9] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling create sector API ...
+24-05-2025 18:26:11 [http-nio-8082-exec-9] ERROR s.e.n.i.e.o.m.c.SectorController                   : An error occurred while creating the sector.
+24-05-2025 18:26:20 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Commencing graceful shutdown. Waiting for active requests to complete
+24-05-2025 18:26:20 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Graceful shutdown complete
+24-05-2025 18:26:20 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Closing JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 18:26:20 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown initiated...
+24-05-2025 18:26:20 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown completed.
+24-05-2025 18:26:28 [background-preinit] INFO  o.h.validator.internal.util.Version                : HV000001: Hibernate Validator 8.0.2.Final
+24-05-2025 18:26:28 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Starting EdgpOrgManagementApplication using Java 21.0.1 with PID 9936 (/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes started by khinyadanarnaing in /Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management)
+24-05-2025 18:26:28 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : No active profile set, falling back to 1 default profile: "default"
+24-05-2025 18:26:28 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-05-2025 18:26:28 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 17 ms. Found 1 JPA repository interface.
+24-05-2025 18:26:28 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat initialized with port 8082 (http)
+24-05-2025 18:26:28 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Initializing ProtocolHandler ["http-nio-8082"]
+24-05-2025 18:26:28 [main] INFO  o.apache.catalina.core.StandardService             : Starting service [Tomcat]
+24-05-2025 18:26:28 [main] INFO  org.apache.catalina.core.StandardEngine            : Starting Servlet engine: [Apache Tomcat/10.1.41]
+24-05-2025 18:26:28 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring embedded WebApplicationContext
+24-05-2025 18:26:28 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 507 ms
+24-05-2025 18:26:28 [main] INFO  o.hibernate.jpa.internal.util.LogHelper            : HHH000204: Processing PersistenceUnitInfo [name: default]
+24-05-2025 18:26:28 [main] INFO  org.hibernate.Version                              : HHH000412: Hibernate ORM core version 6.6.15.Final
+24-05-2025 18:26:29 [main] INFO  o.h.c.internal.RegionFactoryInitiator              : HHH000026: Second-level cache disabled
+24-05-2025 18:26:29 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo                : No LoadTimeWeaver setup: ignoring JPA class transformer
+24-05-2025 18:26:29 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Starting...
+24-05-2025 18:26:29 [main] INFO  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@76ed7573
+24-05-2025 18:26:29 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Start completed.
+24-05-2025 18:26:29 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+24-05-2025 18:26:29 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+24-05-2025 18:26:29 [main] INFO  org.hibernate.orm.connections.pooling              : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+24-05-2025 18:26:29 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator                 : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-05-2025 18:26:29 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 18:26:29 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory               : Hibernate is in classpath; If applicable, HQL parser will be used.
+24-05-2025 18:26:29 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-05-2025 18:26:29 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+24-05-2025 18:26:30 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain               : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+24-05-2025 18:26:30 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Starting ProtocolHandler ["http-nio-8082"]
+24-05-2025 18:26:30 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat started on port 8082 (http) with context path '/'
+24-05-2025 18:26:30 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Started EdgpOrgManagementApplication in 2.071 seconds (process running for 2.407)
+24-05-2025 18:26:55 [http-nio-8082-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-05-2025 18:26:55 [http-nio-8082-exec-2] INFO  o.s.web.servlet.DispatcherServlet                  : Initializing Servlet 'dispatcherServlet'
+24-05-2025 18:26:55 [http-nio-8082-exec-2] INFO  o.s.web.servlet.DispatcherServlet                  : Completed initialization in 2 ms
+24-05-2025 18:26:55 [http-nio-8082-exec-2] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 18:26:55 [http-nio-8082-exec-2] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 18:26:56 [http-nio-8082-exec-2] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 18:26:56 [http-nio-8082-exec-2] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 18:26:56 [http-nio-8082-exec-2] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 18:26:56 [http-nio-8082-exec-2] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@2a88164d, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 18:26:56 [http-nio-8082-exec-2] DEBUG o.s.security.web.FilterChainProxy                  : Secured POST /api/orgs/sectors
+24-05-2025 18:26:56 [http-nio-8082-exec-2] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:26:56 [http-nio-8082-exec-2] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:26:56 [http-nio-8082-exec-2] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling create sector API ...
+24-05-2025 18:31:51 [background-preinit] INFO  o.h.validator.internal.util.Version                : HV000001: Hibernate Validator 8.0.2.Final
+24-05-2025 18:31:51 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Starting EdgpOrgManagementApplication using Java 21.0.1 with PID 10082 (/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes started by khinyadanarnaing in /Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management)
+24-05-2025 18:31:51 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : No active profile set, falling back to 1 default profile: "default"
+24-05-2025 18:31:51 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-05-2025 18:31:51 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+24-05-2025 18:31:52 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat initialized with port 8082 (http)
+24-05-2025 18:31:52 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Initializing ProtocolHandler ["http-nio-8082"]
+24-05-2025 18:31:52 [main] INFO  o.apache.catalina.core.StandardService             : Starting service [Tomcat]
+24-05-2025 18:31:52 [main] INFO  org.apache.catalina.core.StandardEngine            : Starting Servlet engine: [Apache Tomcat/10.1.41]
+24-05-2025 18:31:52 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring embedded WebApplicationContext
+24-05-2025 18:31:52 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 436 ms
+24-05-2025 18:31:52 [main] INFO  o.hibernate.jpa.internal.util.LogHelper            : HHH000204: Processing PersistenceUnitInfo [name: default]
+24-05-2025 18:31:52 [main] INFO  org.hibernate.Version                              : HHH000412: Hibernate ORM core version 6.6.15.Final
+24-05-2025 18:31:52 [main] INFO  o.h.c.internal.RegionFactoryInitiator              : HHH000026: Second-level cache disabled
+24-05-2025 18:31:52 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo                : No LoadTimeWeaver setup: ignoring JPA class transformer
+24-05-2025 18:31:52 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Starting...
+24-05-2025 18:31:52 [main] INFO  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@78743dd8
+24-05-2025 18:31:52 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Start completed.
+24-05-2025 18:31:52 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+24-05-2025 18:31:52 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+24-05-2025 18:31:52 [main] INFO  org.hibernate.orm.connections.pooling              : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+24-05-2025 18:31:52 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator                 : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-05-2025 18:31:52 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 18:31:52 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory               : Hibernate is in classpath; If applicable, HQL parser will be used.
+24-05-2025 18:31:53 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-05-2025 18:31:53 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+24-05-2025 18:31:53 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain               : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+24-05-2025 18:31:53 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Starting ProtocolHandler ["http-nio-8082"]
+24-05-2025 18:31:53 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat started on port 8082 (http) with context path '/'
+24-05-2025 18:31:53 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Started EdgpOrgManagementApplication in 1.797 seconds (process running for 1.992)
+24-05-2025 18:32:04 [http-nio-8082-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-05-2025 18:32:04 [http-nio-8082-exec-2] INFO  o.s.web.servlet.DispatcherServlet                  : Initializing Servlet 'dispatcherServlet'
+24-05-2025 18:32:04 [http-nio-8082-exec-2] INFO  o.s.web.servlet.DispatcherServlet                  : Completed initialization in 1 ms
+24-05-2025 18:32:04 [http-nio-8082-exec-2] DEBUG o.s.security.web.FilterChainProxy                  : Securing PUT /api/orgs/sectors
+24-05-2025 18:32:05 [http-nio-8082-exec-2] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 18:32:05 [http-nio-8082-exec-2] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 18:32:05 [http-nio-8082-exec-2] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 18:32:05 [http-nio-8082-exec-2] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 18:32:05 [http-nio-8082-exec-2] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@2a88164d, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 18:32:05 [http-nio-8082-exec-2] DEBUG o.s.security.web.FilterChainProxy                  : Secured PUT /api/orgs/sectors
+24-05-2025 18:32:05 [http-nio-8082-exec-2] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:32:05 [http-nio-8082-exec-2] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:32:05 [http-nio-8082-exec-2] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling sector update API...
+24-05-2025 18:32:05 [http-nio-8082-exec-2] ERROR s.e.n.i.e.o.m.c.SectorController                   : Bad Request: Sector ID could not be blank.
+24-05-2025 18:32:13 [http-nio-8082-exec-4] DEBUG o.s.security.web.FilterChainProxy                  : Securing PUT /api/orgs/sectors
+24-05-2025 18:32:13 [http-nio-8082-exec-4] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 18:32:13 [http-nio-8082-exec-4] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 18:32:13 [http-nio-8082-exec-4] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 18:32:13 [http-nio-8082-exec-4] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 18:32:13 [http-nio-8082-exec-4] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@2a88164d, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 18:32:13 [http-nio-8082-exec-4] DEBUG o.s.security.web.FilterChainProxy                  : Secured PUT /api/orgs/sectors
+24-05-2025 18:32:13 [http-nio-8082-exec-4] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:32:13 [http-nio-8082-exec-4] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:32:13 [http-nio-8082-exec-4] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling sector update API...
+24-05-2025 18:32:13 [http-nio-8082-exec-4] ERROR s.e.n.i.e.o.m.c.SectorController                   : Invalid sector ID: 322b9704-5df8-4709-8dd0-a55d93454df01
+24-05-2025 18:32:19 [http-nio-8082-exec-6] DEBUG o.s.security.web.FilterChainProxy                  : Securing PUT /api/orgs/sectors
+24-05-2025 18:32:19 [http-nio-8082-exec-6] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 18:32:19 [http-nio-8082-exec-6] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 18:32:19 [http-nio-8082-exec-6] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 18:32:19 [http-nio-8082-exec-6] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 18:32:19 [http-nio-8082-exec-6] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@2a88164d, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 18:32:19 [http-nio-8082-exec-6] DEBUG o.s.security.web.FilterChainProxy                  : Secured PUT /api/orgs/sectors
+24-05-2025 18:32:19 [http-nio-8082-exec-6] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:32:19 [http-nio-8082-exec-6] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:32:19 [http-nio-8082-exec-6] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling sector update API...
+24-05-2025 18:32:19 [http-nio-8082-exec-6] INFO  s.e.n.i.e.o.m.service.impl.SectorService           : Updating Sector...
+24-05-2025 18:32:20 [http-nio-8082-exec-6] INFO  s.e.n.i.e.o.m.service.impl.SectorService           : Sector is updated successfully.
+24-05-2025 18:32:20 [http-nio-8082-exec-6] INFO  s.e.n.i.e.o.m.c.SectorController                   : Media is updated successfully.
+24-05-2025 18:32:45 [http-nio-8082-exec-7] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 18:32:45 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 18:32:45 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 18:32:45 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 18:32:45 [http-nio-8082-exec-7] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 18:32:45 [http-nio-8082-exec-7] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@2a88164d, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 18:32:45 [http-nio-8082-exec-7] DEBUG o.s.security.web.FilterChainProxy                  : Secured POST /api/orgs/sectors
+24-05-2025 18:32:45 [http-nio-8082-exec-7] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:32:45 [http-nio-8082-exec-7] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:32:45 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling create sector API ...
+24-05-2025 18:32:45 [http-nio-8082-exec-7] ERROR s.e.n.i.e.o.m.c.SectorController                   : Duplicate sector detected. Please enter a unique name.
+24-05-2025 18:33:28 [http-nio-8082-exec-9] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 18:33:28 [http-nio-8082-exec-9] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 18:33:29 [http-nio-8082-exec-9] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 18:33:29 [http-nio-8082-exec-9] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 18:33:29 [http-nio-8082-exec-9] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 18:33:29 [http-nio-8082-exec-9] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@2a88164d, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 18:33:29 [http-nio-8082-exec-9] DEBUG o.s.security.web.FilterChainProxy                  : Secured POST /api/orgs/sectors
+24-05-2025 18:33:29 [http-nio-8082-exec-9] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:33:29 [http-nio-8082-exec-9] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:33:29 [http-nio-8082-exec-9] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling create sector API ...
+24-05-2025 18:33:29 [http-nio-8082-exec-9] INFO  s.e.n.i.e.o.m.service.impl.SectorService           : Creating sector ....
+24-05-2025 18:33:29 [http-nio-8082-exec-9] INFO  s.e.n.i.e.o.m.c.SectorController                   : Success! The sector has been added.
+24-05-2025 18:34:11 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Commencing graceful shutdown. Waiting for active requests to complete
+24-05-2025 18:34:11 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Graceful shutdown complete
+24-05-2025 18:34:11 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Closing JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 18:34:11 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown initiated...
+24-05-2025 18:34:11 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown completed.
+24-05-2025 18:34:18 [background-preinit] INFO  o.h.validator.internal.util.Version                : HV000001: Hibernate Validator 8.0.2.Final
+24-05-2025 18:34:18 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Starting EdgpOrgManagementApplication using Java 21.0.1 with PID 10166 (/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes started by khinyadanarnaing in /Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management)
+24-05-2025 18:34:18 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : No active profile set, falling back to 1 default profile: "default"
+24-05-2025 18:34:18 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-05-2025 18:34:18 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+24-05-2025 18:34:18 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat initialized with port 8082 (http)
+24-05-2025 18:34:18 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Initializing ProtocolHandler ["http-nio-8082"]
+24-05-2025 18:34:18 [main] INFO  o.apache.catalina.core.StandardService             : Starting service [Tomcat]
+24-05-2025 18:34:18 [main] INFO  org.apache.catalina.core.StandardEngine            : Starting Servlet engine: [Apache Tomcat/10.1.41]
+24-05-2025 18:34:18 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring embedded WebApplicationContext
+24-05-2025 18:34:18 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 442 ms
+24-05-2025 18:34:18 [main] INFO  o.hibernate.jpa.internal.util.LogHelper            : HHH000204: Processing PersistenceUnitInfo [name: default]
+24-05-2025 18:34:18 [main] INFO  org.hibernate.Version                              : HHH000412: Hibernate ORM core version 6.6.15.Final
+24-05-2025 18:34:18 [main] INFO  o.h.c.internal.RegionFactoryInitiator              : HHH000026: Second-level cache disabled
+24-05-2025 18:34:18 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo                : No LoadTimeWeaver setup: ignoring JPA class transformer
+24-05-2025 18:34:18 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Starting...
+24-05-2025 18:34:18 [main] INFO  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5e8bd498
+24-05-2025 18:34:18 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Start completed.
+24-05-2025 18:34:18 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+24-05-2025 18:34:18 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+24-05-2025 18:34:18 [main] INFO  org.hibernate.orm.connections.pooling              : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+24-05-2025 18:34:19 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator                 : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-05-2025 18:34:19 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 18:34:19 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory               : Hibernate is in classpath; If applicable, HQL parser will be used.
+24-05-2025 18:34:19 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-05-2025 18:34:19 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+24-05-2025 18:34:19 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain               : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+24-05-2025 18:34:19 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Starting ProtocolHandler ["http-nio-8082"]
+24-05-2025 18:34:19 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat started on port 8082 (http) with context path '/'
+24-05-2025 18:34:19 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Started EdgpOrgManagementApplication in 1.795 seconds (process running for 1.997)
+24-05-2025 18:34:21 [http-nio-8082-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-05-2025 18:34:21 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet                  : Initializing Servlet 'dispatcherServlet'
+24-05-2025 18:34:21 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet                  : Completed initialization in 1 ms
+24-05-2025 18:34:21 [http-nio-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 18:37:54 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m5s682ms).
+24-05-2025 18:37:57 [http-nio-8082-exec-5] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 18:37:57 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 18:37:57 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 18:37:57 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 18:37:57 [http-nio-8082-exec-5] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 18:37:57 [http-nio-8082-exec-5] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@3035ce31, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 18:37:57 [http-nio-8082-exec-5] DEBUG o.s.security.web.FilterChainProxy                  : Secured POST /api/orgs/sectors
+24-05-2025 18:37:57 [http-nio-8082-exec-5] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:37:57 [http-nio-8082-exec-5] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:37:57 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling create sector API ...
+24-05-2025 18:37:57 [http-nio-8082-exec-5] ERROR s.e.n.i.e.o.m.c.SectorController                   : Duplicate sector detected. Please enter a unique name.
+24-05-2025 18:38:10 [http-nio-8082-exec-7] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 18:38:10 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 18:38:10 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 18:38:10 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 18:38:10 [http-nio-8082-exec-7] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 18:38:10 [http-nio-8082-exec-7] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@3035ce31, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 18:38:10 [http-nio-8082-exec-7] DEBUG o.s.security.web.FilterChainProxy                  : Secured POST /api/orgs/sectors
+24-05-2025 18:38:10 [http-nio-8082-exec-7] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:38:10 [http-nio-8082-exec-7] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:38:10 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling create sector API ...
+24-05-2025 18:38:10 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.service.impl.SectorService           : Creating sector ....
+24-05-2025 18:38:10 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.c.SectorController                   : Success! The sector has been added.
+24-05-2025 18:38:29 [http-nio-8082-exec-8] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 18:38:29 [http-nio-8082-exec-8] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 18:38:29 [http-nio-8082-exec-8] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 18:38:29 [http-nio-8082-exec-8] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 18:38:29 [http-nio-8082-exec-8] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 18:38:29 [http-nio-8082-exec-8] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@3035ce31, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 18:38:29 [http-nio-8082-exec-8] DEBUG o.s.security.web.FilterChainProxy                  : Secured POST /api/orgs/sectors
+24-05-2025 18:38:29 [http-nio-8082-exec-8] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:38:29 [http-nio-8082-exec-8] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 18:38:29 [http-nio-8082-exec-8] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling create sector API ...
+24-05-2025 18:38:29 [http-nio-8082-exec-8] INFO  s.e.n.i.e.o.m.service.impl.SectorService           : Creating sector ....
+24-05-2025 18:38:29 [http-nio-8082-exec-8] INFO  s.e.n.i.e.o.m.c.SectorController                   : Success! The sector has been added.
+24-05-2025 18:54:46 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m21s740ms).
+24-05-2025 19:33:49 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=39m3s298ms).
+24-05-2025 19:42:36 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m47s16ms).
+24-05-2025 20:19:46 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m9s426ms).
+24-05-2025 20:54:48 [background-preinit] INFO  o.h.validator.internal.util.Version                : HV000001: Hibernate Validator 8.0.2.Final
+24-05-2025 20:54:48 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Starting EdgpOrgManagementApplication using Java 21.0.1 with PID 12563 (/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes started by khinyadanarnaing in /Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management)
+24-05-2025 20:54:48 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : No active profile set, falling back to 1 default profile: "default"
+24-05-2025 20:54:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-05-2025 20:54:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+24-05-2025 20:54:48 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat initialized with port 8082 (http)
+24-05-2025 20:54:48 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Initializing ProtocolHandler ["http-nio-8082"]
+24-05-2025 20:54:48 [main] INFO  o.apache.catalina.core.StandardService             : Starting service [Tomcat]
+24-05-2025 20:54:48 [main] INFO  org.apache.catalina.core.StandardEngine            : Starting Servlet engine: [Apache Tomcat/10.1.41]
+24-05-2025 20:54:48 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring embedded WebApplicationContext
+24-05-2025 20:54:48 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 427 ms
+24-05-2025 20:54:48 [main] INFO  o.hibernate.jpa.internal.util.LogHelper            : HHH000204: Processing PersistenceUnitInfo [name: default]
+24-05-2025 20:54:49 [main] INFO  org.hibernate.Version                              : HHH000412: Hibernate ORM core version 6.6.15.Final
+24-05-2025 20:54:49 [main] INFO  o.h.c.internal.RegionFactoryInitiator              : HHH000026: Second-level cache disabled
+24-05-2025 20:54:49 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo                : No LoadTimeWeaver setup: ignoring JPA class transformer
+24-05-2025 20:54:49 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Starting...
+24-05-2025 20:54:49 [main] INFO  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@46ee7013
+24-05-2025 20:54:49 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Start completed.
+24-05-2025 20:54:49 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+24-05-2025 20:54:49 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+24-05-2025 20:54:49 [main] INFO  org.hibernate.orm.connections.pooling              : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+24-05-2025 20:54:49 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator                 : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-05-2025 20:54:49 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 20:54:49 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'SQSPublishingService' defined in file [/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes/sg/edu/nus/iss/edgp/org/management/aws/service/SQSPublishingService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.amazonaws.services.sqs.AmazonSQS' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+24-05-2025 20:54:49 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Closing JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 20:54:49 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown initiated...
+24-05-2025 20:54:49 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown completed.
+24-05-2025 20:54:49 [main] INFO  o.apache.catalina.core.StandardService             : Stopping service [Tomcat]
+24-05-2025 20:54:49 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger          : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+24-05-2025 20:54:49 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter             : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in sg.edu.nus.iss.edgp.org.management.aws.service.SQSPublishingService required a bean of type 'com.amazonaws.services.sqs.AmazonSQS' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.amazonaws.services.sqs.AmazonSQS' in your configuration.
+
+24-05-2025 20:56:22 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Commencing graceful shutdown. Waiting for active requests to complete
+24-05-2025 20:56:22 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Graceful shutdown complete
+24-05-2025 20:56:22 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Closing JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 20:56:22 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown initiated...
+24-05-2025 20:56:22 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown completed.
+24-05-2025 21:13:37 [background-preinit] INFO  o.h.validator.internal.util.Version                : HV000001: Hibernate Validator 8.0.2.Final
+24-05-2025 21:13:37 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Starting EdgpOrgManagementApplication using Java 21.0.1 with PID 13159 (/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes started by khinyadanarnaing in /Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management)
+24-05-2025 21:13:37 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : No active profile set, falling back to 1 default profile: "default"
+24-05-2025 21:13:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-05-2025 21:13:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+24-05-2025 21:13:37 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat initialized with port 8082 (http)
+24-05-2025 21:13:37 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Initializing ProtocolHandler ["http-nio-8082"]
+24-05-2025 21:13:37 [main] INFO  o.apache.catalina.core.StandardService             : Starting service [Tomcat]
+24-05-2025 21:13:37 [main] INFO  org.apache.catalina.core.StandardEngine            : Starting Servlet engine: [Apache Tomcat/10.1.41]
+24-05-2025 21:13:37 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring embedded WebApplicationContext
+24-05-2025 21:13:37 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 431 ms
+24-05-2025 21:13:37 [main] ERROR o.s.b.web.embedded.tomcat.TomcatStarter            : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtFilter' defined in file [/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes/sg/edu/nus/iss/edgp/org/management/authentication/JwtFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'auditService' defined in file [/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes/sg/edu/nus/iss/edgp/org/management/service/impl/AuditService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'SQSPublishingService': Unsatisfied dependency expressed through field 'amazonSQS': No qualifying bean of type 'com.amazonaws.services.sqs.AmazonSQS' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+24-05-2025 21:13:37 [main] INFO  o.apache.catalina.core.StandardService             : Stopping service [Tomcat]
+24-05-2025 21:13:37 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+24-05-2025 21:13:37 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger          : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+24-05-2025 21:13:37 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter             : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field amazonSQS in sg.edu.nus.iss.edgp.org.management.aws.service.SQSPublishingService required a bean of type 'com.amazonaws.services.sqs.AmazonSQS' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.amazonaws.services.sqs.AmazonSQS' in your configuration.
+
+24-05-2025 21:13:52 [background-preinit] INFO  o.h.validator.internal.util.Version                : HV000001: Hibernate Validator 8.0.2.Final
+24-05-2025 21:13:52 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Starting EdgpOrgManagementApplication using Java 21.0.1 with PID 13165 (/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes started by khinyadanarnaing in /Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management)
+24-05-2025 21:13:52 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : No active profile set, falling back to 1 default profile: "default"
+24-05-2025 21:13:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-05-2025 21:13:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 16 ms. Found 1 JPA repository interface.
+24-05-2025 21:13:52 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat initialized with port 8082 (http)
+24-05-2025 21:13:52 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Initializing ProtocolHandler ["http-nio-8082"]
+24-05-2025 21:13:52 [main] INFO  o.apache.catalina.core.StandardService             : Starting service [Tomcat]
+24-05-2025 21:13:52 [main] INFO  org.apache.catalina.core.StandardEngine            : Starting Servlet engine: [Apache Tomcat/10.1.41]
+24-05-2025 21:13:52 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring embedded WebApplicationContext
+24-05-2025 21:13:52 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 431 ms
+24-05-2025 21:13:52 [main] ERROR o.s.b.web.embedded.tomcat.TomcatStarter            : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtFilter' defined in file [/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes/sg/edu/nus/iss/edgp/org/management/authentication/JwtFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'auditService' defined in file [/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes/sg/edu/nus/iss/edgp/org/management/service/impl/AuditService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'SQSPublishingService': Unsatisfied dependency expressed through field 'amazonSQS': No qualifying bean of type 'com.amazonaws.services.sqs.AmazonSQS' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+24-05-2025 21:13:52 [main] INFO  o.apache.catalina.core.StandardService             : Stopping service [Tomcat]
+24-05-2025 21:13:52 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+24-05-2025 21:13:52 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger          : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+24-05-2025 21:13:52 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter             : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field amazonSQS in sg.edu.nus.iss.edgp.org.management.aws.service.SQSPublishingService required a bean of type 'com.amazonaws.services.sqs.AmazonSQS' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.amazonaws.services.sqs.AmazonSQS' in your configuration.
+
+24-05-2025 21:16:26 [background-preinit] INFO  o.h.validator.internal.util.Version                : HV000001: Hibernate Validator 8.0.2.Final
+24-05-2025 21:16:26 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Starting EdgpOrgManagementApplication using Java 21.0.1 with PID 13238 (/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes started by khinyadanarnaing in /Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management)
+24-05-2025 21:16:26 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : No active profile set, falling back to 1 default profile: "default"
+24-05-2025 21:16:26 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-05-2025 21:16:26 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 17 ms. Found 1 JPA repository interface.
+24-05-2025 21:16:26 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat initialized with port 8082 (http)
+24-05-2025 21:16:26 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Initializing ProtocolHandler ["http-nio-8082"]
+24-05-2025 21:16:26 [main] INFO  o.apache.catalina.core.StandardService             : Starting service [Tomcat]
+24-05-2025 21:16:26 [main] INFO  org.apache.catalina.core.StandardEngine            : Starting Servlet engine: [Apache Tomcat/10.1.41]
+24-05-2025 21:16:26 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring embedded WebApplicationContext
+24-05-2025 21:16:26 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 438 ms
+24-05-2025 21:16:26 [main] WARN  com.amazonaws.util.VersionInfoUtils                : The AWS SDK for Java 1.x entered maintenance mode starting July 31, 2024 and will reach end of support on December 31, 2025. For more information, see https://aws.amazon.com/blogs/developer/the-aws-sdk-for-java-1-x-is-in-maintenance-mode-effective-july-31-2024/
+You can print where on the file system the AWS SDK for Java 1.x core runtime is located by setting the AWS_JAVA_V1_PRINT_LOCATION environment variable or aws.java.v1.printLocation system property to 'true'.
+This message can be disabled by setting the AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT environment variable or aws.java.v1.disableDeprecationAnnouncement system property to 'true'.
+The AWS SDK for Java 1.x is being used here:
+at java.base/java.lang.Thread.getStackTrace(Thread.java:2450)
+at com.amazonaws.util.VersionInfoUtils.printDeprecationAnnouncement(VersionInfoUtils.java:81)
+at com.amazonaws.util.VersionInfoUtils.<clinit>(VersionInfoUtils.java:59)
+at com.amazonaws.ClientConfiguration.<clinit>(ClientConfiguration.java:95)
+at com.amazonaws.ClientConfigurationFactory.getDefaultConfig(ClientConfigurationFactory.java:46)
+at com.amazonaws.ClientConfigurationFactory.getConfig(ClientConfigurationFactory.java:36)
+at com.amazonaws.client.builder.AwsClientBuilder.resolveClientConfiguration(AwsClientBuilder.java:169)
+at com.amazonaws.client.builder.AwsClientBuilder.access$000(AwsClientBuilder.java:54)
+at com.amazonaws.client.builder.AwsClientBuilder$SyncBuilderParams.<init>(AwsClientBuilder.java:505)
+at com.amazonaws.client.builder.AwsClientBuilder.getSyncClientParams(AwsClientBuilder.java:441)
+at com.amazonaws.client.builder.AwsSyncClientBuilder.build(AwsSyncClientBuilder.java:46)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig.amazonSQSClient(AWSConfig.java:50)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$0.CGLIB$amazonSQSClient$4(<generated>)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:393)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$0.amazonSQSClient(<generated>)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1375)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1205)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768)
+at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1459)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:174)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:169)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:154)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:271)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:245)
+at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4464)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:772)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:203)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.StandardService.startInternal(StandardService.java:412)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:870)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.startup.Tomcat.start(Tomcat.java:438)
+at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:128)
+at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:107)
+at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:517)
+at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:219)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:193)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167)
+at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
+at sg.edu.nus.iss.edgp.org.management.EdgpOrgManagementApplication.main(EdgpOrgManagementApplication.java:10)
+24-05-2025 21:16:26 [main] INFO  o.hibernate.jpa.internal.util.LogHelper            : HHH000204: Processing PersistenceUnitInfo [name: default]
+24-05-2025 21:16:26 [main] INFO  org.hibernate.Version                              : HHH000412: Hibernate ORM core version 6.6.15.Final
+24-05-2025 21:16:26 [main] INFO  o.h.c.internal.RegionFactoryInitiator              : HHH000026: Second-level cache disabled
+24-05-2025 21:16:26 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo                : No LoadTimeWeaver setup: ignoring JPA class transformer
+24-05-2025 21:16:26 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Starting...
+24-05-2025 21:16:26 [main] INFO  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@13c81bc5
+24-05-2025 21:16:26 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Start completed.
+24-05-2025 21:16:26 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+24-05-2025 21:16:26 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+24-05-2025 21:16:26 [main] INFO  org.hibernate.orm.connections.pooling              : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+24-05-2025 21:16:27 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator                 : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-05-2025 21:16:27 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 21:16:27 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory               : Hibernate is in classpath; If applicable, HQL parser will be used.
+24-05-2025 21:16:27 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-05-2025 21:16:27 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+24-05-2025 21:16:27 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain               : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+24-05-2025 21:16:27 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Starting ProtocolHandler ["http-nio-8082"]
+24-05-2025 21:16:27 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat started on port 8082 (http) with context path '/'
+24-05-2025 21:16:27 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Started EdgpOrgManagementApplication in 1.91 seconds (process running for 2.118)
+24-05-2025 21:16:34 [http-nio-8082-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-05-2025 21:16:34 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet                  : Initializing Servlet 'dispatcherServlet'
+24-05-2025 21:16:34 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet                  : Completed initialization in 1 ms
+24-05-2025 21:16:34 [http-nio-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 21:16:34 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Serialized Audit Log JSON
+24-05-2025 21:16:35 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Message sent to SQS
+24-05-2025 21:21:37 [http-nio-8082-exec-5] DEBUG o.s.security.web.FilterChainProxy                  : Securing GET /api/orgs/sectors?page=0&size=2
+24-05-2025 21:21:37 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 21:21:37 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 21:21:37 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 21:21:37 [http-nio-8082-exec-5] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 21:21:37 [http-nio-8082-exec-5] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@7a4f4362, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 21:21:37 [http-nio-8082-exec-5] DEBUG o.s.security.web.FilterChainProxy                  : Secured GET /api/orgs/sectors?page=0&size=2
+24-05-2025 21:21:37 [http-nio-8082-exec-5] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.retrieveActiveSectorList(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SearchRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:21:37 [http-nio-8082-exec-5] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.retrieveActiveSectorList(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SearchRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:21:37 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.c.SectorController                   : Call sector getAll API with page=0, size=2
+24-05-2025 21:21:48 [http-nio-8082-exec-7] DEBUG o.s.security.web.FilterChainProxy                  : Securing GET /api/orgs/sectors?page=1&size=2
+24-05-2025 21:21:48 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 21:21:48 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 21:21:48 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 21:21:48 [http-nio-8082-exec-7] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 21:21:48 [http-nio-8082-exec-7] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@7a4f4362, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 21:21:48 [http-nio-8082-exec-7] DEBUG o.s.security.web.FilterChainProxy                  : Secured GET /api/orgs/sectors?page=1&size=2
+24-05-2025 21:21:48 [http-nio-8082-exec-7] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.retrieveActiveSectorList(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SearchRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:21:48 [http-nio-8082-exec-7] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.retrieveActiveSectorList(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SearchRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:21:48 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.c.SectorController                   : Call sector getAll API with page=1, size=2
+24-05-2025 21:21:48 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.service.impl.SectorService           : Active user list is found.
+24-05-2025 21:21:48 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.c.SectorController                   : all active sector list size 1
+24-05-2025 21:21:48 [http-nio-8082-exec-7] INFO  s.e.n.i.e.o.m.c.SectorController                   : totalRecord: 2
+24-05-2025 21:23:01 [http-nio-8082-exec-10] DEBUG o.s.security.web.FilterChainProxy                  : Securing POST /api/orgs/sectors
+24-05-2025 21:23:01 [http-nio-8082-exec-10] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 21:23:01 [http-nio-8082-exec-10] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 21:23:01 [http-nio-8082-exec-10] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 21:23:01 [http-nio-8082-exec-10] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 21:23:01 [http-nio-8082-exec-10] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@7a4f4362, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 21:23:01 [http-nio-8082-exec-10] DEBUG o.s.security.web.FilterChainProxy                  : Secured POST /api/orgs/sectors
+24-05-2025 21:23:01 [http-nio-8082-exec-10] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:23:01 [http-nio-8082-exec-10] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.createSector(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:23:01 [http-nio-8082-exec-10] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling create sector API ...
+24-05-2025 21:23:01 [http-nio-8082-exec-10] ERROR s.e.n.i.e.o.m.c.SectorController                   : Duplicate sector detected. Please enter a unique name.
+24-05-2025 21:23:01 [http-nio-8082-exec-10] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Serialized Audit Log JSON
+24-05-2025 21:23:02 [http-nio-8082-exec-10] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Message sent to SQS
+24-05-2025 21:27:47 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Commencing graceful shutdown. Waiting for active requests to complete
+24-05-2025 21:27:47 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Graceful shutdown complete
+24-05-2025 21:27:47 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Closing JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 21:27:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown initiated...
+24-05-2025 21:27:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown completed.
+24-05-2025 21:27:53 [background-preinit] INFO  o.h.validator.internal.util.Version                : HV000001: Hibernate Validator 8.0.2.Final
+24-05-2025 21:27:53 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Starting EdgpOrgManagementApplication using Java 21.0.1 with PID 13634 (/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes started by khinyadanarnaing in /Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management)
+24-05-2025 21:27:53 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : No active profile set, falling back to 1 default profile: "default"
+24-05-2025 21:27:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-05-2025 21:27:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+24-05-2025 21:27:54 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat initialized with port 8082 (http)
+24-05-2025 21:27:54 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Initializing ProtocolHandler ["http-nio-8082"]
+24-05-2025 21:27:54 [main] INFO  o.apache.catalina.core.StandardService             : Starting service [Tomcat]
+24-05-2025 21:27:54 [main] INFO  org.apache.catalina.core.StandardEngine            : Starting Servlet engine: [Apache Tomcat/10.1.41]
+24-05-2025 21:27:54 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring embedded WebApplicationContext
+24-05-2025 21:27:54 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 429 ms
+24-05-2025 21:27:54 [main] WARN  com.amazonaws.util.VersionInfoUtils                : The AWS SDK for Java 1.x entered maintenance mode starting July 31, 2024 and will reach end of support on December 31, 2025. For more information, see https://aws.amazon.com/blogs/developer/the-aws-sdk-for-java-1-x-is-in-maintenance-mode-effective-july-31-2024/
+You can print where on the file system the AWS SDK for Java 1.x core runtime is located by setting the AWS_JAVA_V1_PRINT_LOCATION environment variable or aws.java.v1.printLocation system property to 'true'.
+This message can be disabled by setting the AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT environment variable or aws.java.v1.disableDeprecationAnnouncement system property to 'true'.
+The AWS SDK for Java 1.x is being used here:
+at java.base/java.lang.Thread.getStackTrace(Thread.java:2450)
+at com.amazonaws.util.VersionInfoUtils.printDeprecationAnnouncement(VersionInfoUtils.java:81)
+at com.amazonaws.util.VersionInfoUtils.<clinit>(VersionInfoUtils.java:59)
+at com.amazonaws.ClientConfiguration.<clinit>(ClientConfiguration.java:95)
+at com.amazonaws.ClientConfigurationFactory.getDefaultConfig(ClientConfigurationFactory.java:46)
+at com.amazonaws.ClientConfigurationFactory.getConfig(ClientConfigurationFactory.java:36)
+at com.amazonaws.client.builder.AwsClientBuilder.resolveClientConfiguration(AwsClientBuilder.java:169)
+at com.amazonaws.client.builder.AwsClientBuilder.access$000(AwsClientBuilder.java:54)
+at com.amazonaws.client.builder.AwsClientBuilder$SyncBuilderParams.<init>(AwsClientBuilder.java:505)
+at com.amazonaws.client.builder.AwsClientBuilder.getSyncClientParams(AwsClientBuilder.java:441)
+at com.amazonaws.client.builder.AwsSyncClientBuilder.build(AwsSyncClientBuilder.java:46)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig.amazonSQSClient(AWSConfig.java:49)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$0.CGLIB$amazonSQSClient$4(<generated>)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:393)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$0.amazonSQSClient(<generated>)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1375)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1205)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768)
+at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1459)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:174)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:169)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:154)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:271)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:245)
+at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4464)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:772)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:203)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.StandardService.startInternal(StandardService.java:412)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:870)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.startup.Tomcat.start(Tomcat.java:438)
+at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:128)
+at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:107)
+at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:517)
+at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:219)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:193)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167)
+at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
+at sg.edu.nus.iss.edgp.org.management.EdgpOrgManagementApplication.main(EdgpOrgManagementApplication.java:10)
+24-05-2025 21:27:54 [main] INFO  o.hibernate.jpa.internal.util.LogHelper            : HHH000204: Processing PersistenceUnitInfo [name: default]
+24-05-2025 21:27:54 [main] INFO  org.hibernate.Version                              : HHH000412: Hibernate ORM core version 6.6.15.Final
+24-05-2025 21:27:54 [main] INFO  o.h.c.internal.RegionFactoryInitiator              : HHH000026: Second-level cache disabled
+24-05-2025 21:27:54 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo                : No LoadTimeWeaver setup: ignoring JPA class transformer
+24-05-2025 21:27:54 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Starting...
+24-05-2025 21:27:54 [main] INFO  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5617168c
+24-05-2025 21:27:54 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Start completed.
+24-05-2025 21:27:54 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+24-05-2025 21:27:54 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+24-05-2025 21:27:54 [main] INFO  org.hibernate.orm.connections.pooling              : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+24-05-2025 21:27:55 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator                 : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-05-2025 21:27:55 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 21:27:55 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory               : Hibernate is in classpath; If applicable, HQL parser will be used.
+24-05-2025 21:27:55 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-05-2025 21:27:55 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+24-05-2025 21:27:55 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain               : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+24-05-2025 21:27:55 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Starting ProtocolHandler ["http-nio-8082"]
+24-05-2025 21:27:55 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat started on port 8082 (http) with context path '/'
+24-05-2025 21:27:55 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Started EdgpOrgManagementApplication in 1.897 seconds (process running for 2.107)
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet                  : Initializing Servlet 'dispatcherServlet'
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet                  : Completed initialization in 1 ms
+24-05-2025 21:28:00 [http-nio-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy                  : Securing GET /api/orgs/sectors?page=1&size=2
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 21:28:00 [http-nio-8082-exec-1] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 21:28:00 [http-nio-8082-exec-1] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@7a4f4362, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 21:28:00 [http-nio-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy                  : Secured GET /api/orgs/sectors?page=1&size=2
+24-05-2025 21:28:00 [http-nio-8082-exec-1] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.retrieveActiveSectorList(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SearchRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:28:00 [http-nio-8082-exec-1] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.retrieveActiveSectorList(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SearchRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.c.SectorController                   : Call sector getAll API with page=1, size=2
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.service.impl.SectorService           : Active user list is found.
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.c.SectorController                   : all active sector list size 1
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.c.SectorController                   : totalRecord: 2
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Serialized Audit Log JSON
+24-05-2025 21:28:00 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Message sent to SQS
+24-05-2025 21:28:18 [http-nio-8082-exec-3] DEBUG o.s.security.web.FilterChainProxy                  : Securing GET /api/orgs/sectors?page=0&size=2
+24-05-2025 21:28:18 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 21:28:18 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 21:28:18 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 21:28:18 [http-nio-8082-exec-3] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 21:28:18 [http-nio-8082-exec-3] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@7a4f4362, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 21:28:18 [http-nio-8082-exec-3] DEBUG o.s.security.web.FilterChainProxy                  : Secured GET /api/orgs/sectors?page=0&size=2
+24-05-2025 21:28:18 [http-nio-8082-exec-3] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.retrieveActiveSectorList(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SearchRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:28:18 [http-nio-8082-exec-3] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.retrieveActiveSectorList(java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SearchRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:28:18 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.c.SectorController                   : Call sector getAll API with page=0, size=2
+24-05-2025 21:28:18 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Serialized Audit Log JSON
+24-05-2025 21:28:18 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Message sent to SQS
+24-05-2025 21:31:09 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Commencing graceful shutdown. Waiting for active requests to complete
+24-05-2025 21:31:09 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Graceful shutdown complete
+24-05-2025 21:31:09 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Closing JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 21:31:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown initiated...
+24-05-2025 21:31:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown completed.
+24-05-2025 21:31:26 [background-preinit] INFO  o.h.validator.internal.util.Version                : HV000001: Hibernate Validator 8.0.2.Final
+24-05-2025 21:31:26 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Starting EdgpOrgManagementApplication using Java 21.0.1 with PID 13740 (/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes started by khinyadanarnaing in /Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management)
+24-05-2025 21:31:26 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : No active profile set, falling back to 1 default profile: "default"
+24-05-2025 21:31:26 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-05-2025 21:31:26 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+24-05-2025 21:31:26 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat initialized with port 8082 (http)
+24-05-2025 21:31:26 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Initializing ProtocolHandler ["http-nio-8082"]
+24-05-2025 21:31:26 [main] INFO  o.apache.catalina.core.StandardService             : Starting service [Tomcat]
+24-05-2025 21:31:26 [main] INFO  org.apache.catalina.core.StandardEngine            : Starting Servlet engine: [Apache Tomcat/10.1.41]
+24-05-2025 21:31:26 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring embedded WebApplicationContext
+24-05-2025 21:31:26 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 443 ms
+24-05-2025 21:31:26 [main] WARN  com.amazonaws.util.VersionInfoUtils                : The AWS SDK for Java 1.x entered maintenance mode starting July 31, 2024 and will reach end of support on December 31, 2025. For more information, see https://aws.amazon.com/blogs/developer/the-aws-sdk-for-java-1-x-is-in-maintenance-mode-effective-july-31-2024/
+You can print where on the file system the AWS SDK for Java 1.x core runtime is located by setting the AWS_JAVA_V1_PRINT_LOCATION environment variable or aws.java.v1.printLocation system property to 'true'.
+This message can be disabled by setting the AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT environment variable or aws.java.v1.disableDeprecationAnnouncement system property to 'true'.
+The AWS SDK for Java 1.x is being used here:
+at java.base/java.lang.Thread.getStackTrace(Thread.java:2450)
+at com.amazonaws.util.VersionInfoUtils.printDeprecationAnnouncement(VersionInfoUtils.java:81)
+at com.amazonaws.util.VersionInfoUtils.<clinit>(VersionInfoUtils.java:59)
+at com.amazonaws.ClientConfiguration.<clinit>(ClientConfiguration.java:95)
+at com.amazonaws.ClientConfigurationFactory.getDefaultConfig(ClientConfigurationFactory.java:46)
+at com.amazonaws.ClientConfigurationFactory.getConfig(ClientConfigurationFactory.java:36)
+at com.amazonaws.client.builder.AwsClientBuilder.resolveClientConfiguration(AwsClientBuilder.java:169)
+at com.amazonaws.client.builder.AwsClientBuilder.access$000(AwsClientBuilder.java:54)
+at com.amazonaws.client.builder.AwsClientBuilder$SyncBuilderParams.<init>(AwsClientBuilder.java:505)
+at com.amazonaws.client.builder.AwsClientBuilder.getSyncClientParams(AwsClientBuilder.java:441)
+at com.amazonaws.client.builder.AwsSyncClientBuilder.build(AwsSyncClientBuilder.java:46)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig.amazonSQSClient(AWSConfig.java:49)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$0.CGLIB$amazonSQSClient$2(<generated>)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:393)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$0.amazonSQSClient(<generated>)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1375)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1205)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768)
+at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1459)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:174)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:169)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:154)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:271)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:245)
+at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4464)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:772)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:203)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.StandardService.startInternal(StandardService.java:412)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:870)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.startup.Tomcat.start(Tomcat.java:438)
+at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:128)
+at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:107)
+at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:517)
+at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:219)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:193)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167)
+at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
+at sg.edu.nus.iss.edgp.org.management.EdgpOrgManagementApplication.main(EdgpOrgManagementApplication.java:10)
+24-05-2025 21:31:26 [main] INFO  o.hibernate.jpa.internal.util.LogHelper            : HHH000204: Processing PersistenceUnitInfo [name: default]
+24-05-2025 21:31:26 [main] INFO  org.hibernate.Version                              : HHH000412: Hibernate ORM core version 6.6.15.Final
+24-05-2025 21:31:26 [main] INFO  o.h.c.internal.RegionFactoryInitiator              : HHH000026: Second-level cache disabled
+24-05-2025 21:31:26 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo                : No LoadTimeWeaver setup: ignoring JPA class transformer
+24-05-2025 21:31:26 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Starting...
+24-05-2025 21:31:27 [main] INFO  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55c8fc60
+24-05-2025 21:31:27 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Start completed.
+24-05-2025 21:31:27 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+24-05-2025 21:31:27 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+24-05-2025 21:31:27 [main] INFO  org.hibernate.orm.connections.pooling              : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+24-05-2025 21:31:27 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator                 : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-05-2025 21:31:27 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 21:31:27 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory               : Hibernate is in classpath; If applicable, HQL parser will be used.
+24-05-2025 21:31:27 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-05-2025 21:31:27 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+24-05-2025 21:31:27 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain               : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+24-05-2025 21:31:27 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Starting ProtocolHandler ["http-nio-8082"]
+24-05-2025 21:31:27 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat started on port 8082 (http) with context path '/'
+24-05-2025 21:31:28 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Started EdgpOrgManagementApplication in 1.916 seconds (process running for 2.116)
+24-05-2025 21:31:34 [http-nio-8082-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-05-2025 21:31:34 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet                  : Initializing Servlet 'dispatcherServlet'
+24-05-2025 21:31:34 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet                  : Completed initialization in 1 ms
+24-05-2025 21:31:34 [http-nio-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy                  : Securing PUT /api/orgs/sectors
+24-05-2025 21:31:34 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Serialized Audit Log JSON
+24-05-2025 21:31:34 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Message sent to SQS
+24-05-2025 21:32:00 [http-nio-8082-exec-3] DEBUG o.s.security.web.FilterChainProxy                  : Securing PUT /api/orgs/sectors
+24-05-2025 21:32:00 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 21:32:00 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 21:32:00 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 21:32:00 [http-nio-8082-exec-3] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 21:32:00 [http-nio-8082-exec-3] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@7a4f4362, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 21:32:00 [http-nio-8082-exec-3] DEBUG o.s.security.web.FilterChainProxy                  : Secured PUT /api/orgs/sectors
+24-05-2025 21:32:00 [http-nio-8082-exec-3] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:32:00 [http-nio-8082-exec-3] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:32:00 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling sector update API...
+24-05-2025 21:32:00 [http-nio-8082-exec-3] ERROR s.e.n.i.e.o.m.c.SectorController                   : Bad Request: Sector ID could not be blank.
+24-05-2025 21:32:00 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Serialized Audit Log JSON
+24-05-2025 21:32:00 [http-nio-8082-exec-3] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Message sent to SQS
+24-05-2025 21:32:09 [http-nio-8082-exec-5] DEBUG o.s.security.web.FilterChainProxy                  : Securing PUT /api/orgs/sectors
+24-05-2025 21:32:09 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 21:32:09 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 21:32:09 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 21:32:09 [http-nio-8082-exec-5] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 21:32:09 [http-nio-8082-exec-5] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@7a4f4362, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 21:32:09 [http-nio-8082-exec-5] DEBUG o.s.security.web.FilterChainProxy                  : Secured PUT /api/orgs/sectors
+24-05-2025 21:32:09 [http-nio-8082-exec-5] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:32:09 [http-nio-8082-exec-5] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:32:09 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.c.SectorController                   : Calling sector update API...
+24-05-2025 21:32:09 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.service.impl.SectorService           : Updating Sector...
+24-05-2025 21:32:09 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.service.impl.SectorService           : Sector is updated successfully.
+24-05-2025 21:32:09 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.c.SectorController                   : Media is updated successfully.
+24-05-2025 21:32:09 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Serialized Audit Log JSON
+24-05-2025 21:32:09 [http-nio-8082-exec-5] INFO  s.e.n.i.e.o.m.a.s.SQSPublishingService             : Message sent to SQS
+24-05-2025 21:32:54 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Commencing graceful shutdown. Waiting for active requests to complete
+24-05-2025 21:32:54 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown           : Graceful shutdown complete
+24-05-2025 21:32:54 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Closing JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 21:32:54 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown initiated...
+24-05-2025 21:32:54 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown completed.
+24-05-2025 21:33:01 [background-preinit] INFO  o.h.validator.internal.util.Version                : HV000001: Hibernate Validator 8.0.2.Final
+24-05-2025 21:33:01 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Starting EdgpOrgManagementApplication using Java 21.0.1 with PID 13793 (/Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management/target/classes started by khinyadanarnaing in /Users/khinyadanarnaing/Desktop/edgp-org-mgt-workspace/edgp-org-management)
+24-05-2025 21:33:01 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : No active profile set, falling back to 1 default profile: "default"
+24-05-2025 21:33:01 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-05-2025 21:33:01 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+24-05-2025 21:33:01 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat initialized with port 8082 (http)
+24-05-2025 21:33:01 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Initializing ProtocolHandler ["http-nio-8082"]
+24-05-2025 21:33:01 [main] INFO  o.apache.catalina.core.StandardService             : Starting service [Tomcat]
+24-05-2025 21:33:01 [main] INFO  org.apache.catalina.core.StandardEngine            : Starting Servlet engine: [Apache Tomcat/10.1.41]
+24-05-2025 21:33:01 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring embedded WebApplicationContext
+24-05-2025 21:33:01 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 434 ms
+24-05-2025 21:33:01 [main] WARN  com.amazonaws.util.VersionInfoUtils                : The AWS SDK for Java 1.x entered maintenance mode starting July 31, 2024 and will reach end of support on December 31, 2025. For more information, see https://aws.amazon.com/blogs/developer/the-aws-sdk-for-java-1-x-is-in-maintenance-mode-effective-july-31-2024/
+You can print where on the file system the AWS SDK for Java 1.x core runtime is located by setting the AWS_JAVA_V1_PRINT_LOCATION environment variable or aws.java.v1.printLocation system property to 'true'.
+This message can be disabled by setting the AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT environment variable or aws.java.v1.disableDeprecationAnnouncement system property to 'true'.
+The AWS SDK for Java 1.x is being used here:
+at java.base/java.lang.Thread.getStackTrace(Thread.java:2450)
+at com.amazonaws.util.VersionInfoUtils.printDeprecationAnnouncement(VersionInfoUtils.java:81)
+at com.amazonaws.util.VersionInfoUtils.<clinit>(VersionInfoUtils.java:59)
+at com.amazonaws.ClientConfiguration.<clinit>(ClientConfiguration.java:95)
+at com.amazonaws.ClientConfigurationFactory.getDefaultConfig(ClientConfigurationFactory.java:46)
+at com.amazonaws.ClientConfigurationFactory.getConfig(ClientConfigurationFactory.java:36)
+at com.amazonaws.client.builder.AwsClientBuilder.resolveClientConfiguration(AwsClientBuilder.java:169)
+at com.amazonaws.client.builder.AwsClientBuilder.access$000(AwsClientBuilder.java:54)
+at com.amazonaws.client.builder.AwsClientBuilder$SyncBuilderParams.<init>(AwsClientBuilder.java:505)
+at com.amazonaws.client.builder.AwsClientBuilder.getSyncClientParams(AwsClientBuilder.java:441)
+at com.amazonaws.client.builder.AwsSyncClientBuilder.build(AwsSyncClientBuilder.java:46)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig.amazonSQSClient(AWSConfig.java:49)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$0.CGLIB$amazonSQSClient$2(<generated>)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:393)
+at sg.edu.nus.iss.edgp.org.management.configuration.AWSConfig$$SpringCGLIB$$0.amazonSQSClient(<generated>)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1375)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1205)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768)
+at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1459)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1740)
+at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1628)
+at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:174)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:169)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:154)
+at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:271)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:245)
+at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4464)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:772)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:203)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.StandardService.startInternal(StandardService.java:412)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:870)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+at org.apache.catalina.startup.Tomcat.start(Tomcat.java:438)
+at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:128)
+at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:107)
+at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:517)
+at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:219)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:193)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167)
+at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
+at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
+at sg.edu.nus.iss.edgp.org.management.EdgpOrgManagementApplication.main(EdgpOrgManagementApplication.java:10)
+24-05-2025 21:33:02 [main] INFO  o.hibernate.jpa.internal.util.LogHelper            : HHH000204: Processing PersistenceUnitInfo [name: default]
+24-05-2025 21:33:02 [main] INFO  org.hibernate.Version                              : HHH000412: Hibernate ORM core version 6.6.15.Final
+24-05-2025 21:33:02 [main] INFO  o.h.c.internal.RegionFactoryInitiator              : HHH000026: Second-level cache disabled
+24-05-2025 21:33:02 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo                : No LoadTimeWeaver setup: ignoring JPA class transformer
+24-05-2025 21:33:02 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Starting...
+24-05-2025 21:33:02 [main] INFO  com.zaxxer.hikari.pool.HikariPool                  : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5617168c
+24-05-2025 21:33:02 [main] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Start completed.
+24-05-2025 21:33:02 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+24-05-2025 21:33:02 [main] WARN  org.hibernate.orm.deprecation                      : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+24-05-2025 21:33:02 [main] INFO  org.hibernate.orm.connections.pooling              : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+24-05-2025 21:33:02 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator                 : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-05-2025 21:33:02 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean     : Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-05-2025 21:33:02 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory               : Hibernate is in classpath; If applicable, HQL parser will be used.
+24-05-2025 21:33:02 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-05-2025 21:33:02 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+24-05-2025 21:33:03 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain               : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+24-05-2025 21:33:03 [main] INFO  o.apache.coyote.http11.Http11NioProtocol           : Starting ProtocolHandler ["http-nio-8082"]
+24-05-2025 21:33:03 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer            : Tomcat started on port 8082 (http) with context path '/'
+24-05-2025 21:33:03 [main] INFO  s.e.n.i.e.o.m.EdgpOrgManagementApplication         : Started EdgpOrgManagementApplication in 1.921 seconds (process running for 2.129)
+24-05-2025 21:33:14 [http-nio-8082-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]                 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-05-2025 21:33:14 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet                  : Initializing Servlet 'dispatcherServlet'
+24-05-2025 21:33:14 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet                  : Completed initialization in 1 ms
+24-05-2025 21:33:14 [http-nio-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy                  : Securing PUT /api/orgs/sectors
+24-05-2025 21:33:14 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : validate active user is calling ..
+24-05-2025 21:33:14 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.connector.AuthAPICall                : Active user detail response.
+24-05-2025 21:33:14 [http-nio-8082-exec-1] INFO  s.e.n.i.e.o.m.utility.JSONReader                   : User data
+24-05-2025 21:33:14 [http-nio-8082-exec-1] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider            : Authenticated token
+24-05-2025 21:33:14 [http-nio-8082-exec-1] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter    : Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@7a4f4362, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[SCOPE_manage]]
+24-05-2025 21:33:14 [http-nio-8082-exec-1] DEBUG o.s.security.web.FilterChainProxy                  : Secured PUT /api/orgs/sectors
+24-05-2025 21:33:15 [http-nio-8082-exec-1] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController]
+24-05-2025 21:33:15 [http-nio-8082-exec-1] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor : Failed to authorize ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity sg.edu.nus.iss.edgp.org.management.controller.SectorController.updateSector(java.lang.String,java.lang.String,sg.edu.nus.iss.edgp.org.management.dto.SectorRequest); target is of class [sg.edu.nus.iss.edgp.org.management.controller.SectorController] with authorization manager org.springframework.security.authorization.method.PreAuthorizeAuthorizationManager@1fd814fb and result ExpressionAuthorizationDecision [granted=false, expressionAttribute=hasAuthority('SCOPE_manager')]
+24-05-2025 21:33:15 [http-nio-8082-exec-1] ERROR s.e.n.i.e.o.m.e.GlobalExceptionHandler             : Failed to get data. Access Denied

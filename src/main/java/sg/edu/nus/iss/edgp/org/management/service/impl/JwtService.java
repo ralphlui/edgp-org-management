@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class JwtService {
 
 	public UserDetails getUserDetail(String authorizationHeader, String token)
 			throws JwtException, IllegalArgumentException, Exception {
-		String userID = extractUserID(token);
+		String userID = extractSubject(token);
 
 		JSONObject userJSONObjet = jsonReader.getActiveUserInfo(userID, authorizationHeader);
 		Boolean success = jsonReader.getSuccessFromResponse(userJSONObjet);
@@ -44,7 +45,7 @@ public class JwtService {
 	}
 	
 	
-	public String extractUserID(String token) throws JwtException, IllegalArgumentException, Exception {
+	public String extractSubject(String token) throws JwtException, IllegalArgumentException, Exception {
 		// TODO Auto-generated method stub
 		return extractClaim(token, Claims::getSubject);
 	}
@@ -75,6 +76,29 @@ public class JwtService {
 	
 	public Date extractExpiration(String token) throws JwtException, IllegalArgumentException, Exception {
 		return extractClaim(token, Claims::getExpiration);
+	}
+	
+	public String extractUserNameFromToken(String token) {
+	    try {
+	        Claims claims = extractAllClaims(token);
+	        return claims.get("userName", String.class);
+	    } catch (ExpiredJwtException e) {
+	        return e.getClaims().get("userName", String.class);
+	    } catch (Exception e) {
+	        return "Invalid Username";
+	    }
+	}
+	
+	
+	public String extractUserIdFromToken(String token) {
+		try {
+			Claims claims = extractAllClaims(token);
+			return claims.getSubject();
+		} catch (ExpiredJwtException e) {
+			return e.getClaims().getSubject();
+		} catch (Exception e) {
+			return "Invalid UserID";
+		}
 	}
 
 
