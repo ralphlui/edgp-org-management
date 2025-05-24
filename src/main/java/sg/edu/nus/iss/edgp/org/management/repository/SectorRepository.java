@@ -1,4 +1,4 @@
-package sg.edu.nus.iss.edgp.org.management.service.impl;
+package sg.edu.nus.iss.edgp.org.management.repository;
 
 import java.util.List;
 

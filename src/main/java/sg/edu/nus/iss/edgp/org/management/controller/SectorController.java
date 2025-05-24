@@ -2,6 +2,7 @@ package sg.edu.nus.iss.edgp.org.management.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -21,7 +22,7 @@ import sg.edu.nus.iss.edgp.org.management.strategy.impl.SectorValidationStrategy
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/orgizations/sectors")
+@RequestMapping("/api/orgs/sectors")
 public class SectorController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SectorController.class);
@@ -30,6 +31,7 @@ public class SectorController {
 	private final SectorService sectorService;
 
 	@PostMapping(value = "", produces = "application/json")
+	@PreAuthorize("hasAuthority('SCOPE_manage')")
 	public ResponseEntity<APIResponse<SectorDTO>> createSector(
 			@RequestHeader("Authorization") String authorizationHeader, @RequestBody SectorRequest sectorRequest) {
 		String message = "";

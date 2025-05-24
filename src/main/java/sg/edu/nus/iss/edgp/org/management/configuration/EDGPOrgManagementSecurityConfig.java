@@ -7,35 +7,51 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.writers.HstsHeaderWriter;
 import org.springframework.security.web.header.writers.StaticHeadersWriter;
 import org.springframework.web.cors.CorsConfiguration;
 
+import sg.edu.nus.iss.edgp.org.management.authentication.JwtFilter;
+
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true) 
 public class EDGPOrgManagementSecurityConfig {
 	private static final String[] SECURED_URLs = { "/api/orgs/**" };
 
-	@Value("${allowed.origin}")
-	private String allowedOrigin;
+	@Value("${client.url}")
+	private String clientURL;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	@Bean
+	public JwtAuthenticationConverter jwtAuthenticationConverter() {
+	    JwtGrantedAuthoritiesConverter converter = new JwtGrantedAuthoritiesConverter();
+
+	    JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
+	    jwtConverter.setJwtGrantedAuthoritiesConverter(converter);
+	    return jwtConverter;
+	}
 
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtFilter jwtFilter) throws Exception {
 		return http.cors(cors -> {
 			cors.configurationSource(request -> {
 				CorsConfiguration config = new CorsConfiguration();
-				config.setAllowedOrigins(List.of(allowedOrigin));
+				config.setAllowedOrigins(List.of(clientURL));
 				config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "OPTIONS"));
 				config.setAllowedHeaders(List.of("*"));
 				config.applyPermitDefaultValues();
@@ -53,12 +69,15 @@ public class EDGPOrgManagementSecurityConfig {
 				// CSRF protection is disabled because JWT Bearer tokens are used for stateless
 				// authentication.
 				.csrf(csrf -> csrf.disable()) // NOSONAR - CSRF is not required for JWT-based stateless authentication
-				//.authorizeHttpRequests(
-				//		auth -> auth.requestMatchers(SECURED_URLs).permitAll().anyRequest().authenticated())
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();// To
-																														// add
-																														// JWTFilter
-																														// Later
+				.authorizeHttpRequests(
+						auth -> auth.requestMatchers(SECURED_URLs).permitAll().anyRequest().authenticated())
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+				 .oauth2ResourceServer(oauth2 -> oauth2
+			                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+			            )
+				.build();
+																														
 	}
 
 	@Bean

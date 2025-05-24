@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorRequest;
 import sg.edu.nus.iss.edgp.org.management.entity.Sector;
+import sg.edu.nus.iss.edgp.org.management.repository.SectorRepository;
 import sg.edu.nus.iss.edgp.org.management.service.ISectorService;
 import sg.edu.nus.iss.edgp.org.management.utility.DTOMapper;
 
