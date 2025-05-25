@@ -1,9 +1,15 @@
 package sg.edu.nus.iss.edgp.org.management.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -58,7 +64,7 @@ public class OrganizationService implements IOrganizationService {
 			return DTOMapper.toOrganizationDTO(createdOrganization);
 		} catch (Exception ex) {
 			logger.error("Exception occurred while creating organization", ex);
-			throw new OrganizationServiceException("Failed during creating organization operation", ex);
+			throw new OrganizationServiceException("An error occured while creating organization", ex);
 		}
 	}
 	
@@ -68,10 +74,9 @@ public class OrganizationService implements IOrganizationService {
 		try {
 			return organizationRepository.findByOrganizationName(organizationName);
 		} catch (Exception ex) {
-			logger.error("Exception occurred while executing findByOrganizationName", ex);
-			throw new OrganizationServiceException("Failed during searching organization by name operation", ex);
+			logger.error("Exception occurred while searching for the organization by name", ex);
+			throw new OrganizationServiceException("An error occurred while searching for the organization by name", ex);
 		}
-
 	}
 	
 	@Override
@@ -79,10 +84,32 @@ public class OrganizationService implements IOrganizationService {
 		try {
 			return organizationRepository.findByUniqueEntityNumber(uniqueEntityNumber);
 		} catch (Exception ex) {
-			logger.error("Exception occurred while executing findByUEN", ex);
-			throw new OrganizationServiceException("Failed during searching organization by UEN", ex);
+			logger.error("Exception occurred while executing searching organization by UEN", ex);
+			throw new OrganizationServiceException("An error occurred while executing searching organization by UEN", ex);
 		}
+	}
+	
+	public Map<Long, List<OrganizationDTO>> retrieveActiveOrganizationList(Pageable pageable) {
+		try {
+			List<OrganizationDTO> organizationDTOList = new ArrayList<>();
+			Page<Organization> organizationPages = organizationRepository.findActiveOrganizationList(true, pageable);
+			long totalRecord = organizationPages.getTotalElements();
+			if (totalRecord > 0) {
+				logger.info("Active organization list is found.");
+				for (Organization organization : organizationPages.getContent()) {
+					OrganizationDTO organizationDTO = DTOMapper.toOrganizationDTO(organization);
+					organizationDTOList.add(organizationDTO);
+				}
+			}
+			Map<Long, List<OrganizationDTO>> result = new HashMap<>();
+			result.put(totalRecord, organizationDTOList);
+			return result;
 
+		} catch (Exception ex) {
+			logger.error("Exception occurred while retrieving active organization list", ex);
+			throw new OrganizationServiceException("An error occurred while retrieving active organization list", ex);
+
+		}
 	}
 
 }

@@ -44,7 +44,7 @@ public class OrganizationValidationStrategy implements IAPIHelperValidationStrat
 		}
 
 		if (organizationService.findByUEN(orgReq.getUniqueEntityNumber()) != null) {
-			return buildValidationResult("Duplicate organization UEN detected. Please enter a unique name.",
+			return buildValidationResult("Duplicate organization UEN detected. Please enter a unique UEN.",
 					HttpStatus.BAD_REQUEST);
 		}
 		
