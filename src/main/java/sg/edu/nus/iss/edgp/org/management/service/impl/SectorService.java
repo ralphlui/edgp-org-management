@@ -109,9 +109,10 @@ public class SectorService implements ISectorService {
 	}
 	
 	@Override
-	public Sector findBySectorId(String sectorId) {
+	public SectorDTO findBySectorId(String sectorId) {
 		try {
-			return sectorRepository.findBySectorId(sectorId);
+			Sector sector = sectorRepository.findBySectorId(sectorId);
+			return DTOMapper.toSectorDTO(sector);
 		} catch (Exception e) {
 			logger.error("Exception occurred while searching fot the sector by sector id", e);
 			throw new SectorServiceException("An error occurred while searching fot the sector by sector id", e);
@@ -129,5 +130,7 @@ public class SectorService implements ISectorService {
 		}
 		
 	}
+	
+	
 
 }

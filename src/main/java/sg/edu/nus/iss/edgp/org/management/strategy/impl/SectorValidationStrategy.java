@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import sg.edu.nus.iss.edgp.org.management.dto.SectorDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorRequest;
 import sg.edu.nus.iss.edgp.org.management.dto.ValidationResult;
 import sg.edu.nus.iss.edgp.org.management.entity.Sector;
@@ -61,8 +62,8 @@ public class SectorValidationStrategy implements IAPIHelperValidationStrategy<Se
 			return buildInvalidResult("Bad Request: Sector ID could not be blank.");
 		}
 
-		Sector sector = sectorService.findBySectorId(sectorId);
-		if (sector == null || sector.getSectorId().isEmpty()) {
+		SectorDTO sectorDTO = sectorService.findBySectorId(sectorId);
+		if (sectorDTO == null || sectorDTO.getSectorID().isEmpty()) {
 			return buildInvalidResult("Invalid sector ID.");
 		}
 

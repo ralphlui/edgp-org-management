@@ -17,7 +17,7 @@ public interface ISectorService {
     
     SectorDTO updateSector(SectorRequest sectorReq, String userId, String sectorId);
     
-    Sector findBySectorId(String sectorId);
+    SectorDTO findBySectorId(String sectorId);
     
     Sector findBySectorIdAndIsActive(String sectorId);
 }

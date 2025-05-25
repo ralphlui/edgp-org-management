@@ -31,6 +31,7 @@ import sg.edu.nus.iss.edgp.org.management.dto.SearchRequest;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorRequest;
 import sg.edu.nus.iss.edgp.org.management.dto.ValidationResult;
+import sg.edu.nus.iss.edgp.org.management.exception.OrganizationServiceException;
 import sg.edu.nus.iss.edgp.org.management.exception.SectorServiceException;
 import sg.edu.nus.iss.edgp.org.management.service.impl.AuditService;
 import sg.edu.nus.iss.edgp.org.management.service.impl.JwtService;
@@ -171,5 +172,40 @@ public class SectorController {
 			auditService.logAudit(auditDTO, 500, message, authorizationHeader);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
 		}
+	}
+	
+	
+	@GetMapping(value = "/my-sector", produces = "application/json")
+	public ResponseEntity<APIResponse<SectorDTO>> getSectorBySectorId(
+			@RequestHeader("Authorization") String authorizationHeader, @RequestHeader("X-Sector-Id") String sectorId) {
+		logger.info("Call sector by sector id API...");
+		
+		String message = "";
+		String activityType = "Retrieve Sector by sector id";
+		String endpoint = "/api/orgs/sectors";
+		String httpMethod = HttpMethod.GET.name();
+		AuditDTO auditDTO = auditService.createAuditDTO(activityType, endpoint, httpMethod);
+		
+		try {
+			
+			if (sectorId.isEmpty()) {
+				message = "Bad Request: Sector id could not be blank.";
+				logger.error(message);
+				auditService.logAudit(auditDTO, 400, message, authorizationHeader);
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(APIResponse.error(message));
+			}
+			
+			SectorDTO sectorDTO = sectorService.findBySectorId(sectorId);
+			message = sectorDTO.getSectorName() + " is found.";
+			logger.info(message);
+			auditService.logAudit(auditDTO, 200, message, authorizationHeader);
+			return ResponseEntity.status(HttpStatus.OK).body(APIResponse.success(sectorDTO, message));
+			
+		} catch (Exception ex) {
+			message = ex instanceof OrganizationServiceException ? ex.getMessage() : genericErrorMessage;
+			logger.error(message);
+			auditService.logAudit(auditDTO, 500, message, authorizationHeader);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
+		}	
 	}
 }
