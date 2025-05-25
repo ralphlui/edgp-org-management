@@ -186,14 +186,6 @@ public class OrganizationController {
 
 			String jwtToken = authorizationHeader.substring(7);
 			String userId = jwtService.extractSubject(jwtToken);
-
-			if (orgId.isEmpty()) {
-				message = "Bad Request: Organization id could not be blank.";
-				logger.error(message);
-				auditService.logAudit(auditDTO, 400, message, authorizationHeader);
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(APIResponse.error(message));
-			}
-
 			orgReq.setOrganizationId(orgId);
 			ValidationResult validationResult = organizationValidationStrategy.validateUpdating(orgReq);
 
