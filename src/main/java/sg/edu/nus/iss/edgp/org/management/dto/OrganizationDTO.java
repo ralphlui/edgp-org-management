@@ -18,7 +18,7 @@ public class OrganizationDTO {
 	private String country;
 	private String websiteURL;
 	private int organizationSize;
-    private SectorDTO sectorDTO;
+    private SectorDTO sector;
     private String primaryContactName;
     private String primaryContactPosition;
     private String primaryContactEmail;

@@ -48,8 +48,8 @@ public class OrganizationValidationStrategy implements IAPIHelperValidationStrat
 					HttpStatus.BAD_REQUEST);
 		}
 		
-		if (sectorService.findBySectorId(orgReq.getSector().getSectorId()) == null) {
-			return buildValidationResult("Sector not found with this sector name",
+		if (sectorService.findBySectorIdAndIsActive(orgReq.getSector().getSectorId()) == null) {
+			return buildValidationResult("Active Sector not found with this sector name",
 					HttpStatus.BAD_REQUEST);
 		}
 

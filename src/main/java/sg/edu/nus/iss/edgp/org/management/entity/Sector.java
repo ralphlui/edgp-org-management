@@ -44,5 +44,5 @@ public class Sector {
 	private String remark;
 	
 	@Column(nullable = false, columnDefinition = "boolean default true")
-	private boolean isActive;
+	private boolean isActive = true;
 }

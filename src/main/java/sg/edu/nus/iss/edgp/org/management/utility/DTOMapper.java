@@ -36,7 +36,7 @@ public class DTOMapper {
 		organizationDTO.setCountry(organization.getCountry());
 		organizationDTO.setWebsiteURL(organization.getWebsiteURL());
 		organizationDTO.setOrganizationSize(organization.getOrganizationSize());
-		organizationDTO.setSectorDTO(mapStoreToResult(organization.getSector()));
+		organizationDTO.setSector(toSectorDTO(organization.getSector()));
 		organizationDTO.setPrimaryContactName(organization.getPrimaryContactName());
 		organizationDTO.setPrimaryContactPosition(organization.getPrimaryContactPosition());
 		organizationDTO.setPrimaryContactNumber(organization.getPrimaryContactNumber());

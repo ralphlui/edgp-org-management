@@ -118,5 +118,16 @@ public class SectorService implements ISectorService {
 		}
 		
 	}
+	
+	@Override
+	public Sector findBySectorIdAndIsActive(String sectorId) {
+		try {
+			return sectorRepository.findBySectorIdAndIsActive(sectorId, true);
+		} catch (Exception e) {
+			logger.error("Exception occurred while executing findBySectorIdAndIsActive", e);
+			throw new SectorServiceException("Failed during finding sector by id and active status", e);
+		}
+		
+	}
 
 }
