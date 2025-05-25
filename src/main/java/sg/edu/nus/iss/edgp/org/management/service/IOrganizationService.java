@@ -20,4 +20,9 @@ public interface IOrganizationService {
 	 Map<Long, List<OrganizationDTO>> retrieveActiveOrganizationList(Pageable pageable);
 	 
 	 OrganizationDTO findByOrganizationId(String organizationId);
+	 
+	 OrganizationDTO updateOrganization(OrganizationRequest orgReq, String userId, String organizationId); 
+	 
+	 Map<Long, List<OrganizationDTO>> findActiveOrganizationListByUserId(String userId,
+				Pageable pageable);
 }

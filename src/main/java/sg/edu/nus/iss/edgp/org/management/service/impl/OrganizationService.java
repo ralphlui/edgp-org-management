@@ -128,6 +128,7 @@ public class OrganizationService implements IOrganizationService {
 	}
 	
 	
+	@Override
 	public OrganizationDTO updateOrganization(OrganizationRequest orgReq, String userId, String organizationId) {
 		try {
 			
@@ -161,6 +162,34 @@ public class OrganizationService implements IOrganizationService {
 			logger.error("Exception occurred while updating organization", ex);
 			throw new OrganizationServiceException("An error occurred while updating organization", ex);
 		}
+	}
+	
+	@Override
+	public Map<Long, List<OrganizationDTO>> findActiveOrganizationListByUserId(String userId,
+			Pageable pageable) {
+		try {
+			
+			List<OrganizationDTO> organizationDTOList = new ArrayList<>();
+			Page<Organization> organizationPages = organizationRepository.findOrganizationListByUserId(userId, true, pageable);
+			long totalRecord = organizationPages.getTotalElements();
+			if (totalRecord > 0) {
+				logger.info("Active organization list by user id is found.");
+				for (Organization organization : organizationPages.getContent()) {
+					OrganizationDTO organizationDTO = DTOMapper.toOrganizationDTO(organization);
+					organizationDTOList.add(organizationDTO);
+				}
+			}
+			Map<Long, List<OrganizationDTO>> result = new HashMap<>();
+			logger.info("Total record of retrieving organization list by user id.. {}", totalRecord);
+			result.put(totalRecord, organizationDTOList);
+			return result;
+			
+		} catch (Exception ex) {
+			logger.error("Exception occurred while retrieving organization list by user id", ex);
+			throw new OrganizationServiceException("An error occurred while retrieving organization list by user id", ex);
+
+		}
+
 	}
 
 }

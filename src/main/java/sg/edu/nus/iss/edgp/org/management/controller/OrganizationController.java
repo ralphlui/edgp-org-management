@@ -209,5 +209,56 @@ public class OrganizationController {
 
 		}
 	}
+	
+	@GetMapping(value = "/users", produces = "application/json")
+	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	public ResponseEntity<APIResponse<List<OrganizationDTO>>> getOrganizationListByUserId(
+			@RequestHeader("Authorization") String authorizationHeader,
+			 @Valid SearchRequest searchRequest) {
+		
+        logger.info("Call orgainzation list by user id API...");
+		
+		String message = "";
+		String activityType = "Retrieve Organization by organization id";
+		String endpoint = "/api/orgs/users";
+		String httpMethod = HttpMethod.GET.name();
+		AuditDTO auditDTO = auditService.createAuditDTO(activityType, endpoint, httpMethod);
+		
+		try {
+			
+			String jwtToken = authorizationHeader.substring(7);
+			String userId = jwtService.extractSubject(jwtToken);
+			
+			
+			Pageable pageable = PageRequest.of(searchRequest.getPage() - 1, searchRequest.getSize(),
+					Sort.by("organizationName").ascending());
+			Map<Long, List<OrganizationDTO>> resultMap = organizationService.findActiveOrganizationListByUserId(userId, pageable);
+			logger.info("all active organization list size {}", resultMap.size());
+
+			Map.Entry<Long, List<OrganizationDTO>> firstEntry = resultMap.entrySet().iterator().next();
+			long totalRecord = firstEntry.getKey();
+			List<OrganizationDTO> organizationDTOList = firstEntry.getValue();
+
+			logger.info("totalRecord of getting organization list by user: {}", totalRecord);
+			
+			if (organizationDTOList.size() > 0) {
+				message = "Successfully retrieved all active organization list by user.";
+				auditService.logAudit(auditDTO, 200, message, authorizationHeader);
+				return ResponseEntity.status(HttpStatus.OK)
+						.body(APIResponse.success(organizationDTOList, message, totalRecord));
+			}  else {
+				message = "No Active Organization List by this user.";
+				auditService.logAudit(auditDTO, 200, message, authorizationHeader);
+				return ResponseEntity.status(HttpStatus.OK)
+						.body(APIResponse.successWithEmptyData(organizationDTOList, message));
+			}
+			
+		} catch (Exception ex) {
+			message = ex instanceof OrganizationServiceException ? ex.getMessage() : genericErrorMessage;
+			logger.error(message);
+			auditService.logAudit(auditDTO, 500, message, authorizationHeader);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
+		}
+	}
 		
 }

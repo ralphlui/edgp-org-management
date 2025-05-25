@@ -17,4 +17,8 @@ public interface OrganizationRepository extends JpaRepository<Organization, Stri
 	Page<Organization> findActiveOrganizationList(boolean isActive, Pageable pageable);
 	
 	Organization findByOrganizationId(String organizationId);
+	
+	@Query("SELECT org FROM Organization org WHERE org.createdBy = ?1 AND org.isActive = ?2")
+	Page<Organization> findOrganizationListByUserId(String userId, boolean isDeleted, Pageable pageable);
+	
 }
