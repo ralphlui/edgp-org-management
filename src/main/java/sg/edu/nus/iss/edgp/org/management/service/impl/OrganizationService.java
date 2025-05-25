@@ -89,6 +89,7 @@ public class OrganizationService implements IOrganizationService {
 		}
 	}
 	
+	@Override
 	public Map<Long, List<OrganizationDTO>> retrieveActiveOrganizationList(Pageable pageable) {
 		try {
 			List<OrganizationDTO> organizationDTOList = new ArrayList<>();
@@ -109,6 +110,20 @@ public class OrganizationService implements IOrganizationService {
 			logger.error("Exception occurred while retrieving active organization list", ex);
 			throw new OrganizationServiceException("An error occurred while retrieving active organization list", ex);
 
+		}
+	}
+	
+	@Override
+	public OrganizationDTO findByOrganizationId(String organizationId) {
+		try {
+			Organization organization = organizationRepository.findByOrganizationId(organizationId);
+			OrganizationDTO orgDTO = DTOMapper.toOrganizationDTO(organization);
+			return orgDTO;
+
+		} catch (Exception ex) {
+			logger.error("Exception occurred while searching for the organization by org id", ex);
+			throw new OrganizationServiceException("An error occurred while searching for the organization by org id",
+					ex);
 		}
 	}
 

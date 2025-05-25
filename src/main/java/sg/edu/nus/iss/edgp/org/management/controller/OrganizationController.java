@@ -132,6 +132,40 @@ public class OrganizationController {
 			auditService.logAudit(auditDTO, 500, message, authorizationHeader);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
 		}
+	}
+	
+	@GetMapping(value = "/my-organization", produces = "application/json")
+	public ResponseEntity<APIResponse<OrganizationDTO>> getOrganizationbyOrgId(
+			@RequestHeader("Authorization") String authorizationHeader, @RequestHeader("X-Org-Id") String orgId) {
+		logger.info("Call orgainzation by org id API...");
+		
+		String message = "";
+		String activityType = "Retrieve Organization by organization id";
+		String endpoint = "/api/orgs/my-organization";
+		String httpMethod = HttpMethod.GET.name();
+		AuditDTO auditDTO = auditService.createAuditDTO(activityType, endpoint, httpMethod);
+		
+		try {
+			
+			if (orgId.isEmpty()) {
+				message = "Bad Request: Organization id could not be blank.";
+				logger.error(message);
+				auditService.logAudit(auditDTO, 400, message, authorizationHeader);
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(APIResponse.error(message));
+			}
+			
+			OrganizationDTO orgDTO = organizationService.findByOrganizationId(orgId);
+			message = orgDTO.getOrganizationName() + " is found.";
+			logger.info(message);
+			auditService.logAudit(auditDTO, 200, message, authorizationHeader);
+			return ResponseEntity.status(HttpStatus.OK).body(APIResponse.success(orgDTO, message));
+			
+		} catch (Exception ex) {
+			message = ex instanceof OrganizationServiceException ? ex.getMessage() : genericErrorMessage;
+			logger.error(message);
+			auditService.logAudit(auditDTO, 500, message, authorizationHeader);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
+		}
 		
 	}
 }
