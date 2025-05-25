@@ -66,7 +66,6 @@ public class SectorController {
 		try {
 			String jwtToken = authorizationHeader.substring(7);
 			String userId = jwtService.extractSubject(jwtToken);
-			sectorRequest.setCreatedBy(userId);	
 			ValidationResult validationResult = sectorvalidationStrategy.validateCreation(sectorRequest);
 
 			if (validationResult.isValid()) {
@@ -78,8 +77,8 @@ public class SectorController {
 			} else {
 				message = validationResult.getMessage();
 				logger.error(message);
-				auditService.logAudit(auditDTO, 200, message, authorizationHeader);
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
+				auditService.logAudit(auditDTO, validationResult.getStatus().value(), message, authorizationHeader);
+				return ResponseEntity.status(validationResult.getStatus()).body(APIResponse.error(message));
 
 			}
 
@@ -153,7 +152,6 @@ public class SectorController {
 		try {
 			String jwtToken = authorizationHeader.substring(7);
 			String userId = jwtService.extractSubject(jwtToken);
-			sectorRequest.setCreatedBy(userId);
 			sectorRequest.setSectorId(sectorId);
 			ValidationResult validationResult = sectorvalidationStrategy.validateUpdating(sectorRequest);
 			if (validationResult.isValid()) {

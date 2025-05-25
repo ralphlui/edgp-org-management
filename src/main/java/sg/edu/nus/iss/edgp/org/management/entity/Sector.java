@@ -29,7 +29,7 @@ public class Sector {
 	private String description;
 
 	@Column(nullable = false, columnDefinition = "datetime")
-	private LocalDateTime createdDateTime = LocalDateTime.now();;
+	private LocalDateTime createdDateTime = LocalDateTime.now();
 
 	@Column(nullable = false)
 	private String createdBy;

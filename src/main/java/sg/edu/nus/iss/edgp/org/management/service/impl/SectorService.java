@@ -30,7 +30,7 @@ public class SectorService implements ISectorService {
 	private final SectorRepository sectorRepository;
 
 	@Override
-	public SectorDTO createSector(SectorRequest sectorReq, String userId) throws Exception {
+	public SectorDTO createSector(SectorRequest sectorReq, String userId) {
 		try {
 
 			Sector sector = new Sector();

@@ -29,8 +29,6 @@ public class SectorValidationStrategy implements IAPIHelperValidationStrategy<Se
 			missingFields.add("Sector name");
 		if (sectorReq.getSectorCode().isEmpty())
 			missingFields.add("Sector code");
-		if (sectorReq.getCreatedBy().isEmpty())
-			missingFields.add("Created User ID");
 
 		if (!missingFields.isEmpty()) {
 			validationResult.setMessage(String.join(" and ", missingFields) + " is required");
@@ -58,7 +56,6 @@ public class SectorValidationStrategy implements IAPIHelperValidationStrategy<Se
 		ValidationResult validationResult = new ValidationResult();
 
 		String sectorId = GeneralUtility.makeNotNull(sectorReq.getSectorId());
-		String userId = GeneralUtility.makeNotNull(sectorReq.getCreatedBy());
 
 		if (sectorId.isEmpty()) {
 			return buildInvalidResult("Bad Request: Sector ID could not be blank.");
@@ -67,10 +64,6 @@ public class SectorValidationStrategy implements IAPIHelperValidationStrategy<Se
 		Sector sector = sectorService.findBySectorId(sectorId);
 		if (sector == null || sector.getSectorId().isEmpty()) {
 			return buildInvalidResult("Invalid sector ID.");
-		}
-
-		if (userId.isEmpty()) {
-			return buildInvalidResult("Bad Request: User ID field could not be blank.");
 		}
 
 		validationResult.setValid(true);
