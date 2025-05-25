@@ -7,11 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import sg.edu.nus.iss.edgp.org.management.dto.OrganizationDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.OrganizationRequest;
 import sg.edu.nus.iss.edgp.org.management.dto.ValidationResult;
+import sg.edu.nus.iss.edgp.org.management.entity.Sector;
 import sg.edu.nus.iss.edgp.org.management.service.impl.OrganizationService;
 import sg.edu.nus.iss.edgp.org.management.service.impl.SectorService;
 import sg.edu.nus.iss.edgp.org.management.strategy.IAPIHelperValidationStrategy;
+import sg.edu.nus.iss.edgp.org.management.utility.GeneralUtility;
 
 @Service
 @RequiredArgsConstructor
@@ -72,9 +75,36 @@ public class OrganizationValidationStrategy implements IAPIHelperValidationStrat
 	}
 
 	@Override
-	public ValidationResult validateUpdating(OrganizationRequest data) {
-		// TODO Auto-generated method stub
-		return null;
+	public ValidationResult validateUpdating(OrganizationRequest orgReq) {
+		ValidationResult validationResult = new ValidationResult();
+
+		String orgId = GeneralUtility.makeNotNull(orgReq.getOrganizationId());
+
+		if (orgId.isEmpty()) {
+			return buildInvalidResult("Bad Request: Organization ID could not be blank.");
+		}
+
+		OrganizationDTO organization = organizationService.findByOrganizationId(orgId);
+		if (organization == null || organization.getOrganizationId().isEmpty()) {
+			return buildInvalidResult("Invalid organization ID.");
+		}
+		
+		Sector sector = orgReq.getSector();
+		if ( sector != null && sector.getSectorId()!= null && !sector.getSectorId().isEmpty() && sectorService.findBySectorIdAndIsActive(orgReq.getSector().getSectorId()) == null) {
+			return buildValidationResult("Active Sector not found with this sector name",
+					HttpStatus.BAD_REQUEST);
+		}
+
+		validationResult.setValid(true);
+		return validationResult;
+	}
+
+	private ValidationResult buildInvalidResult(String message) {
+		ValidationResult result = new ValidationResult();
+		result.setMessage(message);
+		result.setValid(false);
+		result.setStatus(HttpStatus.BAD_REQUEST);
+		return result;
 	}
 
 }

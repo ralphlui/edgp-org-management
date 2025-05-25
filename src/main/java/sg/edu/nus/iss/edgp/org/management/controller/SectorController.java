@@ -155,15 +155,15 @@ public class SectorController {
 			sectorRequest.setSectorId(sectorId);
 			ValidationResult validationResult = sectorvalidationStrategy.validateUpdating(sectorRequest);
 			if (validationResult.isValid()) {
-				SectorDTO sectorDtO = sectorService.updateSector(sectorRequest, userId, sectorId);
-				message = sectorDtO.getSectorName() + " is updated successfully.";
+				SectorDTO sectorDTO = sectorService.updateSector(sectorRequest, userId, sectorId);
+				message = sectorDTO.getSectorName() + " is updated successfully.";
 				logger.info(message);
 				auditService.logAudit(auditDTO, 200, message, authorizationHeader);
-				return ResponseEntity.status(HttpStatus.OK).body(APIResponse.success(sectorDtO, message));
+				return ResponseEntity.status(HttpStatus.OK).body(APIResponse.success(sectorDTO, message));
 			}
 			message = validationResult.getMessage();
 			logger.error(message);
-			auditService.logAudit(auditDTO, 200, message, authorizationHeader);
+			auditService.logAudit(auditDTO, validationResult.getStatus().value(), message, authorizationHeader);
 			return ResponseEntity.status(validationResult.getStatus()).body(APIResponse.error(message));
 			
 		} catch( Exception ex) {

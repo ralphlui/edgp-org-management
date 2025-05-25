@@ -8,6 +8,7 @@ import sg.edu.nus.iss.edgp.org.management.entity.Sector;
 @Setter
 public class OrganizationRequest {
 
+	private String organizationId;
 	private String organizationName;
 	private String address;
 	private String contactNumber;

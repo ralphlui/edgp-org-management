@@ -15,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -165,7 +166,56 @@ public class OrganizationController {
 			logger.error(message);
 			auditService.logAudit(auditDTO, 500, message, authorizationHeader);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
-		}
-		
+		}	
 	}
+	
+	
+	@PutMapping(value = "", produces = "application/json")
+	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	public ResponseEntity<APIResponse<OrganizationDTO>> updateOrganization(
+			@RequestHeader("Authorization") String authorizationHeader, @RequestHeader("X-Org-Id") String orgId,
+			@RequestBody OrganizationRequest orgReq) {
+		logger.info("Calling organization update API...");
+		String message = "";
+		String activityType = "Update Organization";
+		String endpoint = "/api/orgs";
+		String httpMethod = HttpMethod.PUT.name();
+		AuditDTO auditDTO = auditService.createAuditDTO(activityType, endpoint, httpMethod);
+
+		try {
+
+			String jwtToken = authorizationHeader.substring(7);
+			String userId = jwtService.extractSubject(jwtToken);
+
+			if (orgId.isEmpty()) {
+				message = "Bad Request: Organization id could not be blank.";
+				logger.error(message);
+				auditService.logAudit(auditDTO, 400, message, authorizationHeader);
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(APIResponse.error(message));
+			}
+
+			orgReq.setOrganizationId(orgId);
+			ValidationResult validationResult = organizationValidationStrategy.validateUpdating(orgReq);
+
+			if (validationResult.isValid()) {
+				OrganizationDTO orgDTO = organizationService.updateOrganization(orgReq, userId, orgId);
+				message = orgDTO.getOrganizationName() + " is updated successfully.";
+				logger.info(message);
+				auditService.logAudit(auditDTO, 200, message, authorizationHeader);
+				return ResponseEntity.status(HttpStatus.OK).body(APIResponse.success(orgDTO, message));
+			}
+			message = validationResult.getMessage();
+			logger.error(message);
+			auditService.logAudit(auditDTO, validationResult.getStatus().value(), message, authorizationHeader);
+			return ResponseEntity.status(validationResult.getStatus()).body(APIResponse.error(message));
+
+		} catch (Exception ex) {
+			message = ex instanceof OrganizationServiceException ? ex.getMessage() : genericErrorMessage;
+			logger.error(message);
+			auditService.logAudit(auditDTO, 500, message, authorizationHeader);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
+
+		}
+	}
+		
 }

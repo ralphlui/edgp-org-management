@@ -126,5 +126,41 @@ public class OrganizationService implements IOrganizationService {
 					ex);
 		}
 	}
+	
+	
+	public OrganizationDTO updateOrganization(OrganizationRequest orgReq, String userId, String organizationId) {
+		try {
+			
+			Organization dbOrganization = organizationRepository.findByOrganizationId(organizationId);
+			if (dbOrganization == null) {
+				throw new OrganizationServiceException("No matching organization found");
+			}
+			dbOrganization.setAddress(orgReq.getAddress());
+			dbOrganization.setContactNumber(orgReq.getContactNumber());
+			dbOrganization.setStreetAddress(orgReq.getStreetAddress());
+			dbOrganization.setCity(orgReq.getCity());
+			dbOrganization.setPostalCode(orgReq.getPostalCode());
+			dbOrganization.setCountry(orgReq.getCountry());
+			dbOrganization.setWebsiteURL(orgReq.getWebsiteURL());
+			dbOrganization.setOrganizationSize(orgReq.getOrganizationSize());
+			Sector sector = sectorRepository.findById(orgReq.getSector().getSectorId())
+				    .orElseThrow(() ->  new OrganizationServiceException("Sector not found with this name : " + orgReq.getSector().getSectorName()));
+			dbOrganization.setSector(sector);
+			dbOrganization.setPrimaryContactName(orgReq.getPrimaryContactName());
+			dbOrganization.setPrimaryContactPosition(orgReq.getPrimaryContactPosition());
+			dbOrganization.setPrimaryContactEmail(orgReq.getPrimaryContactEmail());
+			dbOrganization.setPrimaryContactNumber(orgReq.getPrimaryContactNumber());
+			dbOrganization.setLastUpdatedBy(userId);
+			dbOrganization.setLastUpdatedDateTime(LocalDateTime.now());
+			dbOrganization.setRemark(orgReq.getRemark());
+			logger.info("Updating Organization...");
+			Organization createdOrganization = organizationRepository.save(dbOrganization);
+			logger.info("Organization is updated successfully.");
+			return DTOMapper.toOrganizationDTO(createdOrganization);
+		} catch (Exception ex) {
+			logger.error("Exception occurred while updating organization", ex);
+			throw new OrganizationServiceException("An error occurred while updating organization", ex);
+		}
+	}
 
 }
