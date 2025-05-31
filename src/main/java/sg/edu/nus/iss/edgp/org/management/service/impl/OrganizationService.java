@@ -31,7 +31,7 @@ public class OrganizationService implements IOrganizationService {
 	private final  SectorRepository sectorRepository;
 
 	
-	private static final Logger logger = LoggerFactory.getLogger(SectorService.class);
+	private static final Logger logger = LoggerFactory.getLogger(OrganizationService.class);
 
 	@Override
 	public OrganizationDTO createOrganization(OrganizationRequest orgReq, String userId) {

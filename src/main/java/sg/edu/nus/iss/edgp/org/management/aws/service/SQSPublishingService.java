@@ -4,21 +4,22 @@ import java.nio.charset.StandardCharsets;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.amazonaws.services.sqs.AmazonSQS;
-import com.amazonaws.services.sqs.model.SendMessageRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.RequiredArgsConstructor;
 import sg.edu.nus.iss.edgp.org.management.dto.AuditDTO;
+import software.amazon.awssdk.services.sqs.SqsClient;
+import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
+import software.amazon.awssdk.services.sqs.model.SendMessageResponse;
 
 @Service
+@RequiredArgsConstructor
 public class SQSPublishingService {
 
-	@Autowired
-	private AmazonSQS amazonSQS;
+	private final SqsClient sqsClient;
 
 	@Value("${aws.sqs.queue.audit.url}")
 	String auditQueueURL;
@@ -28,12 +29,11 @@ public class SQSPublishingService {
 	public void sendMessage(AuditDTO auditDTO) {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
-
 			String messageBody = objectMapper.writeValueAsString(auditDTO);
 			byte[] messageBytes = messageBody.getBytes(StandardCharsets.UTF_8);
 			int messageSize = messageBytes.length;
 			int maxMessageSize = 256 * 1024;
-			; // Max Size 256 KB in bytes
+
 			logger.info("Serialized Audit Log JSON");
 
 			if (messageSize > maxMessageSize) {
@@ -44,17 +44,17 @@ public class SQSPublishingService {
 
 				messageBody = objectMapper.writeValueAsString(auditDTO);
 				messageBytes = messageBody.getBytes(StandardCharsets.UTF_8);
-
 				logger.info("Truncated message size: {} bytes", messageBytes.length);
 			}
 
-			SendMessageRequest sendMsgRequest = new SendMessageRequest().withQueueUrl(auditQueueURL)
-					.withMessageBody(messageBody).withDelaySeconds(5);
+			SendMessageRequest sendMsgRequest = SendMessageRequest.builder().queueUrl(auditQueueURL)
+					.messageBody(messageBody).delaySeconds(5).build();
 
-			amazonSQS.sendMessage(sendMsgRequest);
-			logger.info("Message sent to SQS");
+			SendMessageResponse response = sqsClient.sendMessage(sendMsgRequest);
+			logger.info("Message sent to SQS with message ID: {}", response.messageId());
+
 		} catch (Exception e) {
-			logger.error("Error sending message to SQS: {}", e);
+			logger.error("Error sending message to SQS: {}", e.getMessage(), e);
 		}
 	}
 

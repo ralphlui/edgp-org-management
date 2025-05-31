@@ -1,74 +1,50 @@
 package sg.edu.nus.iss.edgp.org.management.connector;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import org.springframework.beans.factory.annotation.Value;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthAPICall {
 
 	@Value("${auth.api.url}")
-    private String authURL;
+	private String authURL;
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthAPICall.class);
-	private static final String GET_SPECIFIC_ACTIVE_USERS_EXCEPTION_MSG = "getSpecificActiveUsers exception... {}";
+	private static final String GET_SPECIFIC_ACTIVE_USERS_EXCEPTION_MSG = "getSpecificActiveUsers exception occurred";
 
-	
 	public String validateActiveUser(String userId, String authorizationHeader) {
 		logger.info("validate active user is calling ..");
-	    String responseStr = "";
-	    RequestConfig config = RequestConfig.custom()
-	            .setConnectTimeout(30000)
-	            .setConnectionRequestTimeout(30000)
-	            .setSocketTimeout(30000)
-	            .build();
+		String responseStr = "";
 
-	    try (CloseableHttpClient httpClient = HttpClientBuilder.create()
-	            .setDefaultRequestConfig(config)
-	            .build()) {
-	         String url = authURL.trim()+"/active";
-	        
-	        HttpPost request = new HttpPost(url);
-	        request.setHeader("Authorization", authorizationHeader);
-	        request.setHeader("Content-Type", "application/json");
+		try {
+			HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(30)).build();
 
-	        // Set the JSON body (you can change this structure as needed)
-	        String jsonBody = "{\"userId\": \"" + userId + "\"}";
-	        request.setEntity(new StringEntity(jsonBody, ContentType.APPLICATION_JSON));
-	        
-	        CloseableHttpResponse httpResponse = httpClient.execute(request);	       
-	        
-	        try {
-	            byte[] responseByteArray = EntityUtils.toByteArray(httpResponse.getEntity());
-	            responseStr = new String(responseByteArray, Charset.forName("UTF-8"));
-	            logger.info("Active user detail response.");
-	        } catch (Exception e) {
-	          
-	            logger.error(GET_SPECIFIC_ACTIVE_USERS_EXCEPTION_MSG, e);
-	        } finally {
-	            try {
-	                httpResponse.close();
-	            } catch (IOException e) {
-	               
-	                logger.error(GET_SPECIFIC_ACTIVE_USERS_EXCEPTION_MSG, e);
-	            }
-	        }
-	    } catch (Exception ex) {
-	        
-	        logger.error(GET_SPECIFIC_ACTIVE_USERS_EXCEPTION_MSG, ex);
-	    }
-	    return responseStr;
+			String url = authURL.trim() + "active";
+
+			String jsonBody = "{\"userId\": \"" + userId + "\"}";
+			logger.info(url);
+
+			HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).timeout(Duration.ofSeconds(30))
+					.header("Authorization", authorizationHeader).header("Content-Type", "application/json")
+					.POST(HttpRequest.BodyPublishers.ofString(jsonBody)).build();
+
+			HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+			responseStr = response.body();
+
+			logger.info("Active user detail response: {}", responseStr);
+
+		} catch (Exception e) {
+			logger.error(GET_SPECIFIC_ACTIVE_USERS_EXCEPTION_MSG, e);
+		}
+
+		return responseStr;
 	}
 }
-
