@@ -52,7 +52,7 @@ public class SectorController {
 	private String genericErrorMessage = "An error occurred while processing your request. Please try again later.";
 
 	@PostMapping(value = "", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	@PreAuthorize("hasAuthority('SCOPE_sector.manage')")
 	public ResponseEntity<APIResponse<SectorDTO>> createSector(
 			@RequestHeader("Authorization") String authorizationHeader, @RequestBody SectorRequest sectorRequest) {
 		
@@ -93,7 +93,7 @@ public class SectorController {
 	}
 	
 	@GetMapping(value = "", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	@PreAuthorize("hasAuthority('SCOPE_sector.manage')")
 	public ResponseEntity<APIResponse<List<SectorDTO>>> retrieveActiveSectorList(
 			@RequestHeader("Authorization") String authorizationHeader,
 			@Valid @ModelAttribute SearchRequest searchRequest) {
@@ -140,7 +140,7 @@ public class SectorController {
 	
 	
 	@PutMapping(value = "", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	@PreAuthorize("hasAuthority('SCOPE_sector.manage')")
 	public ResponseEntity<APIResponse<SectorDTO>> updateSector(@RequestHeader("Authorization") String authorizationHeader,
 			@RequestHeader("X-Sector-Id") String sectorId, @RequestBody SectorRequest sectorRequest) {
 		logger.info("Calling sector update API...");
@@ -176,6 +176,7 @@ public class SectorController {
 	
 	
 	@GetMapping(value = "/my-sector", produces = "application/json")
+	@PreAuthorize("hasAuthority('SCOPE_sector.manage')")
 	public ResponseEntity<APIResponse<SectorDTO>> getSectorBySectorId(
 			@RequestHeader("Authorization") String authorizationHeader, @RequestHeader("X-Sector-Id") String sectorId) {
 		logger.info("Call sector by sector id API...");

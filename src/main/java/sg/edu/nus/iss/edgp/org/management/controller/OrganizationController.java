@@ -50,7 +50,7 @@ public class OrganizationController {
 
 
 	@PostMapping(value = "", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	@PreAuthorize("hasAuthority('SCOPE_org.manage')")
 	public ResponseEntity<APIResponse<OrganizationDTO>> createOrganization(
 			@RequestHeader("Authorization") String authorizationHeader, @RequestBody OrganizationRequest orgRequest) {
 		
@@ -89,7 +89,7 @@ public class OrganizationController {
 	}
 	
 	@GetMapping(value = "", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	@PreAuthorize("hasAuthority('SCOPE_org.manage')")
 	public ResponseEntity<APIResponse<List<OrganizationDTO>>> retrieveActiveOrganizationList(
 			@RequestHeader("Authorization") String authorizationHeader,
 			@Valid @ModelAttribute SearchRequest searchRequest) {
@@ -136,6 +136,7 @@ public class OrganizationController {
 	}
 	
 	@GetMapping(value = "/my-organization", produces = "application/json")
+	@PreAuthorize("hasAuthority('SCOPE_org.manage')")
 	public ResponseEntity<APIResponse<OrganizationDTO>> getOrganizationbyOrgId(
 			@RequestHeader("Authorization") String authorizationHeader, @RequestHeader("X-Org-Id") String orgId) {
 		logger.info("Call orgainzation by org id API...");
@@ -171,7 +172,7 @@ public class OrganizationController {
 	
 	
 	@PutMapping(value = "", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	@PreAuthorize("hasAuthority('SCOPE_org.manage')")
 	public ResponseEntity<APIResponse<OrganizationDTO>> updateOrganization(
 			@RequestHeader("Authorization") String authorizationHeader, @RequestHeader("X-Org-Id") String orgId,
 			@RequestBody OrganizationRequest orgReq) {
@@ -211,7 +212,7 @@ public class OrganizationController {
 	}
 	
 	@GetMapping(value = "/users", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	@PreAuthorize("hasAuthority('SCOPE_org.manage')")
 	public ResponseEntity<APIResponse<List<OrganizationDTO>>> getOrganizationListByUserId(
 			@RequestHeader("Authorization") String authorizationHeader,
 			 @Valid SearchRequest searchRequest) {
