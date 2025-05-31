@@ -14,5 +14,5 @@ public class SectorRequest {
 	private String createdBy;
 	private String lastUpdatedBy;
 	private String remark;
-	private Boolean active = true;
+	private Boolean active;
 }

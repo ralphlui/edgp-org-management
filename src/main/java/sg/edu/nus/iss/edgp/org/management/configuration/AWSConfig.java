@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.sqs.AmazonSQS;
-import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.ses.SesClient;
+import software.amazon.awssdk.services.sqs.SqsClient;
 
 @Configuration
 public class AWSConfig {
@@ -20,7 +20,7 @@ public class AWSConfig {
 
 	@Value("${aws.secretkey}")
 	private String awsSecretKey;
-	
+
 	@Bean
 	public String getAwsRegion() {
 		return awsRegion;
@@ -35,19 +35,17 @@ public class AWSConfig {
 	public String getAwsSecretKey() {
 		return awsSecretKey;
 	}
-	
+
 	@Bean
-	public AWSCredentials awsCredentials() {
-		return new BasicAWSCredentials(awsAccessKey, awsSecretKey);
+	public SesClient sesClient() {
+		AwsBasicCredentials awsCreds = AwsBasicCredentials.create(awsAccessKey, awsSecretKey);
+		return SesClient.builder().credentialsProvider(StaticCredentialsProvider.create(awsCreds))
+				.region(Region.of(awsRegion)).build();
 	}
-	
+
 	@Bean
-    public AmazonSQS amazonSQSClient(AWSCredentials awsCredentials) {
-        return AmazonSQSClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
-                .withRegion(awsRegion)
-                .build();
-    }
+	public SqsClient sqsClient() {
+		return SqsClient.builder().region(Region.AP_SOUTHEAST_1).build();
+	}
 
 }
-

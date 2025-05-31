@@ -19,5 +19,6 @@ public interface SectorRepository extends JpaRepository<Sector, String> {
 	
 	Sector findBySectorId(String sectorId);
 	
-
+	@Query("SELECT s FROM Sector s WHERE s.sectorId = ?1 AND s.isActive = ?2")
+	Sector findBySectorIdAndIsActive(String sectorId, Boolean isActive);
 }

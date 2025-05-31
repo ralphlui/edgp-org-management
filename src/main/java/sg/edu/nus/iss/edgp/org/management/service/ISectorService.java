@@ -11,11 +11,13 @@ import sg.edu.nus.iss.edgp.org.management.entity.Sector;
 
 public interface ISectorService {
 
-	SectorDTO createSector(SectorRequest sectorReq, String userId) throws Exception;
+	SectorDTO createSector(SectorRequest sectorReq, String userId);
 	
     Map<Long, List<SectorDTO>> retrieveActiveSectorList(Pageable pageable);
     
     SectorDTO updateSector(SectorRequest sectorReq, String userId, String sectorId);
     
-    Sector findBySectorId(String sectorId);
+    SectorDTO findBySectorId(String sectorId);
+    
+    Sector findBySectorIdAndIsActive(String sectorId);
 }

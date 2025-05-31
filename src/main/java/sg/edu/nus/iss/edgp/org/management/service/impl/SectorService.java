@@ -30,7 +30,7 @@ public class SectorService implements ISectorService {
 	private final SectorRepository sectorRepository;
 
 	@Override
-	public SectorDTO createSector(SectorRequest sectorReq, String userId) throws Exception {
+	public SectorDTO createSector(SectorRequest sectorReq, String userId) {
 		try {
 
 			Sector sector = new Sector();
@@ -46,7 +46,7 @@ public class SectorService implements ISectorService {
 			return DTOMapper.toSectorDTO(createdSector);
 		} catch (Exception ex) {
 			logger.error("Exception occurred while creating sector", ex);
-			throw new SectorServiceException("Failed during creating sector operation", ex);
+			throw new SectorServiceException("An error occured while creating sector", ex);
 		}
 
 	}
@@ -55,8 +55,8 @@ public class SectorService implements ISectorService {
 		try {
 			return sectorRepository.findBySectorNameOrSectorCode(sectorName, sectorCode);
 		} catch (Exception ex) {
-			logger.error("Exception occurred while executing findBySectorNameAndCode", ex);
-			throw new SectorServiceException("Failed during findBySectorNameAndCode operation", ex);
+			logger.error("Exception occurred while searching for the sector by name and code", ex);
+			throw new SectorServiceException("An error occurred while searching for the sector by name and code", ex);
 		}
 
 	}
@@ -68,7 +68,7 @@ public class SectorService implements ISectorService {
 			Page<Sector> sectorPages = sectorRepository.findActiveSectorList(true, pageable);
 			long totalRecord = sectorPages.getTotalElements();
 			if (totalRecord > 0) {
-				logger.info("Active user list is found.");
+				logger.info("Active sector list is found.");
 				for (Sector sector : sectorPages.getContent()) {
 					SectorDTO sectorDTO = DTOMapper.toSectorDTO(sector);
 					sectorDTOList.add(sectorDTO);
@@ -79,8 +79,8 @@ public class SectorService implements ISectorService {
 			return result;
 
 		} catch (Exception ex) {
-			logger.error("retrieveSectorList exception...", ex);
-			throw new SectorServiceException("Failed during retrieveSectorList operation", ex);
+			logger.error("Exception occurred while retrieving active sector list", ex);
+			throw new SectorServiceException("An error occurred while retrieving active sector list", ex);
 
 		}
 	}
@@ -103,20 +103,34 @@ public class SectorService implements ISectorService {
 			logger.info("Sector is updated successfully.");
 			return DTOMapper.toSectorDTO(updatedSector);
 		} catch (Exception ex) {
-			logger.error("Error occurred while sector updating", ex);
-			throw new SectorServiceException("Failed during updating sector operation", ex);
+			logger.error("Exception occurred while updating sector", ex);
+			throw new SectorServiceException("An error occurred while updating sector", ex);
 		}
 	}
 	
 	@Override
-	public Sector findBySectorId(String sectorId) {
+	public SectorDTO findBySectorId(String sectorId) {
 		try {
-			return sectorRepository.findBySectorId(sectorId);
+			Sector sector = sectorRepository.findBySectorId(sectorId);
+			return DTOMapper.toSectorDTO(sector);
 		} catch (Exception e) {
-			logger.error("Exception occurred while executing findBySectorId", e);
-			throw new SectorServiceException("Failed during finding sector by id", e);
+			logger.error("Exception occurred while searching fot the sector by sector id", e);
+			throw new SectorServiceException("An error occurred while searching fot the sector by sector id", e);
 		}
 		
 	}
+	
+	@Override
+	public Sector findBySectorIdAndIsActive(String sectorId) {
+		try {
+			return sectorRepository.findBySectorIdAndIsActive(sectorId, true);
+		} catch (Exception e) {
+			logger.error("Exception occurred while searching fot the active sector by sector id", e);
+			throw new SectorServiceException("An error occurred while searching fot the active sector by sector id", e);
+		}
+		
+	}
+	
+	
 
 }

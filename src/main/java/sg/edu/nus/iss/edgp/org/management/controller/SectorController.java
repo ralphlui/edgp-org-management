@@ -31,6 +31,7 @@ import sg.edu.nus.iss.edgp.org.management.dto.SearchRequest;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorRequest;
 import sg.edu.nus.iss.edgp.org.management.dto.ValidationResult;
+import sg.edu.nus.iss.edgp.org.management.exception.OrganizationServiceException;
 import sg.edu.nus.iss.edgp.org.management.exception.SectorServiceException;
 import sg.edu.nus.iss.edgp.org.management.service.impl.AuditService;
 import sg.edu.nus.iss.edgp.org.management.service.impl.JwtService;
@@ -51,7 +52,7 @@ public class SectorController {
 	private String genericErrorMessage = "An error occurred while processing your request. Please try again later.";
 
 	@PostMapping(value = "", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	@PreAuthorize("hasAuthority('SCOPE_sector.manage')")
 	public ResponseEntity<APIResponse<SectorDTO>> createSector(
 			@RequestHeader("Authorization") String authorizationHeader, @RequestBody SectorRequest sectorRequest) {
 		
@@ -66,7 +67,6 @@ public class SectorController {
 		try {
 			String jwtToken = authorizationHeader.substring(7);
 			String userId = jwtService.extractSubject(jwtToken);
-			sectorRequest.setCreatedBy(userId);	
 			ValidationResult validationResult = sectorvalidationStrategy.validateCreation(sectorRequest);
 
 			if (validationResult.isValid()) {
@@ -78,8 +78,8 @@ public class SectorController {
 			} else {
 				message = validationResult.getMessage();
 				logger.error(message);
-				auditService.logAudit(auditDTO, 200, message, authorizationHeader);
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
+				auditService.logAudit(auditDTO, validationResult.getStatus().value(), message, authorizationHeader);
+				return ResponseEntity.status(validationResult.getStatus()).body(APIResponse.error(message));
 
 			}
 
@@ -93,7 +93,7 @@ public class SectorController {
 	}
 	
 	@GetMapping(value = "", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	@PreAuthorize("hasAuthority('SCOPE_sector.manage')")
 	public ResponseEntity<APIResponse<List<SectorDTO>>> retrieveActiveSectorList(
 			@RequestHeader("Authorization") String authorizationHeader,
 			@Valid @ModelAttribute SearchRequest searchRequest) {
@@ -140,7 +140,7 @@ public class SectorController {
 	
 	
 	@PutMapping(value = "", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_manage')")
+	@PreAuthorize("hasAuthority('SCOPE_sector.manage')")
 	public ResponseEntity<APIResponse<SectorDTO>> updateSector(@RequestHeader("Authorization") String authorizationHeader,
 			@RequestHeader("X-Sector-Id") String sectorId, @RequestBody SectorRequest sectorRequest) {
 		logger.info("Calling sector update API...");
@@ -153,19 +153,18 @@ public class SectorController {
 		try {
 			String jwtToken = authorizationHeader.substring(7);
 			String userId = jwtService.extractSubject(jwtToken);
-			sectorRequest.setCreatedBy(userId);
 			sectorRequest.setSectorId(sectorId);
 			ValidationResult validationResult = sectorvalidationStrategy.validateUpdating(sectorRequest);
 			if (validationResult.isValid()) {
-				SectorDTO sectorDtO = sectorService.updateSector(sectorRequest, userId, sectorId);
-				message = sectorDtO.getSectorName() + " is updated successfully.";
+				SectorDTO sectorDTO = sectorService.updateSector(sectorRequest, userId, sectorId);
+				message = sectorDTO.getSectorName() + " is updated successfully.";
 				logger.info(message);
 				auditService.logAudit(auditDTO, 200, message, authorizationHeader);
-				return ResponseEntity.status(HttpStatus.OK).body(APIResponse.success(sectorDtO, message));
+				return ResponseEntity.status(HttpStatus.OK).body(APIResponse.success(sectorDTO, message));
 			}
 			message = validationResult.getMessage();
 			logger.error(message);
-			auditService.logAudit(auditDTO, 200, message, authorizationHeader);
+			auditService.logAudit(auditDTO, validationResult.getStatus().value(), message, authorizationHeader);
 			return ResponseEntity.status(validationResult.getStatus()).body(APIResponse.error(message));
 			
 		} catch( Exception ex) {
@@ -173,5 +172,41 @@ public class SectorController {
 			auditService.logAudit(auditDTO, 500, message, authorizationHeader);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
 		}
+	}
+	
+	
+	@GetMapping(value = "/my-sector", produces = "application/json")
+	@PreAuthorize("hasAuthority('SCOPE_sector.manage')")
+	public ResponseEntity<APIResponse<SectorDTO>> getSectorBySectorId(
+			@RequestHeader("Authorization") String authorizationHeader, @RequestHeader("X-Sector-Id") String sectorId) {
+		logger.info("Call sector by sector id API...");
+		
+		String message = "";
+		String activityType = "Retrieve Sector by sector id";
+		String endpoint = "/api/orgs/sectors";
+		String httpMethod = HttpMethod.GET.name();
+		AuditDTO auditDTO = auditService.createAuditDTO(activityType, endpoint, httpMethod);
+		
+		try {
+			
+			if (sectorId.isEmpty()) {
+				message = "Bad Request: Sector id could not be blank.";
+				logger.error(message);
+				auditService.logAudit(auditDTO, 400, message, authorizationHeader);
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(APIResponse.error(message));
+			}
+			
+			SectorDTO sectorDTO = sectorService.findBySectorId(sectorId);
+			message = sectorDTO.getSectorName() + " is found.";
+			logger.info(message);
+			auditService.logAudit(auditDTO, 200, message, authorizationHeader);
+			return ResponseEntity.status(HttpStatus.OK).body(APIResponse.success(sectorDTO, message));
+			
+		} catch (Exception ex) {
+			message = ex instanceof OrganizationServiceException ? ex.getMessage() : genericErrorMessage;
+			logger.error(message);
+			auditService.logAudit(auditDTO, 500, message, authorizationHeader);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
+		}	
 	}
 }
