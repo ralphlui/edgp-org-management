@@ -23,6 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -47,6 +48,7 @@ class SectorControllerTest {
 
 	@MockitoBean
 	private AuditService auditService;
+	
 
 	@MockitoBean
 	private SectorValidationStrategy sectorValidationStrategy;
@@ -147,4 +149,75 @@ class SectorControllerTest {
 				.param("size", "10").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isInternalServerError()).andExpect(jsonPath("$.message").value("Service failed"));
 	}
+	
+	
+	 @Test
+	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    void updateSector_success() throws Exception {
+	        SectorRequest request = new SectorRequest();
+	        SectorDTO responseDto = new SectorDTO();
+	        responseDto.setSectorName("Finance");
+	        
+	        ValidationResult validResult = new ValidationResult();
+	        validResult.setValid(true);
+
+
+	        when(jwtService.extractSubject("faketoken123")).thenReturn("user123");
+	        when(sectorValidationStrategy.validateUpdating(any())).thenReturn(validResult);
+	        when(sectorService.updateSector(any(), any(), any())).thenReturn(responseDto);
+
+	        mockMvc.perform(put("/api/orgs/sectors")
+	                .header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN)
+	                .header("X-Sector-Id", "427ae9ba-67a7-487d-b324-900cf50a2bf4")
+	                .contentType(MediaType.APPLICATION_JSON)
+	                .content(objectMapper.writeValueAsString(request)))
+	                .andExpect(status().isOk())
+	                .andExpect(jsonPath("$.message").value("Finance is updated successfully."))
+	                .andExpect(jsonPath("$.data.sectorName").value("Finance"));
+	    }
+
+	    @Test
+	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    void updateSector_validationFails() throws Exception {
+	        SectorRequest request = new SectorRequest();
+	        
+	        ValidationResult invalidResult = new ValidationResult();
+			invalidResult.setValid(false);
+			invalidResult.setStatus(HttpStatus.BAD_REQUEST);
+			invalidResult.setMessage("Validation failed");
+
+	        when(jwtService.extractSubject("faketoken123")).thenReturn("user123");
+	        when(sectorValidationStrategy.validateUpdating(any()))
+	                .thenReturn(invalidResult);
+
+	        mockMvc.perform(put("/api/orgs/sectors")
+	                .header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN)
+	                .header("X-Sector-Id", "427ae9ba-67a7-487d-b324-900cf50a2bf4")
+	                .contentType(MediaType.APPLICATION_JSON)
+	                .content(objectMapper.writeValueAsString(request)))
+	                .andExpect(status().isBadRequest())
+	                .andExpect(jsonPath("$.message").value("Validation failed"));
+	    }
+
+	    @Test
+	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    void updateSector_serviceException() throws Exception {
+	        SectorRequest request = new SectorRequest();
+	        
+	        ValidationResult validResult = new ValidationResult();
+	        validResult.setValid(true);
+
+	        when(jwtService.extractSubject("faketoken123")).thenReturn("user123");
+	        when(sectorValidationStrategy.validateUpdating(any())).thenReturn(validResult);
+	        when(sectorService.updateSector(any(), any(), any()))
+	                .thenThrow(new SectorServiceException("Service error"));
+
+	        mockMvc.perform(put("/api/orgs/sectors")
+	                .header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN)
+	                .header("X-Sector-Id", "427ae9ba-67a7-487d-b324-900cf50a2bf4")
+	                .contentType(MediaType.APPLICATION_JSON)
+	                .content(objectMapper.writeValueAsString(request)))
+	                .andExpect(status().isInternalServerError())
+	                .andExpect(jsonPath("$.message").value("Service error"));
+	    }
 }
