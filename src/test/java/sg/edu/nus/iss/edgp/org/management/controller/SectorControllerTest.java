@@ -13,6 +13,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import sg.edu.nus.iss.edgp.org.management.dto.*;
+import sg.edu.nus.iss.edgp.org.management.exception.OrganizationServiceException;
 import sg.edu.nus.iss.edgp.org.management.exception.SectorServiceException;
 import sg.edu.nus.iss.edgp.org.management.service.impl.AuditService;
 import sg.edu.nus.iss.edgp.org.management.service.impl.JwtService;
@@ -219,5 +220,48 @@ class SectorControllerTest {
 	                .content(objectMapper.writeValueAsString(request)))
 	                .andExpect(status().isInternalServerError())
 	                .andExpect(jsonPath("$.message").value("Service error"));
+	    }
+	    
+	    
+	    @Test
+	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    void getSectorBySectorId_success() throws Exception {
+	        SectorDTO dto = new SectorDTO();
+	        dto.setSectorName("Healthcare");
+
+	        when(sectorService.findBySectorId("427ae9ba-67a7-487d-b324-900cf50a2bf4")).thenReturn(dto);
+
+	        mockMvc.perform(get("/api/orgs/sectors/my-sector")
+	                .header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN)
+	                .header("X-Sector-Id", "427ae9ba-67a7-487d-b324-900cf50a2bf4")
+	                .accept(MediaType.APPLICATION_JSON))
+	                .andExpect(status().isOk())
+	                .andExpect(jsonPath("$.message").value("Healthcare is found."))
+	                .andExpect(jsonPath("$.data.sectorName").value("Healthcare"));
+	    }
+
+	    @Test
+	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    void getSectorBySectorId_emptyId_returns400() throws Exception {
+	        mockMvc.perform(get("/api/orgs/sectors/my-sector")
+	                .header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN)
+	                .header("X-Sector-Id", "") // blank ID
+	                .accept(MediaType.APPLICATION_JSON))
+	                .andExpect(status().isBadRequest())
+	                .andExpect(jsonPath("$.message").value("Bad Request: Sector id could not be blank."));
+	    }
+
+	    @Test
+	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    void getSectorBySectorId_serviceThrowsException_returns500() throws Exception {
+	        when(sectorService.findBySectorId("427ae9ba-67a7-487d-b324-900cf50a2bf4"))
+	                .thenThrow(new OrganizationServiceException("Sector not found"));
+
+	        mockMvc.perform(get("/api/orgs/sectors/my-sector")
+	                .header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN)
+	                .header("X-Sector-Id", "427ae9ba-67a7-487d-b324-900cf50a2bf4")
+	                .accept(MediaType.APPLICATION_JSON))
+	                .andExpect(status().isInternalServerError())
+	                .andExpect(jsonPath("$.message").value("Sector not found"));
 	    }
 }
