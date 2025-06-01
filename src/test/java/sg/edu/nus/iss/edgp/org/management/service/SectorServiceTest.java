@@ -193,4 +193,34 @@ class SectorServiceTest {
 		verify(sectorRepository, times(1)).findBySectorId("INVALID_ID");
 		verify(sectorRepository, never()).save(any(Sector.class));
 	}
+	
+	@Test
+    void findBySectorId_success() {
+        when(sectorRepository.findBySectorId("SEC001")).thenReturn(sector);
+
+        try (MockedStatic<DTOMapper> mocked = mockStatic(DTOMapper.class)) {
+            mocked.when(() -> DTOMapper.toSectorDTO(sector)).thenReturn(expectedDto);
+
+            SectorDTO result = sectorService.findBySectorId("SEC001");
+
+            assertNotNull(result);
+            assertEquals("Finance", result.getSectorName());
+
+            verify(sectorRepository, times(1)).findBySectorId("SEC001");
+        }
+    }
+	
+	@Test
+    void findBySectorId_repositoryThrowsException() {
+        when(sectorRepository.findBySectorId("SEC999")).thenThrow(new RuntimeException("DB error"));
+
+        SectorServiceException exception = assertThrows(
+            SectorServiceException.class,
+            () -> sectorService.findBySectorId("SEC999")
+        );
+
+        assertEquals("An error occurred while searching fot the sector by sector id", exception.getMessage());
+        verify(sectorRepository, times(1)).findBySectorId("SEC999");
+    }
+
 }
