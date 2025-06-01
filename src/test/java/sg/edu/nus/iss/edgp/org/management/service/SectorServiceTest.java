@@ -193,34 +193,51 @@ class SectorServiceTest {
 		verify(sectorRepository, times(1)).findBySectorId("INVALID_ID");
 		verify(sectorRepository, never()).save(any(Sector.class));
 	}
-	
+
 	@Test
-    void findBySectorId_success() {
-        when(sectorRepository.findBySectorId("SEC001")).thenReturn(sector);
+	void findBySectorId_success() {
+		when(sectorRepository.findBySectorId("SEC001")).thenReturn(sector);
 
-        try (MockedStatic<DTOMapper> mocked = mockStatic(DTOMapper.class)) {
-            mocked.when(() -> DTOMapper.toSectorDTO(sector)).thenReturn(expectedDto);
+		try (MockedStatic<DTOMapper> mocked = mockStatic(DTOMapper.class)) {
+			mocked.when(() -> DTOMapper.toSectorDTO(sector)).thenReturn(expectedDto);
 
-            SectorDTO result = sectorService.findBySectorId("SEC001");
+			SectorDTO result = sectorService.findBySectorId("SEC001");
 
-            assertNotNull(result);
-            assertEquals("Finance", result.getSectorName());
+			assertNotNull(result);
+			assertEquals("Finance", result.getSectorName());
 
-            verify(sectorRepository, times(1)).findBySectorId("SEC001");
-        }
-    }
-	
+			verify(sectorRepository, times(1)).findBySectorId("SEC001");
+		}
+	}
+
 	@Test
-    void findBySectorId_repositoryThrowsException() {
-        when(sectorRepository.findBySectorId("SEC999")).thenThrow(new RuntimeException("DB error"));
+	void findBySectorId_repositoryThrowsException() {
+		when(sectorRepository.findBySectorId("SEC999")).thenThrow(new RuntimeException("DB error"));
 
-        SectorServiceException exception = assertThrows(
-            SectorServiceException.class,
-            () -> sectorService.findBySectorId("SEC999")
-        );
+		SectorServiceException exception = assertThrows(SectorServiceException.class,
+				() -> sectorService.findBySectorId("SEC999"));
 
-        assertEquals("An error occurred while searching fot the sector by sector id", exception.getMessage());
-        verify(sectorRepository, times(1)).findBySectorId("SEC999");
-    }
+		assertEquals("An error occurred while searching fot the sector by sector id", exception.getMessage());
+		verify(sectorRepository, times(1)).findBySectorId("SEC999");
+	}
+
+	@Test
+	void findBySectorIdAndIsActive_success() {
+		Sector sector = new Sector();
+		sector.setSectorId("SEC123");
+		when(sectorRepository.findBySectorIdAndIsActive("SEC123", true)).thenReturn(sector);
+
+		Sector result = sectorService.findBySectorIdAndIsActive("SEC123");
+
+		assertNotNull(result);
+		assertEquals("SEC123", result.getSectorId());
+	}
+
+	@Test
+	void findBySectorIdAndIsActive_throwsException() {
+		when(sectorRepository.findBySectorIdAndIsActive("SEC123", true)).thenThrow(new RuntimeException("DB error"));
+
+		assertThrows(SectorServiceException.class, () -> sectorService.findBySectorIdAndIsActive("SEC123"));
+	}
 
 }
