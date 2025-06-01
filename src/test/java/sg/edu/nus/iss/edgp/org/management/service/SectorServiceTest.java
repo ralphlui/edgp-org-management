@@ -37,6 +37,7 @@ class SectorServiceTest {
 	private SectorDTO expectedDto;
 	private Sector sector;
 	private Pageable pageable;
+	private Sector dbSector;
 
 	@BeforeEach
 	void setup() {
@@ -46,7 +47,7 @@ class SectorServiceTest {
 		request.setRemark("Important");
 
 		savedSector = new Sector();
-		savedSector.setSectorId("S-001");
+		savedSector.setSectorId("SEC001");
 
 		expectedDto = new SectorDTO();
 		expectedDto.setSectorName("Finance");
@@ -55,7 +56,11 @@ class SectorServiceTest {
 		sector.setSectorName("Finance");
 		sector.setSectorCode("FIN");
 		sector.setSectorId("SEC001");
-		
+
+		dbSector = new Sector();
+		dbSector.setSectorId("SEC001");
+		dbSector.setSectorName("Finance");
+
 		pageable = PageRequest.of(0, 10);
 	}
 
@@ -108,41 +113,84 @@ class SectorServiceTest {
 		assertEquals("An error occurred while searching for the sector by name and code", exception.getMessage());
 		verify(sectorRepository, times(1)).findBySectorNameOrSectorCode("Finance", "FIN");
 	}
-	
-	
+
 	@Test
-    void retrieveActiveSectorList_success() {
-        Page<Sector> mockPage = new PageImpl<>(List.of(sector), pageable, 1);
+	void retrieveActiveSectorList_success() {
+		Page<Sector> mockPage = new PageImpl<>(List.of(sector), pageable, 1);
 
-        when(sectorRepository.findActiveSectorList(true, pageable))
-                .thenReturn(mockPage);
+		when(sectorRepository.findActiveSectorList(true, pageable)).thenReturn(mockPage);
 
-        try (MockedStatic<DTOMapper> mocked = Mockito.mockStatic(DTOMapper.class)) {
-            mocked.when(() -> DTOMapper.toSectorDTO(sector))
-                  .thenReturn(expectedDto);
+		try (MockedStatic<DTOMapper> mocked = Mockito.mockStatic(DTOMapper.class)) {
+			mocked.when(() -> DTOMapper.toSectorDTO(sector)).thenReturn(expectedDto);
 
-            Map<Long, List<SectorDTO>> result = sectorService.retrieveActiveSectorList(pageable);
+			Map<Long, List<SectorDTO>> result = sectorService.retrieveActiveSectorList(pageable);
 
-            assertNotNull(result);
-            assertTrue(result.containsKey(1L));
-            assertEquals(1, result.get(1L).size());
-            assertEquals("Finance", result.get(1L).get(0).getSectorName());
-        }
+			assertNotNull(result);
+			assertTrue(result.containsKey(1L));
+			assertEquals(1, result.get(1L).size());
+			assertEquals("Finance", result.get(1L).get(0).getSectorName());
+		}
 
-        verify(sectorRepository, times(1)).findActiveSectorList(true, pageable);
-    }
-	
-    @Test
-    void retrieveActiveSectorList_shouldThrowException_whenRepositoryFails() {
-        when(sectorRepository.findActiveSectorList(true, pageable))
-                .thenThrow(new RuntimeException("Database error"));
+		verify(sectorRepository, times(1)).findActiveSectorList(true, pageable);
+	}
 
-        SectorServiceException exception = assertThrows(
-            SectorServiceException.class,
-            () -> sectorService.retrieveActiveSectorList(pageable)
-        );
+	@Test
+	void retrieveActiveSectorList_shouldThrowException_whenRepositoryFails() {
+		when(sectorRepository.findActiveSectorList(true, pageable)).thenThrow(new RuntimeException("Database error"));
 
-        assertEquals("An error occurred while retrieving active sector list", exception.getMessage());
-        verify(sectorRepository, times(1)).findActiveSectorList(true, pageable);
-    }
+		SectorServiceException exception = assertThrows(SectorServiceException.class,
+				() -> sectorService.retrieveActiveSectorList(pageable));
+
+		assertEquals("An error occurred while retrieving active sector list", exception.getMessage());
+		verify(sectorRepository, times(1)).findActiveSectorList(true, pageable);
+	}
+
+	@Test
+	void updateSector_success() {
+
+		Sector dbSector = new Sector();
+		dbSector.setSectorId("SEC001");
+		dbSector.setSectorName("Finance");
+
+		Sector updatedSector = new Sector();
+		updatedSector.setSectorId("SEC001");
+		updatedSector.setSectorName("Finance");
+		updatedSector.setDescription("Updated Description");
+
+		request = new SectorRequest();
+		request.setDescription("Updated Description");
+		request.setRemark("Updated");
+		request.setActive(true);
+
+		expectedDto = new SectorDTO();
+		expectedDto.setSectorID("SEC001");
+		expectedDto.setSectorName("Finance");
+		expectedDto.setDescription("Updated Description");
+
+		when(sectorRepository.findBySectorId("SEC001")).thenReturn(dbSector);
+		when(sectorRepository.save(any(Sector.class))).thenReturn(updatedSector);
+
+		try (MockedStatic<DTOMapper> mocked = mockStatic(DTOMapper.class)) {
+			mocked.when(() -> DTOMapper.toSectorDTO(updatedSector)).thenReturn(expectedDto);
+
+			SectorDTO result = sectorService.updateSector(request, "user-001", "SEC001");
+
+			assertNotNull(result);
+			assertEquals("Finance", result.getSectorName());
+			assertEquals("Updated Description", result.getDescription());
+
+			verify(sectorRepository, times(1)).findBySectorId("SEC001");
+			verify(sectorRepository, times(1)).save(any(Sector.class));
+		}
+	}
+
+	@Test
+	void updateSector_shouldThrow_whenSectorNotFound() {
+		when(sectorRepository.findBySectorId("INVALID_ID")).thenReturn(null);
+
+		assertThrows(SectorServiceException.class, () -> sectorService.updateSector(request, "user-001", "INVALID_ID"));
+
+		verify(sectorRepository, times(1)).findBySectorId("INVALID_ID");
+		verify(sectorRepository, never()).save(any(Sector.class));
+	}
 }
