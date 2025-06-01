@@ -4,12 +4,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import sg.edu.nus.iss.edgp.org.management.dto.SectorDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorRequest;
@@ -31,6 +36,7 @@ class SectorServiceTest {
 	private Sector savedSector;
 	private SectorDTO expectedDto;
 	private Sector sector;
+	private Pageable pageable;
 
 	@BeforeEach
 	void setup() {
@@ -49,6 +55,8 @@ class SectorServiceTest {
 		sector.setSectorName("Finance");
 		sector.setSectorCode("FIN");
 		sector.setSectorId("SEC001");
+		
+		pageable = PageRequest.of(0, 10);
 	}
 
 	@Test
@@ -100,4 +108,41 @@ class SectorServiceTest {
 		assertEquals("An error occurred while searching for the sector by name and code", exception.getMessage());
 		verify(sectorRepository, times(1)).findBySectorNameOrSectorCode("Finance", "FIN");
 	}
+	
+	
+	@Test
+    void retrieveActiveSectorList_success() {
+        Page<Sector> mockPage = new PageImpl<>(List.of(sector), pageable, 1);
+
+        when(sectorRepository.findActiveSectorList(true, pageable))
+                .thenReturn(mockPage);
+
+        try (MockedStatic<DTOMapper> mocked = Mockito.mockStatic(DTOMapper.class)) {
+            mocked.when(() -> DTOMapper.toSectorDTO(sector))
+                  .thenReturn(expectedDto);
+
+            Map<Long, List<SectorDTO>> result = sectorService.retrieveActiveSectorList(pageable);
+
+            assertNotNull(result);
+            assertTrue(result.containsKey(1L));
+            assertEquals(1, result.get(1L).size());
+            assertEquals("Finance", result.get(1L).get(0).getSectorName());
+        }
+
+        verify(sectorRepository, times(1)).findActiveSectorList(true, pageable);
+    }
+	
+    @Test
+    void retrieveActiveSectorList_shouldThrowException_whenRepositoryFails() {
+        when(sectorRepository.findActiveSectorList(true, pageable))
+                .thenThrow(new RuntimeException("Database error"));
+
+        SectorServiceException exception = assertThrows(
+            SectorServiceException.class,
+            () -> sectorService.retrieveActiveSectorList(pageable)
+        );
+
+        assertEquals("An error occurred while retrieving active sector list", exception.getMessage());
+        verify(sectorRepository, times(1)).findActiveSectorList(true, pageable);
+    }
 }
