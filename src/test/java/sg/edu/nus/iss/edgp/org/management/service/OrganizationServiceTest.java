@@ -42,6 +42,8 @@ class OrganizationServiceTest {
 
 	@Mock
 	private OrganizationRepository organizationRepository;
+	
+	private final String ORG_NAME = "Test Org";
 
 	@Test
 	void createOrganization_success() {
@@ -115,5 +117,35 @@ class OrganizationServiceTest {
 		verify(sectorRepository).findById("UNKNOWN");
 
 		verify(organizationRepository, never()).save(any());
+	}
+	
+	
+	@Test
+	void findByOrganizationName_success() {
+	    Organization mockOrg = new Organization();
+	    mockOrg.setOrganizationName(ORG_NAME);
+
+	    when(organizationRepository.findByOrganizationName(ORG_NAME)).thenReturn(mockOrg);
+
+	    Organization result = organizationService.findByOrganizationName(ORG_NAME);
+
+	    assertNotNull(result);
+	    assertEquals(ORG_NAME, result.getOrganizationName());
+	    verify(organizationRepository, times(1)).findByOrganizationName(ORG_NAME);
+	}
+	
+	
+	@Test
+	void findByOrganizationName_repositoryThrowsException_shouldThrowServiceException() {
+	    when(organizationRepository.findByOrganizationName(ORG_NAME))
+	            .thenThrow(new RuntimeException("DB error"));
+
+	    OrganizationServiceException exception = assertThrows(
+	            OrganizationServiceException.class,
+	            () -> organizationService.findByOrganizationName(ORG_NAME)
+	    );
+
+	    assertTrue(exception.getMessage().contains("An error occurred while searching for the organization by name"));
+	    verify(organizationRepository).findByOrganizationName(ORG_NAME);
 	}
 }
