@@ -42,8 +42,9 @@ class OrganizationServiceTest {
 
 	@Mock
 	private OrganizationRepository organizationRepository;
-	
+
 	private final String ORG_NAME = "Test Org";
+	private static final String VALID_UEN = "UEN123456";
 
 	@Test
 	void createOrganization_success() {
@@ -118,34 +119,57 @@ class OrganizationServiceTest {
 
 		verify(organizationRepository, never()).save(any());
 	}
-	
-	
+
 	@Test
 	void findByOrganizationName_success() {
-	    Organization mockOrg = new Organization();
-	    mockOrg.setOrganizationName(ORG_NAME);
+		Organization mockOrg = new Organization();
+		mockOrg.setOrganizationName(ORG_NAME);
 
-	    when(organizationRepository.findByOrganizationName(ORG_NAME)).thenReturn(mockOrg);
+		when(organizationRepository.findByOrganizationName(ORG_NAME)).thenReturn(mockOrg);
 
-	    Organization result = organizationService.findByOrganizationName(ORG_NAME);
+		Organization result = organizationService.findByOrganizationName(ORG_NAME);
 
-	    assertNotNull(result);
-	    assertEquals(ORG_NAME, result.getOrganizationName());
-	    verify(organizationRepository, times(1)).findByOrganizationName(ORG_NAME);
+		assertNotNull(result);
+		assertEquals(ORG_NAME, result.getOrganizationName());
+		verify(organizationRepository, times(1)).findByOrganizationName(ORG_NAME);
+	}
+
+	@Test
+	void findByOrganizationName_repositoryThrowsException_shouldThrowServiceException() {
+		when(organizationRepository.findByOrganizationName(ORG_NAME)).thenThrow(new RuntimeException("DB error"));
+
+		OrganizationServiceException exception = assertThrows(OrganizationServiceException.class,
+				() -> organizationService.findByOrganizationName(ORG_NAME));
+
+		assertTrue(exception.getMessage().contains("An error occurred while searching for the organization by name"));
+		verify(organizationRepository).findByOrganizationName(ORG_NAME);
+	}
+
+	@Test
+	void findByUEN_success() {
+		Organization mockOrganization = new Organization();
+		mockOrganization.setUniqueEntityNumber(VALID_UEN);
+
+		when(organizationRepository.findByUniqueEntityNumber(VALID_UEN)).thenReturn(mockOrganization);
+
+		Organization result = organizationService.findByUEN(VALID_UEN);
+
+		assertNotNull(result);
+		assertEquals(VALID_UEN, result.getUniqueEntityNumber());
+		verify(organizationRepository, times(1)).findByUniqueEntityNumber(VALID_UEN);
 	}
 	
 	
 	@Test
-	void findByOrganizationName_repositoryThrowsException_shouldThrowServiceException() {
-	    when(organizationRepository.findByOrganizationName(ORG_NAME))
-	            .thenThrow(new RuntimeException("DB error"));
+	void findByUEN_repositoryThrowsException_shouldThrowServiceException() {
+		when(organizationRepository.findByUniqueEntityNumber(VALID_UEN))
+				.thenThrow(new RuntimeException("DB access error"));
 
-	    OrganizationServiceException exception = assertThrows(
-	            OrganizationServiceException.class,
-	            () -> organizationService.findByOrganizationName(ORG_NAME)
-	    );
+		OrganizationServiceException exception = assertThrows(OrganizationServiceException.class,
+				() -> organizationService.findByUEN(VALID_UEN));
 
-	    assertTrue(exception.getMessage().contains("An error occurred while searching for the organization by name"));
-	    verify(organizationRepository).findByOrganizationName(ORG_NAME);
+		assertTrue(exception.getMessage().contains("An error occurred while executing searching organization by UEN"));
+		verify(organizationRepository).findByUniqueEntityNumber(VALID_UEN);
 	}
+
 }
