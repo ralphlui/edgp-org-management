@@ -25,6 +25,7 @@ public class JwtService {
 	private final JwtConfig jwtConfig;
 	private final JSONReader jsonReader;
 	public static final String USER_EMAIL = "userEmail";
+	public static final String USER_NAME = "userName";
 
 	public UserDetails getUserDetail(String authorizationHeader, String token)
 			throws JwtException, IllegalArgumentException, Exception {
@@ -81,9 +82,9 @@ public class JwtService {
 	public String extractUserNameFromToken(String token) {
 	    try {
 	        Claims claims = extractAllClaims(token);
-	        return claims.get("userName", String.class);
+	        return claims.get(USER_NAME, String.class);
 	    } catch (ExpiredJwtException e) {
-	        return e.getClaims().get("userName", String.class);
+	        return e.getClaims().get(USER_NAME, String.class);
 	    } catch (Exception e) {
 	        return "Invalid Username";
 	    }
