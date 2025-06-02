@@ -166,8 +166,7 @@ class OrganizationServiceTest {
 		assertEquals(VALID_UEN, result.getUniqueEntityNumber());
 		verify(organizationRepository, times(1)).findByUniqueEntityNumber(VALID_UEN);
 	}
-	
-	
+
 	@Test
 	void findByUEN_repositoryThrowsException_shouldThrowServiceException() {
 		when(organizationRepository.findByUniqueEntityNumber(VALID_UEN))
@@ -179,46 +178,79 @@ class OrganizationServiceTest {
 		assertTrue(exception.getMessage().contains("An error occurred while executing searching organization by UEN"));
 		verify(organizationRepository).findByUniqueEntityNumber(VALID_UEN);
 	}
-	
-	
+
 	@Test
 	void retrieveActiveOrganizationList_success() {
-	    Organization mockOrg = new Organization();
-	    mockOrg.setOrganizationName("TechOrg");
+		Organization mockOrg = new Organization();
+		mockOrg.setOrganizationName("TechOrg");
 
-	    List<Organization> orgList = List.of(mockOrg);
-	    Page<Organization> orgPage = new PageImpl<>(orgList, pageable, 1);
+		List<Organization> orgList = List.of(mockOrg);
+		Page<Organization> orgPage = new PageImpl<>(orgList, pageable, 1);
 
-	    when(organizationRepository.findActiveOrganizationList(true, pageable))
-	            .thenReturn(orgPage);
+		when(organizationRepository.findActiveOrganizationList(true, pageable)).thenReturn(orgPage);
 
-	    try (MockedStatic<DTOMapper> mocked = mockStatic(DTOMapper.class)) {
-	        OrganizationDTO mockDTO = new OrganizationDTO();
-	        mockDTO.setOrganizationName("TechOrg");
+		try (MockedStatic<DTOMapper> mocked = mockStatic(DTOMapper.class)) {
+			OrganizationDTO mockDTO = new OrganizationDTO();
+			mockDTO.setOrganizationName("TechOrg");
 
-	        mocked.when(() -> DTOMapper.toOrganizationDTO(mockOrg)).thenReturn(mockDTO);
+			mocked.when(() -> DTOMapper.toOrganizationDTO(mockOrg)).thenReturn(mockDTO);
 
-	        Map<Long, List<OrganizationDTO>> result = organizationService.retrieveActiveOrganizationList(pageable);
+			Map<Long, List<OrganizationDTO>> result = organizationService.retrieveActiveOrganizationList(pageable);
 
-	        assertNotNull(result);
-	        assertEquals(1, result.keySet().iterator().next());
-	        assertEquals("TechOrg", result.values().iterator().next().get(0).getOrganizationName());
-	        verify(organizationRepository, times(1)).findActiveOrganizationList(true, pageable);
-	    }
+			assertNotNull(result);
+			assertEquals(1, result.keySet().iterator().next());
+			assertEquals("TechOrg", result.values().iterator().next().get(0).getOrganizationName());
+			verify(organizationRepository, times(1)).findActiveOrganizationList(true, pageable);
+		}
 	}
-	
+
 	@Test
 	void retrieveActiveOrganizationList_repositoryThrowsException_shouldThrowServiceException() {
-	    when(organizationRepository.findActiveOrganizationList(true, pageable))
-	            .thenThrow(new RuntimeException("DB error"));
+		when(organizationRepository.findActiveOrganizationList(true, pageable))
+				.thenThrow(new RuntimeException("DB error"));
 
-	    OrganizationServiceException ex = assertThrows(
-	            OrganizationServiceException.class,
-	            () -> organizationService.retrieveActiveOrganizationList(pageable)
-	    );
+		OrganizationServiceException ex = assertThrows(OrganizationServiceException.class,
+				() -> organizationService.retrieveActiveOrganizationList(pageable));
 
-	    assertTrue(ex.getMessage().contains("An error occurred while retrieving active organization list"));
-	    verify(organizationRepository).findActiveOrganizationList(true, pageable);
+		assertTrue(ex.getMessage().contains("An error occurred while retrieving active organization list"));
+		verify(organizationRepository).findActiveOrganizationList(true, pageable);
+	}
+
+	@Test
+	void findByOrganizationId_success() {
+
+		Organization organization = new Organization();
+		organization.setOrganizationId("org-123");
+		organization.setOrganizationName("Org Test");
+
+		OrganizationDTO organizationDTO = new OrganizationDTO();
+		organizationDTO.setOrganizationId("org-123");
+		organizationDTO.setOrganizationName("Org Test");
+
+		when(organizationRepository.findByOrganizationId("org-123")).thenReturn(organization);
+
+		try (MockedStatic<DTOMapper> mockedMapper = mockStatic(DTOMapper.class)) {
+			mockedMapper.when(() -> DTOMapper.toOrganizationDTO(organization)).thenReturn(organizationDTO);
+
+			OrganizationDTO result = organizationService.findByOrganizationId("org-123");
+
+			assertNotNull(result);
+			assertEquals("org-123", result.getOrganizationId());
+			assertEquals("Org Test", result.getOrganizationName());
+
+			verify(organizationRepository, times(1)).findByOrganizationId("org-123");
+		}
+	}
+
+	@Test
+	void findByOrganizationId_exceptionThrown() {
+		when(organizationRepository.findByOrganizationId("org-123")).thenThrow(new RuntimeException("DB error"));
+
+		OrganizationServiceException exception = assertThrows(OrganizationServiceException.class, () -> {
+			organizationService.findByOrganizationId("org-123");
+		});
+
+		assertTrue(exception.getMessage().contains("An error occurred while searching for the organization by org id"));
 	}
 
 }
