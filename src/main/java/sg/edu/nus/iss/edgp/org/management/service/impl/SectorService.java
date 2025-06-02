@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,10 +90,11 @@ public class SectorService implements ISectorService {
 	public SectorDTO updateSector(SectorRequest sectorReq, String userId, String sectorId) {
 		try {
 			
-			Sector dbSector = sectorRepository.findBySectorId(sectorId);
-			if (dbSector == null) {
+			Optional<Sector> sectorResult = sectorRepository.findBySectorId(sectorId);
+			if (!sectorResult.isPresent()) {
 				throw new SectorServiceException("No matching sector found");
 			}
+			Sector dbSector = sectorResult.get();
 			dbSector.setDescription(sectorReq.getDescription());
 			dbSector.setLastUpdatedBy(userId);
 			dbSector.setLastUpdatedDateTime(LocalDateTime.now());
@@ -111,8 +113,12 @@ public class SectorService implements ISectorService {
 	@Override
 	public SectorDTO findBySectorId(String sectorId) {
 		try {
-			Sector sector = sectorRepository.findBySectorId(sectorId);
-			return DTOMapper.toSectorDTO(sector);
+			Optional<Sector>  sector = sectorRepository.findBySectorId(sectorId);
+			if (sector.isPresent()) {
+				return DTOMapper.toSectorDTO(sector.get());
+			}
+			throw new SectorServiceException("Unable to find active store with this sector");
+			
 		} catch (Exception e) {
 			logger.error("Exception occurred while searching fot the sector by sector id", e);
 			throw new SectorServiceException("An error occurred while searching fot the sector by sector id", e);

@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -167,7 +168,7 @@ class SectorServiceTest {
 		expectedDto.setSectorName("Finance");
 		expectedDto.setDescription("Updated Description");
 
-		when(sectorRepository.findBySectorId("SEC001")).thenReturn(dbSector);
+		when(sectorRepository.findBySectorId("SEC001")).thenReturn(Optional.of(dbSector));
 		when(sectorRepository.save(any(Sector.class))).thenReturn(updatedSector);
 
 		try (MockedStatic<DTOMapper> mocked = mockStatic(DTOMapper.class)) {
@@ -196,7 +197,7 @@ class SectorServiceTest {
 
 	@Test
 	void findBySectorId_success() {
-		when(sectorRepository.findBySectorId("SEC001")).thenReturn(sector);
+		when(sectorRepository.findBySectorId("SEC001")).thenReturn(Optional.of(sector));
 
 		try (MockedStatic<DTOMapper> mocked = mockStatic(DTOMapper.class)) {
 			mocked.when(() -> DTOMapper.toSectorDTO(sector)).thenReturn(expectedDto);

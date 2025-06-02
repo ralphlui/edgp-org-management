@@ -31,7 +31,6 @@ import sg.edu.nus.iss.edgp.org.management.dto.SearchRequest;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.SectorRequest;
 import sg.edu.nus.iss.edgp.org.management.dto.ValidationResult;
-import sg.edu.nus.iss.edgp.org.management.exception.OrganizationServiceException;
 import sg.edu.nus.iss.edgp.org.management.exception.SectorServiceException;
 import sg.edu.nus.iss.edgp.org.management.service.impl.AuditService;
 import sg.edu.nus.iss.edgp.org.management.service.impl.JwtService;
@@ -203,7 +202,7 @@ public class SectorController {
 			return ResponseEntity.status(HttpStatus.OK).body(APIResponse.success(sectorDTO, message));
 			
 		} catch (Exception ex) {
-			message = ex instanceof OrganizationServiceException ? ex.getMessage() : genericErrorMessage;
+			message = ex instanceof SectorServiceException ? ex.getMessage() : genericErrorMessage;
 			logger.error(message);
 			auditService.logAudit(auditDTO, 500, message, authorizationHeader);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(message));
