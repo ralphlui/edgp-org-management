@@ -18,100 +18,145 @@ import sg.edu.nus.iss.edgp.org.management.strategy.impl.OrganizationValidationSt
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @WebMvcTest(OrganizationController.class)
 @AutoConfigureMockMvc(addFilters = false)
 class OrganizationControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+	@Autowired
+	private MockMvc mockMvc;
 
-    @MockitoBean
-    private OrganizationService organizationService;
+	@MockitoBean
+	private OrganizationService organizationService;
 
-    @MockitoBean
-    private JwtService jwtService;
+	@MockitoBean
+	private JwtService jwtService;
 
-    @MockitoBean
-    private AuditService auditService;
+	@MockitoBean
+	private AuditService auditService;
 
-    @MockitoBean
-    private OrganizationValidationStrategy organizationValidationStrategy;
+	@MockitoBean
+	private OrganizationValidationStrategy organizationValidationStrategy;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+	@Autowired
+	private ObjectMapper objectMapper;
 
-    @Test
-    void createOrganization_success() throws Exception {
-        OrganizationRequest request = new OrganizationRequest();
-        request.setOrganizationName("Test Org");
+	@Test
+	void createOrganization_success() throws Exception {
+		OrganizationRequest request = new OrganizationRequest();
+		request.setOrganizationName("Test Org");
 
-        OrganizationDTO dto = new OrganizationDTO();
-        dto.setOrganizationName("Test Org");
+		OrganizationDTO dto = new OrganizationDTO();
+		dto.setOrganizationName("Test Org");
 
-        AuditDTO audit = new AuditDTO();
-        ValidationResult validResult = new ValidationResult();
-        validResult.setValid(true);
+		AuditDTO audit = new AuditDTO();
+		ValidationResult validResult = new ValidationResult();
+		validResult.setValid(true);
 
-        when(jwtService.extractSubject("valid-token")).thenReturn("user-123");
-        when(organizationValidationStrategy.validateCreation(any())).thenReturn(validResult);
-        when(organizationService.createOrganization(any(), any())).thenReturn(dto);
-        when(auditService.createAuditDTO(any(), any(), any())).thenReturn(audit);
+		when(jwtService.extractSubject("valid-token")).thenReturn("user-123");
+		when(organizationValidationStrategy.validateCreation(any())).thenReturn(validResult);
+		when(organizationService.createOrganization(any(), any())).thenReturn(dto);
+		when(auditService.createAuditDTO(any(), any(), any())).thenReturn(audit);
 
-        mockMvc.perform(post("/api/orgs")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer valid-token")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.data.organizationName").value("Test Org"));
-    }
+		mockMvc.perform(post("/api/orgs").header(HttpHeaders.AUTHORIZATION, "Bearer valid-token")
+				.contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(request)))
+				.andExpect(status().isOk()).andExpect(jsonPath("$.success").value(true))
+				.andExpect(jsonPath("$.data.organizationName").value("Test Org"));
+	}
 
-    @Test
-    void createOrganization_validationFailure() throws Exception {
-        OrganizationRequest request = new OrganizationRequest();
+	@Test
+	void createOrganization_validationFailure() throws Exception {
+		OrganizationRequest request = new OrganizationRequest();
 
-        AuditDTO audit = new AuditDTO();
-        ValidationResult invalidResult = new ValidationResult();
-        invalidResult.setValid(false);
-        invalidResult.setMessage("Validation failed");
-        invalidResult.setStatus(org.springframework.http.HttpStatus.BAD_REQUEST);
+		AuditDTO audit = new AuditDTO();
+		ValidationResult invalidResult = new ValidationResult();
+		invalidResult.setValid(false);
+		invalidResult.setMessage("Validation failed");
+		invalidResult.setStatus(org.springframework.http.HttpStatus.BAD_REQUEST);
 
-        when(jwtService.extractSubject("valid-token")).thenReturn("user-123");
-        when(organizationValidationStrategy.validateCreation(any())).thenReturn(invalidResult);
-        when(auditService.createAuditDTO(any(), any(), any())).thenReturn(audit);
+		when(jwtService.extractSubject("valid-token")).thenReturn("user-123");
+		when(organizationValidationStrategy.validateCreation(any())).thenReturn(invalidResult);
+		when(auditService.createAuditDTO(any(), any(), any())).thenReturn(audit);
 
-        mockMvc.perform(post("/api/orgs")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer valid-token")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.message").value("Validation failed"));
-    }
+		mockMvc.perform(post("/api/orgs").header(HttpHeaders.AUTHORIZATION, "Bearer valid-token")
+				.contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(request)))
+				.andExpect(status().isBadRequest()).andExpect(jsonPath("$.success").value(false))
+				.andExpect(jsonPath("$.message").value("Validation failed"));
+	}
 
-    @Test
-    void createOrganization_serviceException() throws Exception {
-        OrganizationRequest request = new OrganizationRequest();
+	@Test
+	void createOrganization_serviceException() throws Exception {
+		OrganizationRequest request = new OrganizationRequest();
 
-        AuditDTO audit = new AuditDTO();
-        ValidationResult validResult = new ValidationResult();
-        validResult.setValid(true);
+		AuditDTO audit = new AuditDTO();
+		ValidationResult validResult = new ValidationResult();
+		validResult.setValid(true);
 
-        when(jwtService.extractSubject("valid-token")).thenReturn("user-123");
-        when(organizationValidationStrategy.validateCreation(any())).thenReturn(validResult);
-        when(organizationService.createOrganization(any(), any()))
-                .thenThrow(new OrganizationServiceException("Internal error"));
-        when(auditService.createAuditDTO(any(), any(), any())).thenReturn(audit);
+		when(jwtService.extractSubject("valid-token")).thenReturn("user-123");
+		when(organizationValidationStrategy.validateCreation(any())).thenReturn(validResult);
+		when(organizationService.createOrganization(any(), any()))
+				.thenThrow(new OrganizationServiceException("Internal error"));
+		when(auditService.createAuditDTO(any(), any(), any())).thenReturn(audit);
 
-        mockMvc.perform(post("/api/orgs")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer valid-token")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isInternalServerError())
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.message").value("Internal error"));
-    }
+		mockMvc.perform(post("/api/orgs").header(HttpHeaders.AUTHORIZATION, "Bearer valid-token")
+				.contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(request)))
+				.andExpect(status().isInternalServerError()).andExpect(jsonPath("$.success").value(false))
+				.andExpect(jsonPath("$.message").value("Internal error"));
+	}
+
+	@Test
+	void retrieveActiveOrganizationList_success_withData() throws Exception {
+		SearchRequest searchRequest = new SearchRequest();
+		searchRequest.setPage(1);
+		searchRequest.setSize(10);
+
+		OrganizationDTO dto = new OrganizationDTO();
+		dto.setOrganizationName("Test Org");
+
+		List<OrganizationDTO> dtoList = List.of(dto);
+		Map<Long, List<OrganizationDTO>> resultMap = Map.of(1L, dtoList);
+
+		AuditDTO auditDTO = new AuditDTO();
+
+		when(auditService.createAuditDTO(any(), any(), any())).thenReturn(auditDTO);
+		when(organizationService.retrieveActiveOrganizationList(any())).thenReturn(resultMap);
+
+		mockMvc.perform(get("/api/orgs").header(HttpHeaders.AUTHORIZATION, "Bearer valid-token").param("page", "1")
+				.param("size", "10")).andExpect(status().isOk()).andExpect(jsonPath("$.success").value(true))
+				.andExpect(jsonPath("$.data[0].organizationName").value("Test Org"));
+	}
+
+	@Test
+	void retrieveActiveOrganizationList_success_emptyData() throws Exception {
+		AuditDTO auditDTO = new AuditDTO();
+
+		Map<Long, List<OrganizationDTO>> emptyMap = Map.of(0L, new ArrayList<>());
+
+		when(auditService.createAuditDTO(any(), any(), any())).thenReturn(auditDTO);
+		when(organizationService.retrieveActiveOrganizationList(any())).thenReturn(emptyMap);
+
+		mockMvc.perform(get("/api/orgs").header(HttpHeaders.AUTHORIZATION, "Bearer valid-token").param("page", "1")
+				.param("size", "10")).andExpect(status().isOk()).andExpect(jsonPath("$.success").value(true))
+				.andExpect(jsonPath("$.data").isArray()).andExpect(jsonPath("$.data").isEmpty());
+	}
+
+	@Test
+	void retrieveActiveOrganizationList_exceptionThrown() throws Exception {
+		AuditDTO auditDTO = new AuditDTO();
+
+		when(auditService.createAuditDTO(any(), any(), any())).thenReturn(auditDTO);
+		when(organizationService.retrieveActiveOrganizationList(any()))
+				.thenThrow(new OrganizationServiceException("Database error"));
+
+		mockMvc.perform(get("/api/orgs").header(HttpHeaders.AUTHORIZATION, "Bearer valid-token").param("page", "1")
+				.param("size", "10")).andExpect(status().isInternalServerError())
+				.andExpect(jsonPath("$.success").value(false)).andExpect(jsonPath("$.message").value("Database error"));
+	}
 }
