@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -17,9 +18,12 @@ import sg.edu.nus.iss.edgp.org.management.service.impl.OrganizationService;
 import sg.edu.nus.iss.edgp.org.management.strategy.impl.OrganizationValidationStrategy;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.util.ArrayList;
@@ -204,5 +208,88 @@ class OrganizationControllerTest {
                 .andExpect(status().isInternalServerError())
                 .andExpect(jsonPath("$.success").value(false))
                 .andExpect(jsonPath("$.message").value("DB failure"));
+    }
+    
+    
+    @Test
+    void updateOrganization_success() throws Exception {
+        String orgId = "ORG123";
+        String userId = "user-001";
+
+        OrganizationRequest request = new OrganizationRequest();
+        request.setOrganizationName("Updated Org");
+
+        OrganizationDTO responseDto = new OrganizationDTO();
+        responseDto.setOrganizationId(orgId);
+        responseDto.setOrganizationName("Updated Org");
+
+        ValidationResult valid = new ValidationResult();
+        valid.setValid(true);
+
+        when(jwtService.extractSubject(anyString())).thenReturn(userId);
+        when(auditService.createAuditDTO(any(), any(), any())).thenReturn(new AuditDTO());
+        when(organizationValidationStrategy.validateUpdating(any())).thenReturn(valid);
+        when(organizationService.updateOrganization(any(), eq(userId), eq(orgId))).thenReturn(responseDto);
+
+        mockMvc.perform(put("/api/orgs")
+                        .header("Authorization", "Bearer test-token")
+                        .header("X-Org-Id", orgId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data.organizationName").value("Updated Org"));
+    }
+
+    @Test
+    void updateOrganization_validationFails() throws Exception {
+        String orgId = "ORG123";
+
+        OrganizationRequest request = new OrganizationRequest();
+        request.setOrganizationName("Invalid Org");
+
+        ValidationResult invalid = new ValidationResult();
+        invalid.setValid(false);
+        invalid.setMessage("Invalid data");
+        invalid.setStatus(HttpStatus.BAD_REQUEST);
+
+        when(jwtService.extractSubject(anyString())).thenReturn("user-001");
+        when(auditService.createAuditDTO(any(), any(), any())).thenReturn(new AuditDTO());
+        when(organizationValidationStrategy.validateUpdating(any())).thenReturn(invalid);
+
+        mockMvc.perform(put("/api/orgs")
+                        .header("Authorization", "Bearer test-token")
+                        .header("X-Org-Id", orgId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(request)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.message").value("Invalid data"));
+    }
+
+    @Test
+    void updateOrganization_exceptionThrown() throws Exception {
+        String orgId = "ORG123";
+
+        OrganizationRequest request = new OrganizationRequest();
+        request.setOrganizationName("Crashing Org");
+
+        ValidationResult valid = new ValidationResult();
+        valid.setValid(true);
+
+        when(jwtService.extractSubject(anyString())).thenReturn("user-001");
+        when(auditService.createAuditDTO(any(), any(), any())).thenReturn(new AuditDTO());
+        when(organizationValidationStrategy.validateUpdating(any())).thenReturn(valid);
+        when(organizationService.updateOrganization(any(), anyString(), anyString()))
+                .thenThrow(new OrganizationServiceException("Database error"));
+
+        mockMvc.perform(put("/api/orgs")
+                        .header("Authorization", "Bearer test-token")
+                        .header("X-Org-Id", orgId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(request)))
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.message").value("Database error"));
     }
 }
