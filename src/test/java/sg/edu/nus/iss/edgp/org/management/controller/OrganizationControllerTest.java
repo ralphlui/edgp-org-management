@@ -292,4 +292,72 @@ class OrganizationControllerTest {
                 .andExpect(jsonPath("$.success").value(false))
                 .andExpect(jsonPath("$.message").value("Database error"));
     }
+    
+    
+    
+    @Test
+    void getOrganizationListByUserId_success_withData() throws Exception {
+        String token = "Bearer valid.jwt.token";
+        String userId = "user-123";
+
+        OrganizationDTO orgDTO = new OrganizationDTO();
+        orgDTO.setOrganizationId("ORG001");
+        orgDTO.setOrganizationName("Test Org");
+
+        List<OrganizationDTO> orgList = List.of(orgDTO);
+        Map<Long, List<OrganizationDTO>> resultMap = Map.of(1L, orgList);
+
+        when(jwtService.extractSubject("valid.jwt.token")).thenReturn(userId);
+        when(auditService.createAuditDTO(any(), any(), any())).thenReturn(new AuditDTO());
+        when(organizationService.findActiveOrganizationListByUserId(eq(userId), any())).thenReturn(resultMap);
+
+        mockMvc.perform(get("/api/orgs/users")
+                        .param("page", "1")
+                        .param("size", "10")
+                        .header("Authorization", token))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data[0].organizationName").value("Test Org"))
+                .andExpect(jsonPath("$.totalRecord").value(1));
+    }
+
+    @Test
+    void getOrganizationListByUserId_success_emptyData() throws Exception {
+        String token = "Bearer valid.jwt.token";
+        String userId = "user-123";
+
+        Map<Long, List<OrganizationDTO>> resultMap = Map.of(0L, List.of());
+
+        when(jwtService.extractSubject("valid.jwt.token")).thenReturn(userId);
+        when(auditService.createAuditDTO(any(), any(), any())).thenReturn(new AuditDTO());
+        when(organizationService.findActiveOrganizationListByUserId(eq(userId), any())).thenReturn(resultMap);
+
+        mockMvc.perform(get("/api/orgs/users")
+                        .param("page", "1")
+                        .param("size", "10")
+                        .header("Authorization", token))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data").isEmpty())
+                .andExpect(jsonPath("$.message").value("No Active Organization List by this user."));
+    }
+
+    @Test
+    void getOrganizationListByUserId_exceptionThrown() throws Exception {
+        String token = "Bearer invalid.jwt.token";
+        String userId = "user-123";
+
+        when(jwtService.extractSubject(anyString())).thenReturn(userId);
+        when(auditService.createAuditDTO(any(), any(), any())).thenReturn(new AuditDTO());
+        when(organizationService.findActiveOrganizationListByUserId(eq(userId), any()))
+                .thenThrow(new OrganizationServiceException("Internal failure"));
+
+        mockMvc.perform(get("/api/orgs/users")
+                        .param("page", "1")
+                        .param("size", "10")
+                        .header("Authorization", token))
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.message").value("Internal failure"));
+    }
 }
