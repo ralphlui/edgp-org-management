@@ -53,6 +53,7 @@ class OrganizationServiceTest {
 	private final String ORG_NAME = "Test Org";
 	private static final String VALID_UEN = "UEN123456";
 	private Pageable pageable = PageRequest.of(0, 10);
+	private static final String USER_ID = "user-123";
 
 	@Test
 	void createOrganization_success() {
@@ -252,5 +253,102 @@ class OrganizationServiceTest {
 
 		assertTrue(exception.getMessage().contains("An error occurred while searching for the organization by org id"));
 	}
+
+	@Test
+	void updateOrganization_success() {
+		String orgId = "org-123";
+		String userId = "user-456";
+
+		OrganizationRequest orgReq = new OrganizationRequest();
+		orgReq.setOrganizationId(orgId);
+		orgReq.setAddress("123 Street");
+		orgReq.setSector(new Sector());
+		orgReq.getSector().setSectorId("SEC001");
+		orgReq.getSector().setSectorName("Gov");
+
+		Organization existingOrg = new Organization();
+		existingOrg.setOrganizationId(orgId);
+
+		Sector sector = new Sector();
+		sector.setSectorId("SEC001");
+
+		OrganizationDTO dto = new OrganizationDTO();
+		dto.setOrganizationId(orgId);
+		dto.setOrganizationName("Updated Org");
+
+		when(organizationRepository.findByOrganizationId(orgId)).thenReturn(existingOrg);
+		when(sectorRepository.findById("SEC001")).thenReturn(Optional.of(sector));
+		when(organizationRepository.save(any(Organization.class))).thenReturn(existingOrg);
+
+		try (MockedStatic<DTOMapper> mapperMock = mockStatic(DTOMapper.class)) {
+			mapperMock.when(() -> DTOMapper.toOrganizationDTO(existingOrg)).thenReturn(dto);
+
+			OrganizationDTO result = organizationService.updateOrganization(orgReq, userId, orgId);
+
+			assertNotNull(result);
+			assertEquals("Updated Org", result.getOrganizationName());
+
+			verify(organizationRepository).findByOrganizationId(orgId);
+			verify(sectorRepository).findById("SEC001");
+			verify(organizationRepository).save(existingOrg);
+		}
+	}
+
+	@Test
+	void updateOrganization_orgNotFound_shouldThrow() {
+		when(organizationRepository.findByOrganizationId("org-123")).thenReturn(null);
+
+		OrganizationRequest req = new OrganizationRequest();
+
+		OrganizationServiceException ex = assertThrows(OrganizationServiceException.class,
+				() -> organizationService.updateOrganization(req, "user", "org-123"));
+
+		assertTrue(ex.getMessage().contains("An error occurred while updating organization"));
+	}
+	
+	
+	@Test
+	void findActiveOrganizationListByUserId_success() {
+	    Organization org = new Organization();
+	    org.setOrganizationId("org-001");
+	    org.setOrganizationName("Test Org");
+
+	    Page<Organization> orgPage = new PageImpl<>(List.of(org), pageable, 1);
+
+	    when(organizationRepository.findOrganizationListByUserId(USER_ID, true, pageable)).thenReturn(orgPage);
+
+	    OrganizationDTO dto = new OrganizationDTO();
+	    dto.setOrganizationId("org-001");
+	    dto.setOrganizationName("Test Org");
+
+	    try (MockedStatic<DTOMapper> mockedMapper = mockStatic(DTOMapper.class)) {
+	        mockedMapper.when(() -> DTOMapper.toOrganizationDTO(org)).thenReturn(dto);
+
+	        Map<Long, List<OrganizationDTO>> result = organizationService.findActiveOrganizationListByUserId(USER_ID, pageable);
+
+	        assertNotNull(result);
+	        assertEquals(1, result.keySet().iterator().next());
+	        assertEquals(1, result.values().iterator().next().size());
+	        assertEquals("Test Org", result.values().iterator().next().get(0).getOrganizationName());
+
+	        verify(organizationRepository).findOrganizationListByUserId(USER_ID, true, pageable);
+	    }
+	}
+	
+	@Test
+	void findActiveOrganizationListByUserId_repositoryThrows_shouldThrowServiceException() {
+	    when(organizationRepository.findOrganizationListByUserId(USER_ID, true, pageable))
+	            .thenThrow(new RuntimeException("DB error"));
+
+	    OrganizationServiceException ex = assertThrows(
+	            OrganizationServiceException.class,
+	            () -> organizationService.findActiveOrganizationListByUserId(USER_ID, pageable)
+	    );
+
+	    assertTrue(ex.getMessage().contains("An error occurred while retrieving organization list by user id"));
+	    verify(organizationRepository).findOrganizationListByUserId(USER_ID, true, pageable);
+	}
+
+
 
 }
