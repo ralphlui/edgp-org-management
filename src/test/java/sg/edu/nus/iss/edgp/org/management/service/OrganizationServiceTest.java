@@ -5,11 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +22,10 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import sg.edu.nus.iss.edgp.org.management.dto.OrganizationDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.OrganizationRequest;
@@ -45,6 +52,7 @@ class OrganizationServiceTest {
 
 	private final String ORG_NAME = "Test Org";
 	private static final String VALID_UEN = "UEN123456";
+	private Pageable pageable = PageRequest.of(0, 10);
 
 	@Test
 	void createOrganization_success() {
@@ -170,6 +178,47 @@ class OrganizationServiceTest {
 
 		assertTrue(exception.getMessage().contains("An error occurred while executing searching organization by UEN"));
 		verify(organizationRepository).findByUniqueEntityNumber(VALID_UEN);
+	}
+	
+	
+	@Test
+	void retrieveActiveOrganizationList_success() {
+	    Organization mockOrg = new Organization();
+	    mockOrg.setOrganizationName("TechOrg");
+
+	    List<Organization> orgList = List.of(mockOrg);
+	    Page<Organization> orgPage = new PageImpl<>(orgList, pageable, 1);
+
+	    when(organizationRepository.findActiveOrganizationList(true, pageable))
+	            .thenReturn(orgPage);
+
+	    try (MockedStatic<DTOMapper> mocked = mockStatic(DTOMapper.class)) {
+	        OrganizationDTO mockDTO = new OrganizationDTO();
+	        mockDTO.setOrganizationName("TechOrg");
+
+	        mocked.when(() -> DTOMapper.toOrganizationDTO(mockOrg)).thenReturn(mockDTO);
+
+	        Map<Long, List<OrganizationDTO>> result = organizationService.retrieveActiveOrganizationList(pageable);
+
+	        assertNotNull(result);
+	        assertEquals(1, result.keySet().iterator().next());
+	        assertEquals("TechOrg", result.values().iterator().next().get(0).getOrganizationName());
+	        verify(organizationRepository, times(1)).findActiveOrganizationList(true, pageable);
+	    }
+	}
+	
+	@Test
+	void retrieveActiveOrganizationList_repositoryThrowsException_shouldThrowServiceException() {
+	    when(organizationRepository.findActiveOrganizationList(true, pageable))
+	            .thenThrow(new RuntimeException("DB error"));
+
+	    OrganizationServiceException ex = assertThrows(
+	            OrganizationServiceException.class,
+	            () -> organizationService.retrieveActiveOrganizationList(pageable)
+	    );
+
+	    assertTrue(ex.getMessage().contains("An error occurred while retrieving active organization list"));
+	    verify(organizationRepository).findActiveOrganizationList(true, pageable);
 	}
 
 }
