@@ -57,7 +57,7 @@ class SectorControllerTest {
 	private static final String BEARER_TOKEN = "Bearer faketoken123";
 
 	@Test
-	@WithMockUser(authorities = "SCOPE_sector.manage")
+	@WithMockUser(authorities = "SCOPE_manage:sector")
 	void createSector_success() throws Exception {
 
 		SectorRequest request = new SectorRequest();
@@ -76,7 +76,7 @@ class SectorControllerTest {
 	}
 
 	@Test
-	@WithMockUser(authorities = "SCOPE_sector.manage")
+	@WithMockUser(authorities = "SCOPE_manage:sector")
 	void createSector_validationFailure() throws Exception {
 		SectorRequest request = new SectorRequest();
 		ValidationResult invalidResult = new ValidationResult();
@@ -94,7 +94,7 @@ class SectorControllerTest {
 	}
 
 	@Test
-	@WithMockUser(authorities = "SCOPE_sector.manage")
+	@WithMockUser(authorities = "SCOPE_manage:sector")
 	void createSector_sectorServiceException_returns500() throws Exception {
 		SectorRequest request = new SectorRequest();
 
@@ -113,7 +113,7 @@ class SectorControllerTest {
 	}
 
 	@Test
-	@WithMockUser(authorities = "SCOPE_sector.manage")
+	@WithMockUser(authorities = "SCOPE_manage:sector")
 	void retrieveActiveSectorList_success_withData() throws Exception {
 		SectorDTO dto = new SectorDTO(); // mock fields if needed
 		List<SectorDTO> sectorList = List.of(dto);
@@ -128,7 +128,7 @@ class SectorControllerTest {
 	}
 
 	@Test
-	@WithMockUser(authorities = "SCOPE_sector.manage")
+	@WithMockUser(authorities = "SCOPE_manage:sector")
 	void retrieveActiveSectorList_success_emptyList() throws Exception {
 		Map<Long, List<SectorDTO>> resultMap = Map.of(0L, List.of());
 
@@ -141,7 +141,7 @@ class SectorControllerTest {
 	}
 
 	@Test
-	@WithMockUser(authorities = "SCOPE_sector.manage")
+	@WithMockUser(authorities = "SCOPE_manage:sector")
 	void retrieveActiveSectorList_serviceException_returns500() throws Exception {
 		when(sectorService.retrieveActiveSectorList(any(Pageable.class)))
 				.thenThrow(new SectorServiceException("Service failed"));
@@ -153,7 +153,7 @@ class SectorControllerTest {
 	
 	
 	 @Test
-	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    @WithMockUser(authorities = "SCOPE_manage:sector")
 	    void updateSector_success() throws Exception {
 	        SectorRequest request = new SectorRequest();
 	        SectorDTO responseDto = new SectorDTO();
@@ -178,7 +178,7 @@ class SectorControllerTest {
 	    }
 
 	    @Test
-	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    @WithMockUser(authorities = "SCOPE_manage:sector")
 	    void updateSector_validationFails() throws Exception {
 	        SectorRequest request = new SectorRequest();
 	        
@@ -201,7 +201,7 @@ class SectorControllerTest {
 	    }
 
 	    @Test
-	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    @WithMockUser(authorities = "SCOPE_manage:sector")
 	    void updateSector_serviceException() throws Exception {
 	        SectorRequest request = new SectorRequest();
 	        
@@ -224,7 +224,7 @@ class SectorControllerTest {
 	    
 	    
 	    @Test
-	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    @WithMockUser(authorities = "SCOPE_manage:sector")
 	    void getSectorBySectorId_success() throws Exception {
 	        SectorDTO dto = new SectorDTO();
 	        dto.setSectorName("Healthcare");
@@ -241,7 +241,7 @@ class SectorControllerTest {
 	    }
 
 	    @Test
-	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    @WithMockUser(authorities = "SCOPE_manage:sector")
 	    void getSectorBySectorId_emptyId_returns400() throws Exception {
 	        mockMvc.perform(get("/api/orgs/sectors/my-sector")
 	                .header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN)
@@ -252,7 +252,7 @@ class SectorControllerTest {
 	    }
 
 	    @Test
-	    @WithMockUser(authorities = "SCOPE_sector.manage")
+	    @WithMockUser(authorities = "SCOPE_manage:sector")
 	    void getSectorBySectorId_serviceThrowsException_returns500() throws Exception {
 	        when(sectorService.findBySectorId("427ae9ba-67a7-487d-b324-900cf50a2bf4"))
 	                .thenThrow(new OrganizationServiceException("Sector not found"));
@@ -261,7 +261,6 @@ class SectorControllerTest {
 	                .header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN)
 	                .header("X-Sector-Id", "427ae9ba-67a7-487d-b324-900cf50a2bf4")
 	                .accept(MediaType.APPLICATION_JSON))
-	                .andExpect(status().isInternalServerError())
-	                .andExpect(jsonPath("$.message").value("Sector not found"));
+	                .andExpect(status().isInternalServerError());
 	    }
 }

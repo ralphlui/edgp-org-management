@@ -15,6 +15,7 @@ import sg.edu.nus.iss.edgp.org.management.dto.OrganizationRequest;
 import sg.edu.nus.iss.edgp.org.management.dto.ValidationResult;
 import sg.edu.nus.iss.edgp.org.management.entity.Organization;
 import sg.edu.nus.iss.edgp.org.management.entity.Sector;
+import sg.edu.nus.iss.edgp.org.management.service.impl.JwtService;
 import sg.edu.nus.iss.edgp.org.management.service.impl.OrganizationService;
 import sg.edu.nus.iss.edgp.org.management.service.impl.SectorService;
 import sg.edu.nus.iss.edgp.org.management.strategy.impl.OrganizationValidationStrategy;
@@ -28,11 +29,17 @@ class OrganizationValidationStrategyTest {
 
     @Mock
     private SectorService sectorService;
+    
+    @Mock
+    private JwtService jwtService;
 
     @InjectMocks
     private OrganizationValidationStrategy validationStrategy;
 
     private OrganizationRequest validRequest;
+    private final String validOrgId = "ORG123";
+    private final String jwtToken = "test.jwt.token";
+    private final String authorizationHeader = "Bearer " + jwtToken;
 
     @BeforeEach
     void setup() {
@@ -148,6 +155,51 @@ class OrganizationValidationStrategyTest {
 
         assertFalse(result.isValid());
         assertEquals("Active Sector not found with this sector name", result.getMessage());
+    }
+    
+    
+    @Test
+    void validateObject_shouldReturnErrorWhenOrgIdIsBlank() {
+        ValidationResult result = validationStrategy.validateObject("  ", authorizationHeader);
+        assertFalse(result.isValid());
+        assertEquals("Bad Request: Organization id cannot be blank.", result.getMessage());
+    }
+
+    @Test
+    void validateObject_shouldReturnErrorWhenAuthorizationHeaderIsInvalid() {
+        ValidationResult result = validationStrategy.validateObject(validOrgId, "InvalidHeader");
+        assertFalse(result.isValid());
+        assertEquals("Invalid Authorization header.", result.getMessage());
+    }
+
+    @Test
+    void validateObject_shouldReturnErrorWhenScopeIsViewAndOrgIdDoesNotMatch() {
+        when(jwtService.extractScopeFromToken(jwtToken)).thenReturn("view");
+        when(jwtService.extractOrgIdFromToken(jwtToken)).thenReturn("OTHER_ORG");
+
+        ValidationResult result = validationStrategy.validateObject(validOrgId, authorizationHeader);
+
+        assertFalse(result.isValid());
+        assertEquals("Access Denied. Not authorized to view this organization.", result.getMessage());
+    }
+
+    @Test
+    void validateObject_shouldReturnValidWhenScopeIsViewAndOrgIdMatches() {
+        when(jwtService.extractScopeFromToken(jwtToken)).thenReturn("view");
+        when(jwtService.extractOrgIdFromToken(jwtToken)).thenReturn(validOrgId);
+
+        ValidationResult result = validationStrategy.validateObject(validOrgId, authorizationHeader);
+
+        assertTrue(result.isValid());
+    }
+
+    @Test
+    void validateObject_shouldReturnValidWhenScopeIsManage() {
+        when(jwtService.extractScopeFromToken(jwtToken)).thenReturn("manage");
+
+        ValidationResult result = validationStrategy.validateObject(validOrgId, authorizationHeader);
+
+        assertTrue(result.isValid());
     }
 }
 

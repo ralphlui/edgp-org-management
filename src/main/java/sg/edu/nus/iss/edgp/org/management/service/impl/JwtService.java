@@ -26,6 +26,8 @@ public class JwtService {
 	private final JSONReader jsonReader;
 	public static final String USER_EMAIL = "userEmail";
 	public static final String USER_NAME = "userName";
+	public static final String ORG_ID = "orgId";
+	public static final String SCOPE = "scope";
 
 	public UserDetails getUserDetail(String authorizationHeader, String token)
 			throws JwtException, IllegalArgumentException, Exception {
@@ -99,6 +101,24 @@ public class JwtService {
 			return e.getClaims().getSubject();
 		} catch (Exception e) {
 			return "Invalid UserID";
+		}
+	}
+	
+	public String extractOrgIdFromToken(String token) {
+		try {
+			Claims claims = extractAllClaims(token);
+			return claims.get(ORG_ID, String.class);
+		}  catch (Exception e) {
+			return "Invalid OrgId";
+		}
+	}
+	
+	public String extractScopeFromToken(String token) {
+		try {
+			Claims claims = extractAllClaims(token);
+			return claims.get(SCOPE, String.class);
+		}  catch (Exception e) {
+			return "Invalid Scope";
 		}
 	}
 

@@ -24,6 +24,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.util.ArrayList;
@@ -150,6 +151,7 @@ class OrganizationControllerTest {
 				.param("size", "10")).andExpect(status().isOk()).andExpect(jsonPath("$.success").value(true))
 				.andExpect(jsonPath("$.data").isArray()).andExpect(jsonPath("$.data").isEmpty());
 	}
+	
 
 	@Test
 	void retrieveActiveOrganizationList_exceptionThrown() throws Exception {
@@ -164,51 +166,67 @@ class OrganizationControllerTest {
 				.andExpect(jsonPath("$.success").value(false)).andExpect(jsonPath("$.message").value("Database error"));
 	}
 	
+	@Test
+	void shouldReturnErrorResponseWhenValidationFails() throws Exception {
+		ValidationResult validationResult = new ValidationResult();
+		validationResult.setValid(false);
+		validationResult.setMessage("Access Denied");
+		validationResult.setStatus(HttpStatus.FORBIDDEN);
+		String authorizationHeader = "Bearer fake-jwt-token";
+		String orgId = "ORG123";
+
+		when(organizationValidationStrategy.validateObject(orgId, authorizationHeader)).thenReturn(validationResult);
+
+		mockMvc.perform(
+				get("/api/orgs/my-organization").header("Authorization", authorizationHeader).header("X-Org-Id", orgId))
+				.andExpect(status().isForbidden()).andExpect(jsonPath("$.message").value("Access Denied"));
+	}
 	
+	@Test
+    void shouldReturnOrganizationWhenValidationPasses() throws Exception {
+		String authorizationHeader = "Bearer fake-jwt-token";
+		String orgId = "ORG123";
+		
+        ValidationResult validationResult = new ValidationResult();
+        validationResult.setValid(true);
 
-    @Test
-    void getOrganizationByOrgId_success() throws Exception {
-        String orgId = "ORG123";
         OrganizationDTO orgDTO = new OrganizationDTO();
-        orgDTO.setOrganizationId(orgId);
-        orgDTO.setOrganizationName("Tech Org");
+        orgDTO.setOrganizationName("TestOrg");
 
-        when(auditService.createAuditDTO(any(), any(), any())).thenReturn(new AuditDTO());
-        when(organizationService.findByOrganizationId(orgId)).thenReturn(orgDTO);
+        when(organizationValidationStrategy.validateObject(orgId, authorizationHeader))
+            .thenReturn(validationResult);
 
-        mockMvc.perform(get("/api/orgs/my-organization")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer test-token")
-                        .header("X-Org-Id", orgId))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.data.organizationName").value("Tech Org"));
-    }
-
-    @Test
-    void getOrganizationByOrgId_missingHeader() throws Exception {
-        mockMvc.perform(get("/api/orgs/my-organization")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer test-token")
-                .header("X-Org-Id", ""))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.message").value("Bad Request: Organization id could not be blank."));
-    }
-
-    @Test
-    void getOrganizationByOrgId_exceptionThrown() throws Exception {
-        String orgId = "ORG123";
-
-        when(auditService.createAuditDTO(any(), any(), any())).thenReturn(new AuditDTO());
         when(organizationService.findByOrganizationId(orgId))
-                .thenThrow(new OrganizationServiceException("DB failure"));
+            .thenReturn(orgDTO);
 
+        // Act & Assert
         mockMvc.perform(get("/api/orgs/my-organization")
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer test-token")
-                        .header("X-Org-Id", orgId))
-                .andExpect(status().isInternalServerError())
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.message").value("DB failure"));
+                .header("Authorization", authorizationHeader)
+                .header("X-Org-Id", orgId))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.message").value("TestOrg is found."))
+            .andExpect(jsonPath("$.data.organizationName").value("TestOrg"))
+            .andDo(print());
     }
+
+ 
+	@Test
+	void shouldReturnInternalServerErrorWhenExceptionThrown() throws Exception {
+
+		String authorizationHeader = "Bearer fake-jwt-token";
+		String orgId = "ORG123";
+
+		ValidationResult validationResult = new ValidationResult();
+		validationResult.setValid(true);
+
+		when(organizationValidationStrategy.validateObject(orgId, authorizationHeader)).thenReturn(validationResult);
+
+		when(organizationService.findByOrganizationId(orgId)).thenThrow(new OrganizationServiceException("Unexpected error"));
+
+		mockMvc.perform(
+				get("/api/orgs/my-organization").header("Authorization", authorizationHeader).header("X-Org-Id", orgId))
+				.andExpect(status().isInternalServerError()).andExpect(jsonPath("$.message").value("Unexpected error"));
+	}
     
     
     @Test
