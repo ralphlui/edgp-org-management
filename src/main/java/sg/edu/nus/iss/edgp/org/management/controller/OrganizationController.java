@@ -50,7 +50,7 @@ public class OrganizationController {
 
 
 	@PostMapping(value = "", produces = "application/json")
-	@PreAuthorize("hasAuthority('SCOPE_org.manage')")
+	@PreAuthorize("hasAuthority('SCOPE_manage:org')")
 	public ResponseEntity<APIResponse<OrganizationDTO>> createOrganization(
 			@RequestHeader("Authorization") String authorizationHeader, @RequestBody OrganizationRequest orgRequest) {
 		

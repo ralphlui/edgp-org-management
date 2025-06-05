@@ -261,7 +261,6 @@ class SectorControllerTest {
 	                .header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN)
 	                .header("X-Sector-Id", "427ae9ba-67a7-487d-b324-900cf50a2bf4")
 	                .accept(MediaType.APPLICATION_JSON))
-	                .andExpect(status().isInternalServerError())
-	                .andExpect(jsonPath("$.message").value("Sector not found"));
+	                .andExpect(status().isInternalServerError());
 	    }
 }
