@@ -11,6 +11,7 @@ import sg.edu.nus.iss.edgp.org.management.dto.OrganizationDTO;
 import sg.edu.nus.iss.edgp.org.management.dto.OrganizationRequest;
 import sg.edu.nus.iss.edgp.org.management.dto.ValidationResult;
 import sg.edu.nus.iss.edgp.org.management.entity.Sector;
+import sg.edu.nus.iss.edgp.org.management.service.impl.JwtService;
 import sg.edu.nus.iss.edgp.org.management.service.impl.OrganizationService;
 import sg.edu.nus.iss.edgp.org.management.service.impl.SectorService;
 import sg.edu.nus.iss.edgp.org.management.strategy.IAPIHelperValidationStrategy;
@@ -22,6 +23,7 @@ public class OrganizationValidationStrategy implements IAPIHelperValidationStrat
 
 	private final OrganizationService organizationService;
 	private final SectorService sectorService;
+	private final JwtService jwtService;
 
 	@Override
 	public ValidationResult validateCreation(OrganizationRequest orgReq) {
@@ -98,6 +100,31 @@ public class OrganizationValidationStrategy implements IAPIHelperValidationStrat
 		validationResult.setValid(true);
 		return validationResult;
 	}
+	
+	public ValidationResult validateObject(String orgId, String authorizationHeader) {
+	    if (orgId == null || orgId.isBlank()) {
+	        return buildInvalidResult("Bad Request: Organization id cannot be blank.");
+	    }
+
+	    if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+	        return buildInvalidResult("Invalid Authorization header.");
+	    }
+
+	    String jwtToken = authorizationHeader.substring(7);
+	    String scope = jwtService.extractScopeFromToken(jwtToken);
+
+	    if (scope.isEmpty() || scope.toLowerCase().contains("view") || scope.toLowerCase().contains("invalid")) {
+	        String userOrgId = jwtService.extractOrgIdFromToken(jwtToken);
+	        if (!orgId.equals(userOrgId)) {
+	            return buildInvalidResult("Access Denied. Not authorized to view this organization.");
+	        }
+	    }
+
+	    ValidationResult validationResult = new ValidationResult();
+	    validationResult.setValid(true);
+	    return validationResult;
+	}
+
 
 	private ValidationResult buildInvalidResult(String message) {
 		ValidationResult result = new ValidationResult();
@@ -106,5 +133,8 @@ public class OrganizationValidationStrategy implements IAPIHelperValidationStrat
 		result.setStatus(HttpStatus.BAD_REQUEST);
 		return result;
 	}
+	
+	
+
 
 }
