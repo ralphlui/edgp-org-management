@@ -24,11 +24,13 @@ public class SectorValidationStrategy implements IAPIHelperValidationStrategy<Se
 	@Override
 	public ValidationResult validateCreation(SectorRequest sectorReq) {
 		ValidationResult validationResult = new ValidationResult();
+		String sectorName = sectorReq.getSectorName();
+		String sectorCode = sectorReq.getSectorCode();
 
 		List<String> missingFields = new ArrayList<>();
-		if (sectorReq.getSectorName().isEmpty())
+		if (sectorName == null || sectorName.isEmpty())
 			missingFields.add("Sector name");
-		if (sectorReq.getSectorCode().isEmpty())
+		if (sectorCode == null || sectorCode.isEmpty())
 			missingFields.add("Sector code");
 
 		if (!missingFields.isEmpty()) {
