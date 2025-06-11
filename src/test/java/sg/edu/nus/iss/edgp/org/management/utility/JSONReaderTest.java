@@ -8,13 +8,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
-import sg.edu.nus.iss.edgp.org.management.connector.AuthAPICall;
+import sg.edu.nus.iss.edgp.org.management.connector.AdminAPICall;
 import sg.edu.nus.iss.edgp.org.management.pojo.User;
 
 class JSONReaderTest {
 
 	@Mock
-	private AuthAPICall apiCall;
+	private AdminAPICall apiCall;
 
 	@InjectMocks
 	private JSONReader jsonReader;

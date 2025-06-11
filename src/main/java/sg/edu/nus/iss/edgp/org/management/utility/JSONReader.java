@@ -8,14 +8,14 @@ import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
-import sg.edu.nus.iss.edgp.org.management.connector.AuthAPICall;
+import sg.edu.nus.iss.edgp.org.management.connector.AdminAPICall;
 import sg.edu.nus.iss.edgp.org.management.pojo.User;
 
 @Component
 @RequiredArgsConstructor
 public class JSONReader {
 	
-	private final AuthAPICall apiCall;
+	private final AdminAPICall apiCall;
 	private static final Logger logger = LoggerFactory.getLogger(JSONReader.class);
 
 	public JSONObject getActiveUserInfo(String userId, String authorizationHeader) {
