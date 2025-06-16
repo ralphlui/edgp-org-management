@@ -93,7 +93,7 @@ public class OrganizationService implements IOrganizationService {
 	public Map<Long, List<OrganizationDTO>> retrieveActiveOrganizationList(Pageable pageable) {
 		try {
 			List<OrganizationDTO> organizationDTOList = new ArrayList<>();
-			Page<Organization> organizationPages = organizationRepository.findActiveOrganizationList(true, pageable);
+			Page<Organization> organizationPages = organizationRepository.findActiveOrganizationListByPageable(true, pageable);
 			long totalRecord = organizationPages.getTotalElements();
 			if (totalRecord > 0) {
 				logger.info("Active organization list is found.");
@@ -109,6 +109,30 @@ public class OrganizationService implements IOrganizationService {
 		} catch (Exception ex) {
 			logger.error("Exception occurred while retrieving active organization list", ex);
 			throw new OrganizationServiceException("An error occurred while retrieving active organization list", ex);
+
+		}
+	}
+	
+	
+	public Map<Long, List<OrganizationDTO>> retrieveActiveOrganizationList() {
+		try {
+			List<OrganizationDTO> organizationDTOList = new ArrayList<>();
+			List<Organization> organizationList = organizationRepository.findActiveOrganizationList(true);
+			long totalRecord = organizationList.size();
+			if (totalRecord > 0) {
+				logger.info("Active organization list without pagination is found.");
+				for (Organization organization : organizationList) {
+					OrganizationDTO organizationDTO = DTOMapper.toOrganizationDTO(organization);
+					organizationDTOList.add(organizationDTO);
+				}
+			}
+			Map<Long, List<OrganizationDTO>> result = new HashMap<>();
+			result.put(totalRecord, organizationDTOList);
+			return result;
+
+		} catch (Exception ex) {
+			logger.error("Exception occurred while retrieving active organization list without pagination", ex);
+			throw new OrganizationServiceException("An error occurred while retrieving active organization list without pagination", ex);
 
 		}
 	}

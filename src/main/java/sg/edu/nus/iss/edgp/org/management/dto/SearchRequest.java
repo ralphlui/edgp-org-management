@@ -9,7 +9,7 @@ import lombok.Setter;
 public class SearchRequest {
 
 	@Min(0)
-	private int page = 1;
+	private int page = 0;
 
 	@Min(1)
 	private int size = 50;

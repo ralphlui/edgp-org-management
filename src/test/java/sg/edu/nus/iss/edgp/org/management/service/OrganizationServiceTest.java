@@ -188,7 +188,7 @@ class OrganizationServiceTest {
 		List<Organization> orgList = List.of(mockOrg);
 		Page<Organization> orgPage = new PageImpl<>(orgList, pageable, 1);
 
-		when(organizationRepository.findActiveOrganizationList(true, pageable)).thenReturn(orgPage);
+		when(organizationRepository.findActiveOrganizationListByPageable(true, pageable)).thenReturn(orgPage);
 
 		try (MockedStatic<DTOMapper> mocked = mockStatic(DTOMapper.class)) {
 			OrganizationDTO mockDTO = new OrganizationDTO();
@@ -201,20 +201,20 @@ class OrganizationServiceTest {
 			assertNotNull(result);
 			assertEquals(1, result.keySet().iterator().next());
 			assertEquals("TechOrg", result.values().iterator().next().get(0).getOrganizationName());
-			verify(organizationRepository, times(1)).findActiveOrganizationList(true, pageable);
+			verify(organizationRepository, times(1)).findActiveOrganizationListByPageable(true, pageable);
 		}
 	}
 
 	@Test
 	void retrieveActiveOrganizationList_repositoryThrowsException_shouldThrowServiceException() {
-		when(organizationRepository.findActiveOrganizationList(true, pageable))
+		when(organizationRepository.findActiveOrganizationListByPageable(true, pageable))
 				.thenThrow(new RuntimeException("DB error"));
 
 		OrganizationServiceException ex = assertThrows(OrganizationServiceException.class,
 				() -> organizationService.retrieveActiveOrganizationList(pageable));
 
 		assertTrue(ex.getMessage().contains("An error occurred while retrieving active organization list"));
-		verify(organizationRepository).findActiveOrganizationList(true, pageable);
+		verify(organizationRepository).findActiveOrganizationListByPageable(true, pageable);
 	}
 
 	@Test

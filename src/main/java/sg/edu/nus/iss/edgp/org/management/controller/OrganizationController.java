@@ -102,10 +102,18 @@ public class OrganizationController {
 		AuditDTO auditDTO = auditService.createAuditDTO(activityType, endpoint, httpMethod);
 		
 		try {
-			Pageable pageable = PageRequest.of(searchRequest.getPage() - 1, searchRequest.getSize(),
-					Sort.by("organizationName").ascending());
-			Map<Long, List<OrganizationDTO>> resultMap = organizationService.retrieveActiveOrganizationList(pageable);
-			logger.info("all active organization list size {}", resultMap.size());
+			Map<Long, List<OrganizationDTO>> resultMap;
+			
+			 if (searchRequest.getPage() == 0) {
+				 resultMap = organizationService.retrieveActiveOrganizationList();
+					logger.info("all active organization list size {}", resultMap.size());
+			 } else {
+				 Pageable pageable = PageRequest.of(searchRequest.getPage() - 1, searchRequest.getSize(),
+							Sort.by("organizationName").ascending());
+					resultMap = organizationService.retrieveActiveOrganizationList(pageable);
+					logger.info("all active organization list size {}", resultMap.size());
+			 }
+			
 
 			Map.Entry<Long, List<OrganizationDTO>> firstEntry = resultMap.entrySet().iterator().next();
 			long totalRecord = firstEntry.getKey();
