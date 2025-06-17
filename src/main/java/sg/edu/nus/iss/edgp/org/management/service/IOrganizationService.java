@@ -17,7 +17,7 @@ public interface IOrganizationService {
 	
 	Organization findByUEN(String uniqueEntityNumber);
 	
-	 Map<Long, List<OrganizationDTO>> retrieveActiveOrganizationList(Pageable pageable);
+	 Map<Long, List<OrganizationDTO>> retrievePaginatedActiveOrganizationList(Pageable pageable);
 	 
 	 OrganizationDTO findByOrganizationId(String organizationId);
 	 

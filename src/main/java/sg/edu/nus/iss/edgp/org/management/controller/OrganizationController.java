@@ -110,7 +110,7 @@ public class OrganizationController {
 			 } else {
 				 Pageable pageable = PageRequest.of(searchRequest.getPage() - 1, searchRequest.getSize(),
 							Sort.by("organizationName").ascending());
-					resultMap = organizationService.retrieveActiveOrganizationList(pageable);
+					resultMap = organizationService.retrievePaginatedActiveOrganizationList(pageable);
 					logger.info("all active organization list size {}", resultMap.size());
 			 }
 			

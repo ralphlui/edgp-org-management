@@ -131,7 +131,7 @@ class OrganizationControllerTest {
 		AuditDTO auditDTO = new AuditDTO();
 
 		when(auditService.createAuditDTO(any(), any(), any())).thenReturn(auditDTO);
-		when(organizationService.retrieveActiveOrganizationList(any())).thenReturn(resultMap);
+		when(organizationService.retrievePaginatedActiveOrganizationList(any())).thenReturn(resultMap);
 
 		mockMvc.perform(get("/api/orgs").header(HttpHeaders.AUTHORIZATION, "Bearer valid-token").param("page", "1")
 				.param("size", "10")).andExpect(status().isOk()).andExpect(jsonPath("$.success").value(true))
@@ -145,7 +145,7 @@ class OrganizationControllerTest {
 		Map<Long, List<OrganizationDTO>> emptyMap = Map.of(0L, new ArrayList<>());
 
 		when(auditService.createAuditDTO(any(), any(), any())).thenReturn(auditDTO);
-		when(organizationService.retrieveActiveOrganizationList(any())).thenReturn(emptyMap);
+		when(organizationService.retrievePaginatedActiveOrganizationList(any())).thenReturn(emptyMap);
 
 		mockMvc.perform(get("/api/orgs").header(HttpHeaders.AUTHORIZATION, "Bearer valid-token").param("page", "1")
 				.param("size", "10")).andExpect(status().isOk()).andExpect(jsonPath("$.success").value(true))
@@ -158,7 +158,7 @@ class OrganizationControllerTest {
 		AuditDTO auditDTO = new AuditDTO();
 
 		when(auditService.createAuditDTO(any(), any(), any())).thenReturn(auditDTO);
-		when(organizationService.retrieveActiveOrganizationList(any()))
+		when(organizationService.retrievePaginatedActiveOrganizationList(any()))
 				.thenThrow(new OrganizationServiceException("Database error"));
 
 		mockMvc.perform(get("/api/orgs").header(HttpHeaders.AUTHORIZATION, "Bearer valid-token").param("page", "1")
