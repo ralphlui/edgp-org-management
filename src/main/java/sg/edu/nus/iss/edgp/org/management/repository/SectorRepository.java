@@ -16,10 +16,13 @@ public interface SectorRepository extends JpaRepository<Sector, String> {
 	List<Sector> findBySectorNameOrSectorCode(String sectorName, String sectorCode);
 	
 	@Query("SELECT s FROM Sector s WHERE s.isActive = ?1")
-	Page<Sector> findActiveSectorList(boolean isActive, Pageable pageable);
+	Page<Sector> findPaginatedActiveSectorList(boolean isActive, Pageable pageable);
 	
 	Optional<Sector> findBySectorId(String sectorId);
 	
 	@Query("SELECT s FROM Sector s WHERE s.sectorId = ?1 AND s.isActive = ?2")
 	Sector findBySectorIdAndIsActive(String sectorId, Boolean isActive);
+	
+	@Query("SELECT s FROM Sector s WHERE s.isActive = ?1")
+	List<Sector> findActiveSectorList(boolean isActive);
 }

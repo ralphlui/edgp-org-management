@@ -25,4 +25,6 @@ public interface IOrganizationService {
 	 
 	 Map<Long, List<OrganizationDTO>> findActiveOrganizationListByUserId(String userId,
 				Pageable pageable);
+	 
+	 Map<Long, List<OrganizationDTO>> retrieveActiveOrganizationList();
 }

@@ -13,11 +13,13 @@ public interface ISectorService {
 
 	SectorDTO createSector(SectorRequest sectorReq, String userId);
 	
-    Map<Long, List<SectorDTO>> retrieveActiveSectorList(Pageable pageable);
+    Map<Long, List<SectorDTO>> retrievePaginatedActiveSectorList(Pageable pageable);
     
     SectorDTO updateSector(SectorRequest sectorReq, String userId, String sectorId);
     
     SectorDTO findBySectorId(String sectorId);
     
     Sector findBySectorIdAndIsActive(String sectorId);
+    
+    Map<Long, List<SectorDTO>> retrieveActiveSectorList();
 }

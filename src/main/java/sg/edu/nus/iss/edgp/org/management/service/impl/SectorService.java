@@ -63,14 +63,38 @@ public class SectorService implements ISectorService {
 	}
 
 	@Override
-	public Map<Long, List<SectorDTO>> retrieveActiveSectorList(Pageable pageable) {
+	public Map<Long, List<SectorDTO>> retrievePaginatedActiveSectorList(Pageable pageable) {
 		try {
 			List<SectorDTO> sectorDTOList = new ArrayList<>();
-			Page<Sector> sectorPages = sectorRepository.findActiveSectorList(true, pageable);
+			Page<Sector> sectorPages = sectorRepository.findPaginatedActiveSectorList(true, pageable);
 			long totalRecord = sectorPages.getTotalElements();
 			if (totalRecord > 0) {
-				logger.info("Active sector list is found.");
+				logger.info("Paginated active sector list is found.");
 				for (Sector sector : sectorPages.getContent()) {
+					SectorDTO sectorDTO = DTOMapper.toSectorDTO(sector);
+					sectorDTOList.add(sectorDTO);
+				}
+			}
+			Map<Long, List<SectorDTO>> result = new HashMap<>();
+			result.put(totalRecord, sectorDTOList);
+			return result;
+
+		} catch (Exception ex) {
+			logger.error("Exception occurred while retrieving paginated active sector list", ex);
+			throw new SectorServiceException("An error occurred while retrieving paginated active sector list", ex);
+
+		}
+	}
+	
+	@Override
+	public Map<Long, List<SectorDTO>> retrieveActiveSectorList() {
+		try {
+			List<SectorDTO> sectorDTOList = new ArrayList<>();
+			List<Sector> sectorPages = sectorRepository.findActiveSectorList(true);
+			long totalRecord = sectorPages.size();
+			if (totalRecord > 0) {
+				logger.info("Active sector list is found.");
+				for (Sector sector : sectorPages) {
 					SectorDTO sectorDTO = DTOMapper.toSectorDTO(sector);
 					sectorDTOList.add(sectorDTO);
 				}

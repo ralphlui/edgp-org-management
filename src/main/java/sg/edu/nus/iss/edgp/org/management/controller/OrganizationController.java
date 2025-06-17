@@ -104,7 +104,7 @@ public class OrganizationController {
 		try {
 			Map<Long, List<OrganizationDTO>> resultMap;
 			
-			 if (searchRequest.getPage() == 0) {
+			 if (searchRequest.isNoPagination()) {
 				 resultMap = organizationService.retrieveActiveOrganizationList();
 					logger.info("all active organization list size {}", resultMap.size());
 			 } else {
