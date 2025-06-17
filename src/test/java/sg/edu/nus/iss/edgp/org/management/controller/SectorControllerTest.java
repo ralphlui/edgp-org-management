@@ -119,7 +119,7 @@ class SectorControllerTest {
 		List<SectorDTO> sectorList = List.of(dto);
 		Map<Long, List<SectorDTO>> resultMap = Map.of(1L, sectorList);
 
-		when(sectorService.retrieveActiveSectorList(any(Pageable.class))).thenReturn(resultMap);
+		when(sectorService.retrievePaginatedActiveSectorList(any(Pageable.class))).thenReturn(resultMap);
 
 		mockMvc.perform(get("/api/orgs/sectors").header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN).param("page", "1")
 				.param("size", "10").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
@@ -132,7 +132,7 @@ class SectorControllerTest {
 	void retrieveActiveSectorList_success_emptyList() throws Exception {
 		Map<Long, List<SectorDTO>> resultMap = Map.of(0L, List.of());
 
-		when(sectorService.retrieveActiveSectorList(any(Pageable.class))).thenReturn(resultMap);
+		when(sectorService.retrievePaginatedActiveSectorList(any(Pageable.class))).thenReturn(resultMap);
 
 		mockMvc.perform(get("/api/orgs/sectors").header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN).param("page", "1")
 				.param("size", "10").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
@@ -143,7 +143,7 @@ class SectorControllerTest {
 	@Test
 	@WithMockUser(authorities = "SCOPE_manage:sector")
 	void retrieveActiveSectorList_serviceException_returns500() throws Exception {
-		when(sectorService.retrieveActiveSectorList(any(Pageable.class)))
+		when(sectorService.retrievePaginatedActiveSectorList(any(Pageable.class)))
 				.thenThrow(new SectorServiceException("Service failed"));
 
 		mockMvc.perform(get("/api/orgs/sectors").header(HttpHeaders.AUTHORIZATION, BEARER_TOKEN).param("page", "1")

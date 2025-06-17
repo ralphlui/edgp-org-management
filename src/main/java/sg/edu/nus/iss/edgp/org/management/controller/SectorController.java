@@ -106,10 +106,19 @@ public class SectorController {
 
 
 		try {
-			Pageable pageable = PageRequest.of(searchRequest.getPage() - 1, searchRequest.getSize(),
-					Sort.by("sectorName").ascending());
-			Map<Long, List<SectorDTO>> resultMap = sectorService.retrieveActiveSectorList(pageable);
-			logger.info("all active sector list size {}", resultMap.size());
+			
+			Map<Long, List<SectorDTO>> resultMap;
+			
+			 if (searchRequest.isNoPagination()) {
+				 resultMap = sectorService.retrieveActiveSectorList();
+					logger.info("all active sector list size {}", resultMap.size());
+			 } else {
+				 Pageable pageable = PageRequest.of(searchRequest.getPage() - 1, searchRequest.getSize(),
+							Sort.by("sectorName").ascending());
+				 resultMap = sectorService.retrievePaginatedActiveSectorList(pageable);
+				 logger.info("all active sector list size {}", resultMap.size());
+			 }
+			
 
 			Map.Entry<Long, List<SectorDTO>> firstEntry = resultMap.entrySet().iterator().next();
 			long totalRecord = firstEntry.getKey();

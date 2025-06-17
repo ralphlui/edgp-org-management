@@ -119,12 +119,12 @@ class SectorServiceTest {
 	void retrieveActiveSectorList_success() {
 		Page<Sector> mockPage = new PageImpl<>(List.of(sector), pageable, 1);
 
-		when(sectorRepository.findActiveSectorList(true, pageable)).thenReturn(mockPage);
+		when(sectorRepository.findPaginatedActiveSectorList(true, pageable)).thenReturn(mockPage);
 
 		try (MockedStatic<DTOMapper> mocked = Mockito.mockStatic(DTOMapper.class)) {
 			mocked.when(() -> DTOMapper.toSectorDTO(sector)).thenReturn(expectedDto);
 
-			Map<Long, List<SectorDTO>> result = sectorService.retrieveActiveSectorList(pageable);
+			Map<Long, List<SectorDTO>> result = sectorService.retrievePaginatedActiveSectorList(pageable);
 
 			assertNotNull(result);
 			assertTrue(result.containsKey(1L));
@@ -132,18 +132,18 @@ class SectorServiceTest {
 			assertEquals("Finance", result.get(1L).get(0).getSectorName());
 		}
 
-		verify(sectorRepository, times(1)).findActiveSectorList(true, pageable);
+		verify(sectorRepository, times(1)).findPaginatedActiveSectorList(true, pageable);
 	}
 
 	@Test
 	void retrieveActiveSectorList_shouldThrowException_whenRepositoryFails() {
-		when(sectorRepository.findActiveSectorList(true, pageable)).thenThrow(new RuntimeException("Database error"));
+		when(sectorRepository.findPaginatedActiveSectorList(true, pageable)).thenThrow(new RuntimeException("Database error"));
 
 		SectorServiceException exception = assertThrows(SectorServiceException.class,
-				() -> sectorService.retrieveActiveSectorList(pageable));
+				() -> sectorService.retrievePaginatedActiveSectorList(pageable));
 
-		assertEquals("An error occurred while retrieving active sector list", exception.getMessage());
-		verify(sectorRepository, times(1)).findActiveSectorList(true, pageable);
+		assertEquals("An error occurred while retrieving paginated active sector list", exception.getMessage());
+		verify(sectorRepository, times(1)).findPaginatedActiveSectorList(true, pageable);
 	}
 
 	@Test

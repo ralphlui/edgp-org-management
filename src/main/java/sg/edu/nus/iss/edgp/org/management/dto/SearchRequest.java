@@ -8,10 +8,12 @@ import lombok.Setter;
 @Setter
 public class SearchRequest {
 
-	@Min(0)
-	private int page = 0;
+	@Min(1)
+	private int page = 1;
 
 	@Min(1)
 	private int size = 50;
+	
+	private boolean noPagination = false; 
 
 }

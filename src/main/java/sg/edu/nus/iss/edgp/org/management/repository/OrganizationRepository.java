@@ -16,7 +16,7 @@ public interface OrganizationRepository extends JpaRepository<Organization, Stri
 	Organization findByUniqueEntityNumber(String uniqueEntityNumber);
 	
 	@Query("SELECT org FROM Organization org WHERE org.isActive = ?1")
-	Page<Organization> findActiveOrganizationListByPageable(boolean isActive, Pageable pageable);
+	Page<Organization> findPaginatedActiveOrganizationList(boolean isActive, Pageable pageable);
 	
 	Organization findByOrganizationId(String organizationId);
 	

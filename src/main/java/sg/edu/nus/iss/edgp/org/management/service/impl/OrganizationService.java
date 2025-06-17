@@ -90,13 +90,13 @@ public class OrganizationService implements IOrganizationService {
 	}
 	
 	@Override
-	public Map<Long, List<OrganizationDTO>> retrieveActiveOrganizationList(Pageable pageable) {
+	public Map<Long, List<OrganizationDTO>> retrievePaginatedActiveOrganizationList(Pageable pageable) {
 		try {
 			List<OrganizationDTO> organizationDTOList = new ArrayList<>();
-			Page<Organization> organizationPages = organizationRepository.findActiveOrganizationListByPageable(true, pageable);
+			Page<Organization> organizationPages = organizationRepository.findPaginatedActiveOrganizationList(true, pageable);
 			long totalRecord = organizationPages.getTotalElements();
 			if (totalRecord > 0) {
-				logger.info("Active organization list is found.");
+				logger.info("Active paginated organization list is found.");
 				for (Organization organization : organizationPages.getContent()) {
 					OrganizationDTO organizationDTO = DTOMapper.toOrganizationDTO(organization);
 					organizationDTOList.add(organizationDTO);
@@ -107,13 +107,13 @@ public class OrganizationService implements IOrganizationService {
 			return result;
 
 		} catch (Exception ex) {
-			logger.error("Exception occurred while retrieving active organization list", ex);
-			throw new OrganizationServiceException("An error occurred while retrieving active organization list", ex);
+			logger.error("Exception occurred while retrieving paginated active organization list", ex);
+			throw new OrganizationServiceException("An error occurred while retrieving paginated active organization list", ex);
 
 		}
 	}
 	
-	
+	@Override
 	public Map<Long, List<OrganizationDTO>> retrieveActiveOrganizationList() {
 		try {
 			List<OrganizationDTO> organizationDTOList = new ArrayList<>();

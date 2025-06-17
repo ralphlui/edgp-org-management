@@ -188,7 +188,7 @@ class OrganizationServiceTest {
 		List<Organization> orgList = List.of(mockOrg);
 		Page<Organization> orgPage = new PageImpl<>(orgList, pageable, 1);
 
-		when(organizationRepository.findActiveOrganizationListByPageable(true, pageable)).thenReturn(orgPage);
+		when(organizationRepository.findPaginatedActiveOrganizationList(true, pageable)).thenReturn(orgPage);
 
 		try (MockedStatic<DTOMapper> mocked = mockStatic(DTOMapper.class)) {
 			OrganizationDTO mockDTO = new OrganizationDTO();
@@ -196,25 +196,25 @@ class OrganizationServiceTest {
 
 			mocked.when(() -> DTOMapper.toOrganizationDTO(mockOrg)).thenReturn(mockDTO);
 
-			Map<Long, List<OrganizationDTO>> result = organizationService.retrieveActiveOrganizationList(pageable);
+			Map<Long, List<OrganizationDTO>> result = organizationService.retrievePaginatedActiveOrganizationList(pageable);
 
 			assertNotNull(result);
 			assertEquals(1, result.keySet().iterator().next());
 			assertEquals("TechOrg", result.values().iterator().next().get(0).getOrganizationName());
-			verify(organizationRepository, times(1)).findActiveOrganizationListByPageable(true, pageable);
+			verify(organizationRepository, times(1)).findPaginatedActiveOrganizationList(true, pageable);
 		}
 	}
 
 	@Test
 	void retrieveActiveOrganizationList_repositoryThrowsException_shouldThrowServiceException() {
-		when(organizationRepository.findActiveOrganizationListByPageable(true, pageable))
+		when(organizationRepository.findPaginatedActiveOrganizationList(true, pageable))
 				.thenThrow(new RuntimeException("DB error"));
 
 		OrganizationServiceException ex = assertThrows(OrganizationServiceException.class,
-				() -> organizationService.retrieveActiveOrganizationList(pageable));
+				() -> organizationService.retrievePaginatedActiveOrganizationList(pageable));
 
-		assertTrue(ex.getMessage().contains("An error occurred while retrieving active organization list"));
-		verify(organizationRepository).findActiveOrganizationListByPageable(true, pageable);
+		assertTrue(ex.getMessage().contains("An error occurred while retrieving paginated active organization list"));
+		verify(organizationRepository).findPaginatedActiveOrganizationList(true, pageable);
 	}
 
 	@Test
