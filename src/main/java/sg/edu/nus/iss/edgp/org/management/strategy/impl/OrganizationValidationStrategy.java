@@ -113,11 +113,13 @@ public class OrganizationValidationStrategy implements IAPIHelperValidationStrat
 	    String jwtToken = authorizationHeader.substring(7);
 	    String scope = jwtService.extractScopeFromToken(jwtToken);
 
-	    if (scope.isEmpty() || scope.toLowerCase().contains("view") || scope.toLowerCase().contains("invalid")) {
+	    if (scope.toLowerCase().contains("view:org")) {
 	        String userOrgId = jwtService.extractOrgIdFromToken(jwtToken);
 	        if (!orgId.equals(userOrgId)) {
 	            return buildInvalidResult("Access Denied. Not authorized to view this organization.");
 	        }
+	    } else if (scope.isEmpty() || scope.toLowerCase().contains("invalid")) {
+	    	return buildInvalidResult("Access Denied. Not authorized to view this organization.");
 	    }
 
 	    ValidationResult validationResult = new ValidationResult();
