@@ -174,7 +174,7 @@ class OrganizationValidationStrategyTest {
 
     @Test
     void validateObject_shouldReturnErrorWhenScopeIsViewAndOrgIdDoesNotMatch() {
-        when(jwtService.extractScopeFromToken(jwtToken)).thenReturn("view");
+        when(jwtService.extractScopeFromToken(jwtToken)).thenReturn("view:org");
         when(jwtService.extractOrgIdFromToken(jwtToken)).thenReturn("OTHER_ORG");
 
         ValidationResult result = validationStrategy.validateObject(validOrgId, authorizationHeader);
@@ -185,7 +185,7 @@ class OrganizationValidationStrategyTest {
 
     @Test
     void validateObject_shouldReturnValidWhenScopeIsViewAndOrgIdMatches() {
-        when(jwtService.extractScopeFromToken(jwtToken)).thenReturn("view");
+        when(jwtService.extractScopeFromToken(jwtToken)).thenReturn("view:org");
         when(jwtService.extractOrgIdFromToken(jwtToken)).thenReturn(validOrgId);
 
         ValidationResult result = validationStrategy.validateObject(validOrgId, authorizationHeader);
